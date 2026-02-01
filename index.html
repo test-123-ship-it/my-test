@@ -798,9 +798,8 @@
     </div>
 
     <script>
-        // 50种职业数据库
+        // 简化版职业数据库 - 包含10个代表性职业
         const careersDatabase = [
-            // 技术类职业 (1-10)
             { 
                 id: 1, 
                 name: "软件工程师", 
@@ -842,98 +841,6 @@
             },
             { 
                 id: 4, 
-                name: "网络安全工程师", 
-                field: "技术/安全",
-                icon: "fas fa-shield-alt",
-                type: "技术类",
-                traits: ["安全意识", "技术精通", "问题解决", "持续学习", "细节关注"],
-                description: "网络安全工程师负责保护企业网络和信息系统免受攻击、病毒和未授权访问。他们设计安全解决方案，监控网络活动，应对安全事件，确保数据安全和系统稳定。",
-                strengths: "你具备强烈的安全意识和扎实的技术基础，能够识别潜在的安全威胁并制定防护策略。你注重细节，善于解决复杂的安全问题，并持续学习最新的安全技术和威胁情报。",
-                prospects: "随着网络攻击日益频繁和复杂，网络安全工程师的需求快速增长。从企业到政府机构，各行各业都需要网络安全专业人才。职业发展路径包括安全架构师、安全顾问、首席安全官等。",
-                learning: "建议学习网络安全基础知识、密码学、网络协议、操作系统安全等。掌握渗透测试、漏洞评估和安全监控工具。考取CISSP、CEH等安全认证可提升职业竞争力。",
-                entryJobs: "安全分析师、网络安全工程师、渗透测试工程师、安全运维工程师、漏洞研究员"
-            },
-            { 
-                id: 5, 
-                name: "人工智能工程师", 
-                field: "技术/AI",
-                icon: "fas fa-robot",
-                type: "技术类",
-                traits: ["算法思维", "数学基础", "编程能力", "创新思维", "研究能力"],
-                description: "人工智能工程师设计和开发智能系统，让计算机能够像人类一样思考、学习和解决问题。他们应用机器学习、深度学习和自然语言处理等技术创造智能应用。",
-                strengths: "你具备扎实的数学基础和算法思维能力，能够理解和实现复杂的AI模型。你充满好奇心和创新精神，善于研究和应用最新的AI技术解决实际问题。",
-                prospects: "AI是未来科技发展的核心方向，人工智能工程师在各行各业都有广泛应用。从自动驾驶到智能医疗，从金融风控到内容推荐，AI工程师拥有广阔的职业前景。",
-                learning: "建议学习机器学习、深度学习、自然语言处理等核心AI技术，掌握Python编程和TensorFlow/PyTorch等框架。加强数学基础，特别是线性代数、概率论和优化理论。",
-                entryJobs: "机器学习工程师、算法工程师、AI研究员、计算机视觉工程师、自然语言处理工程师"
-            },
-            { 
-                id: 6, 
-                name: "UX/UI设计师", 
-                field: "技术/设计",
-                icon: "fas fa-paint-brush",
-                type: "技术/创意类",
-                traits: ["用户同理心", "视觉设计", "交互设计", "问题解决", "团队协作"],
-                description: "UX/UI设计师关注用户体验和界面设计，通过研究用户需求和行为，设计直观、易用且美观的数字产品界面，提升用户满意度和产品价值。",
-                strengths: "你具备强烈的用户同理心和优秀的视觉设计能力，能够理解用户需求并转化为优雅的界面设计。你善于平衡美观与功能，创造愉悦的用户体验。",
-                prospects: "在用户体验日益重要的数字化时代，UX/UI设计师成为产品成功的关键。从互联网公司到传统企业，都需要专业的用户体验设计人才。",
-                learning: "建议学习用户研究、交互设计、视觉设计原理等基础知识。掌握设计工具如Figma、Sketch、Adobe XD等。了解前端开发基础和可用性测试方法。",
-                entryJobs: "UI设计师、UX设计师、交互设计师、视觉设计师、产品设计师"
-            },
-            { 
-                id: 7, 
-                name: "云计算工程师", 
-                field: "技术/云计算",
-                icon: "fas fa-cloud",
-                type: "技术类",
-                traits: ["架构思维", "技术整合", "自动化", "问题解决", "持续学习"],
-                description: "云计算工程师设计和维护基于云平台的系统架构，确保应用程序的高可用性、可扩展性和安全性。他们利用云服务优化IT资源，降低运维成本。",
-                strengths: "你具备系统架构思维和技术整合能力，能够设计和实施高效、可靠的云解决方案。你善于自动化运维流程，持续优化系统性能和成本效率。",
-                prospects: "随着企业加速上云，云计算工程师需求持续增长。掌握主流云平台（AWS、Azure、阿里云）技能的工程师尤其受欢迎。职业发展路径包括云架构师、云解决方案专家等。",
-                learning: "建议学习云计算基础知识、虚拟化技术、容器技术（Docker/Kubernetes）和自动化运维。掌握至少一个主流云平台的认证（如AWS认证、Azure认证）。",
-                entryJobs: "云运维工程师、云架构师、DevOps工程师、云安全工程师、云解决方案工程师"
-            },
-            { 
-                id: 8, 
-                name: "区块链开发工程师", 
-                field: "技术/区块链",
-                icon: "fas fa-link",
-                type: "技术类",
-                traits: ["密码学知识", "分布式系统", "智能合约", "创新思维", "安全意识"],
-                description: "区块链开发工程师设计和开发区块链应用和智能合约，创建去中心化、透明且安全的数字解决方案。他们在金融、供应链、数字身份等领域推动创新。",
-                strengths: "你具备扎实的密码学基础和分布式系统知识，能够理解和开发区块链核心技术。你具有创新思维和安全意识，善于应用区块链技术解决实际问题。",
-                prospects: "区块链技术正在改变多个行业，从加密货币到供应链管理，从数字身份到智能合约。区块链工程师在金融科技、Web3和去中心化应用领域有广阔前景。",
-                learning: "建议学习区块链原理、密码学基础、智能合约开发和分布式系统。掌握Solidity、Go等区块链开发语言和以太坊、Hyperledger等主流平台。",
-                entryJobs: "区块链开发工程师、智能合约工程师、DApp开发工程师、区块链架构师、Web3开发工程师"
-            },
-            { 
-                id: 9, 
-                name: "游戏开发工程师", 
-                field: "技术/游戏",
-                icon: "fas fa-gamepad",
-                type: "技术/创意类",
-                traits: ["编程能力", "创意表达", "图形学", "物理模拟", "团队协作"],
-                description: "游戏开发工程师创造互动娱乐体验，通过编程实现游戏逻辑、图形渲染、物理模拟和用户交互，将创意概念转化为可玩的游戏产品。",
-                strengths: "你具备出色的编程能力和创意表达欲望，能够将游戏设计转化为流畅的交互体验。你善于学习图形学、物理模拟等游戏开发核心技术。",
-                prospects: "游戏产业持续增长，从主机游戏到手机游戏，从VR/AR到云游戏，游戏开发工程师有丰富的职业选择。也可向模拟训练、虚拟现实等严肃游戏领域发展。",
-                learning: "建议学习游戏引擎（如Unity、Unreal Engine）、计算机图形学、游戏物理和人工智能。掌握C#、C++等游戏开发常用语言和游戏设计原理。",
-                entryJobs: "游戏客户端工程师、游戏服务器工程师、游戏引擎工程师、游戏工具开发工程师、VR/AR开发工程师"
-            },
-            { 
-                id: 10, 
-                name: "运维工程师", 
-                field: "技术/运维",
-                icon: "fas fa-server",
-                type: "技术类",
-                traits: ["系统管理", "故障排除", "自动化", "监控优化", "应急响应"],
-                description: "运维工程师负责企业IT系统的稳定运行，包括服务器管理、网络配置、性能监控和故障处理。他们确保系统高可用性，优化运维效率。",
-                strengths: "你具备扎实的系统管理能力和快速的问题解决能力，能够应对各种技术故障和运维挑战。你善于自动化重复任务，提高运维效率和质量。",
-                prospects: "随着企业数字化转型，运维工程师从传统运维向DevOps、SRE（站点可靠性工程）发展，需求持续增长。掌握云原生和自动化技术的运维工程师尤其受欢迎。",
-                learning: "建议学习Linux系统管理、网络基础、脚本编程（Shell/Python）和监控工具。了解容器技术（Docker/Kubernetes）和自动化运维平台。",
-                entryJobs: "系统运维工程师、网络运维工程师、数据库管理员、DevOps工程师、SRE工程师"
-            },
-            // 商业类职业 (11-20)
-            { 
-                id: 11, 
                 name: "市场营销经理", 
                 field: "商业/营销",
                 icon: "fas fa-bullhorn",
@@ -946,7 +853,7 @@
                 entryJobs: "市场营销专员、品牌专员、数字营销专员、市场调研分析师、公关专员"
             },
             { 
-                id: 12, 
+                id: 5, 
                 name: "金融分析师", 
                 field: "商业/金融",
                 icon: "fas fa-chart-pie",
@@ -959,112 +866,7 @@
                 entryJobs: "财务分析员、投资分析员、风险控制专员、基金助理、证券分析员"
             },
             { 
-                id: 13, 
-                name: "人力资源经理", 
-                field: "商业/HR",
-                icon: "fas fa-users",
-                type: "商业类",
-                traits: ["人际沟通", "组织协调", "招聘选拔", "员工发展", "问题解决"],
-                description: "人力资源经理负责企业的人才管理，包括招聘、培训、绩效评估、薪酬福利和员工关系等方面。他们通过有效的人力资源策略支持组织发展。",
-                strengths: "你具备出色的沟通能力和人际洞察力，能够理解员工需求并制定合适的人力资源政策。你善于协调不同利益相关者，平衡组织目标和员工利益。",
-                prospects: "人力资源经理是企业管理的核心岗位，随着人才竞争加剧，战略性人力资源管理日益重要。职业发展路径包括人力资源总监、首席人才官、人力资源顾问等。",
-                learning: "建议学习人力资源管理理论、劳动法律法规、组织行为学、人才发展等知识。掌握招聘技巧、绩效管理方法和员工关系处理能力。",
-                entryJobs: "招聘专员、培训专员、薪酬福利专员、员工关系专员、人力资源助理"
-            },
-            { 
-                id: 14, 
-                name: "管理咨询顾问", 
-                field: "商业/咨询",
-                icon: "fas fa-chart-bar",
-                type: "商业类",
-                traits: ["分析思维", "问题解决", "沟通表达", "项目管理", "商业洞察"],
-                description: "管理咨询顾问为企业提供专业建议和解决方案，帮助客户改进管理、提升效率和实现增长。他们分析业务问题，提出战略建议，并支持方案实施。",
-                strengths: "你具备强大的分析思维和问题解决能力，能够快速理解复杂商业问题并提出创新解决方案。你善于沟通表达，能够清晰地向客户传达建议并推动变革。",
-                prospects: "管理咨询是培养商业领袖的重要路径，咨询顾问在各行各业都有广泛需求。职业发展路径包括高级顾问、项目经理、合伙人，也可转向企业高管或创业。",
-                learning: "建议学习战略管理、运营管理、财务管理等商业知识。掌握分析框架、数据分析和演示技巧。培养商业敏感度和客户沟通能力。",
-                entryJobs: "商业分析师、咨询助理、战略分析师、运营分析师、管理培训生"
-            },
-            { 
-                id: 15, 
-                name: "销售经理", 
-                field: "商业/销售",
-                icon: "fas fa-handshake",
-                type: "商业类",
-                traits: ["客户关系", "谈判技巧", "目标驱动", "团队领导", "抗压能力"],
-                description: "销售经理负责制定销售策略，带领团队实现销售目标，建立和维护客户关系，推动业务增长。他们是连接产品和市场的关键角色。",
-                strengths: "你具备出色的客户关系建立能力和谈判技巧，能够理解客户需求并促成交易。你目标导向，善于激励团队，能够在压力下保持高绩效。",
-                prospects: "销售经理是企业收入增长的核心驱动力，优秀的销售管理者在各行各业都备受重视。职业发展路径包括区域销售总监、全国销售总监、销售副总裁等。",
-                learning: "建议学习销售技巧、客户关系管理、谈判策略和团队管理方法。了解产品知识和市场动态，掌握CRM系统和销售数据分析工具。",
-                entryJobs: "销售代表、客户经理、业务发展专员、销售支持专员、渠道专员"
-            },
-            { 
-                id: 16, 
-                name: "投资银行家", 
-                field: "金融/投行",
-                icon: "fas fa-landmark",
-                type: "商业类",
-                traits: ["财务建模", "交易执行", "市场分析", "压力管理", "沟通协调"],
-                description: "投资银行家帮助企业进行融资、并购和上市等金融交易，提供专业财务顾问服务。他们在资本市场中扮演关键中介角色。",
-                strengths: "你具备出色的财务建模能力和交易执行技巧，能够处理复杂的金融交易。你善于分析市场趋势，在高压环境下保持专业表现。",
-                prospects: "投资银行是金融行业的高端领域，职业发展路径明确但竞争激烈。可向私募股权、风险投资、企业战略等部门发展，或转向企业高管职位。",
-                learning: "建议深入学习公司金融、估值建模、并购交易和资本市场知识。掌握Excel高级功能和财务分析工具，了解法律和监管框架。",
-                entryJobs: "投资银行分析师、投行助理、企业融资专员、并购分析师、资本市场专员"
-            },
-            { 
-                id: 17, 
-                name: "供应链管理师", 
-                field: "商业/物流",
-                icon: "fas fa-shipping-fast",
-                type: "商业类",
-                traits: ["流程优化", "成本控制", "风险管理", "数据分析", "跨部门协调"],
-                description: "供应链管理师负责规划和管理产品从原材料采购到最终交付的整个流程，优化供应链效率、降低成本和提升客户满意度。",
-                strengths: "你具备系统思维和流程优化能力，能够设计和改进复杂的供应链网络。你注重成本控制和风险管理，善于协调内外部资源实现供应链目标。",
-                prospects: "在全球化和电商发展的推动下，供应链管理日益重要。职业发展路径包括供应链总监、物流经理、采购总监、运营副总裁等。",
-                learning: "建议学习供应链管理理论、物流管理、采购策略和库存控制方法。掌握ERP系统和数据分析工具，了解国际贸易和物流法规。",
-                entryJobs: "采购专员、物流专员、库存管理专员、供应链分析师、运营协调员"
-            },
-            { 
-                id: 18, 
-                name: "商业分析师", 
-                field: "商业/分析",
-                icon: "fas fa-search-dollar",
-                type: "商业类",
-                traits: ["数据分析", "业务理解", "需求分析", "沟通桥梁", "问题解决"],
-                description: "商业分析师连接业务需求和技术实现，通过分析业务流程和数据，提出改进建议和系统需求，支持企业决策和数字化转型。",
-                strengths: "你具备出色的数据分析能力和业务理解力，能够识别业务痛点和改进机会。你善于沟通协调，能够将业务需求转化为清晰的技术规格。",
-                prospects: "随着企业数字化转型加速，商业分析师需求持续增长。职业发展路径包括高级商业分析师、产品经理、解决方案架构师、数据产品经理等。",
-                learning: "建议学习业务分析框架、数据分析方法、流程建模和需求管理。掌握SQL、Excel和可视化工具，了解相关行业知识和IT系统基础。",
-                entryJobs: "业务分析师、需求分析师、数据分析师、流程优化专员、系统分析师"
-            },
-            { 
-                id: 19, 
-                name: "品牌经理", 
-                field: "商业/品牌",
-                icon: "fas fa-trademark",
-                type: "商业类",
-                traits: ["品牌策略", "市场定位", "创意执行", "消费者洞察", "跨部门协调"],
-                description: "品牌经理负责品牌建设和维护，通过市场研究、定位策略、传播活动和产品规划，提升品牌价值和市场份额。",
-                strengths: "你具备深刻的消费者洞察和品牌战略思维，能够制定和执行有效的品牌建设计划。你善于创意策划和跨部门协调，推动品牌价值落地。",
-                prospects: "在品牌竞争激烈的市场环境中，品牌经理是企业市场营销的核心岗位。职业发展路径包括品牌总监、市场营销总监、首席品牌官等。",
-                learning: "建议学习品牌管理理论、消费者行为学、市场调研方法和创意传播策略。掌握品牌定位工具和营销数据分析方法。",
-                entryJobs: "品牌专员、市场专员、产品营销专员、广告专员、品牌传播专员"
-            },
-            { 
-                id: 20, 
-                name: "风险控制经理", 
-                field: "金融/风控",
-                icon: "fas fa-exclamation-triangle",
-                type: "商业类",
-                traits: ["风险评估", "数据分析", "合规意识", "决策判断", "细节关注"],
-                description: "风险控制经理识别、评估和管理企业面临的各种风险，包括信用风险、市场风险、操作风险等，确保业务稳健运行和合规经营。",
-                strengths: "你具备敏锐的风险意识和扎实的数据分析能力，能够识别潜在风险并评估其影响。你注重细节，有强烈的合规意识，能够在复杂环境下做出审慎决策。",
-                prospects: "在监管趋严和风险事件频发的背景下，风险控制专业人才需求旺盛。职业发展路径包括高级风控经理、首席风险官、合规总监、内控总监等。",
-                learning: "建议学习风险管理理论、金融产品知识、统计分析和合规法规。掌握风险建模工具和数据分析软件，了解行业特定风险特征。",
-                entryJobs: "风险分析师、合规专员、内控专员、信贷审核员、操作风险管理专员"
-            },
-            // 创意类职业 (21-30)
-            { 
-                id: 21, 
+                id: 6, 
                 name: "平面设计师", 
                 field: "创意/设计",
                 icon: "fas fa-palette",
@@ -1077,125 +879,7 @@
                 entryJobs: "设计助理、平面设计师、视觉设计师、UI设计师、品牌设计师"
             },
             { 
-                id: 22, 
-                name: "内容创作者", 
-                field: "创意/媒体",
-                icon: "fas fa-pen-nib",
-                type: "创意类",
-                traits: ["内容创作", "故事讲述", "平台理解", "受众分析", "自我管理"],
-                description: "内容创作者通过文字、图片、视频等形式在各种平台创作有价值的内容，吸引和影响受众。他们在自媒体、品牌营销、媒体出版等领域发挥重要作用。",
-                strengths: "你具备出色的内容创作能力和故事讲述技巧，能够创作吸引人的文字、图片或视频内容。你理解不同平台的特性，能够分析受众需求，持续产出高质量内容。",
-                prospects: "随着内容营销和自媒体兴起，内容创作者的需求持续增长。可向专业领域深耕，成为垂直领域意见领袖；或加入企业从事品牌内容创作；也可发展个人IP，实现商业变现。",
-                learning: "建议学习内容策划、写作技巧、视频制作、摄影等技能。了解各平台（微信公众号、抖音、B站、小红书）的内容特点和算法机制。掌握SEO和社交媒体运营知识。",
-                entryJobs: "内容运营专员、新媒体编辑、文案策划、视频制作助理、社交媒体专员"
-            },
-            { 
-                id: 23, 
-                name: "视频制作人", 
-                field: "创意/影视",
-                icon: "fas fa-video",
-                type: "创意类",
-                traits: ["视觉叙事", "技术掌握", "团队协作", "创意执行", "项目管理"],
-                description: "视频制作人策划、拍摄和编辑视频内容，从短视频到电影，从广告到纪录片，通过动态影像讲述故事、传达信息和娱乐观众。",
-                strengths: "你具备出色的视觉叙事能力和技术掌握力，能够将创意概念转化为引人入胜的视频作品。你善于团队协作，能够在预算和时间限制内完成高质量的视频制作。",
-                prospects: "视频内容成为数字媒体的主流形式，视频制作人需求持续增长。从影视公司到自媒体，从企业宣传到在线教育，视频制作人有广泛的职业选择。",
-                learning: "建议学习影视语言、摄影技巧、剪辑软件和音频处理。了解剧本创作、导演技巧和制片管理。掌握Premiere Pro、Final Cut Pro、DaVinci Resolve等专业工具。",
-                entryJobs: "视频编辑、摄影师、导演助理、制片助理、多媒体设计师"
-            },
-            { 
-                id: 24, 
-                name: "摄影师", 
-                field: "创意/摄影",
-                icon: "fas fa-camera",
-                type: "创意类",
-                traits: ["视觉审美", "技术掌握", "光影理解", "客户沟通", "创意表达"],
-                description: "摄影师通过镜头捕捉瞬间、表达情感和讲述故事，创作人像、风景、商业、新闻等各类摄影作品。他们用光影艺术记录生活和传达信息。",
-                strengths: "你具备敏锐的视觉审美和扎实的摄影技术，能够捕捉有感染力的画面。你理解光影和构图，善于与拍摄对象沟通，能够通过摄影表达创意和情感。",
-                prospects: "摄影师在广告、媒体、时尚、婚庆、艺术等领域都有需求。可向专业摄影方向发展，如商业摄影、人像摄影、新闻摄影等；也可从事摄影教学或器材评测。",
-                learning: "建议学习摄影理论、相机操作、灯光技巧和后期处理。了解不同摄影领域的专业要求，掌握Photoshop、Lightroom等后期软件。",
-                entryJobs: "摄影助理、商业摄影师、人像摄影师、新闻摄影师、修图师"
-            },
-            { 
-                id: 25, 
-                name: "音乐制作人", 
-                field: "创意/音乐",
-                icon: "fas fa-music",
-                type: "创意类",
-                traits: ["音乐素养", "技术掌握", "创意表达", "团队协作", "市场敏感"],
-                description: "音乐制作人创作、编曲和制作音乐作品，从流行歌曲到影视配乐，从广告音乐到游戏音效。他们结合艺术创意和技术实现，打造听觉体验。",
-                strengths: "你具备扎实的音乐素养和技术掌握力，能够创作和制作高质量的音乐作品。你善于创意表达和团队协作，能够理解市场需求并创作符合要求的音乐。",
-                prospects: "音乐制作人在唱片公司、影视制作、游戏开发、广告公司等领域都有需求。也可作为独立音乐人发展个人事业，或从事音乐教育和器材开发。",
-                learning: "建议学习音乐理论、作曲技巧、编曲方法和录音技术。掌握DAW（数字音频工作站）软件如Logic Pro、Ableton Live、Pro Tools等。了解音乐市场和版权知识。",
-                entryJobs: "音乐制作助理、录音师、编曲师、配乐师、声音设计师"
-            },
-            { 
-                id: 26, 
-                name: "广告创意总监", 
-                field: "创意/广告",
-                icon: "fas fa-ad",
-                type: "创意类",
-                traits: ["创意策划", "团队领导", "客户沟通", "市场理解", "视觉表达"],
-                description: "广告创意总监领导创意团队，策划和执行广告活动，通过创新的视觉和文案传达品牌信息，吸引目标受众并驱动商业结果。",
-                strengths: "你具备出色的创意策划能力和团队领导力，能够指导创意方向并确保执行质量。你善于理解客户需求和市场趋势，能够将商业目标转化为有影响力的创意作品。",
-                prospects: "广告创意总监是广告公司的核心岗位，随着数字广告和内容营销发展，创意领导者的需求持续存在。也可向品牌管理、营销策略或创业方向发展。",
-                learning: "建议学习广告理论、创意策略、消费者心理学和品牌传播。掌握创意简报撰写、团队管理和客户演示技巧。了解最新的广告技术和趋势。",
-                entryJobs: "文案策划、美术指导、创意设计师、客户执行、媒介策划"
-            },
-            { 
-                id: 27, 
-                name: "动画师", 
-                field: "创意/动画",
-                icon: "fas fa-film",
-                type: "创意类",
-                traits: ["动作观察", "艺术技巧", "技术掌握", "耐心细致", "团队协作"],
-                description: "动画师创作动态图像，从2D手绘动画到3D电脑动画，从角色动画到特效制作。他们通过连续的画面创造生命和运动，讲述故事和表达情感。",
-                strengths: "你具备敏锐的动作观察力和扎实的艺术技巧，能够创造流畅自然的动画效果。你耐心细致，善于团队协作，能够将静态概念转化为动态视觉体验。",
-                prospects: "动画师在电影、电视、游戏、广告和教育等领域都有需求。随着国产动画崛起和游戏产业发展，动画师职业前景广阔。也可向导演、艺术指导等管理职位发展。",
-                learning: "建议学习动画原理、角色设计、故事板和运动规律。掌握2D/3D动画软件如Animate、Toon Boom、Maya、Blender等。了解不同动画风格和技术流程。",
-                entryJobs: "动画助理、角色动画师、特效动画师、故事板艺术家、动态图形设计师"
-            },
-            { 
-                id: 28, 
-                name: "建筑师", 
-                field: "创意/建筑",
-                icon: "fas fa-building",
-                type: "创意类",
-                traits: ["空间想象", "设计能力", "技术知识", "项目管理", "客户沟通"],
-                description: "建筑师设计和规划建筑空间，从住宅到商业大楼，从公共设施到城市规划。他们结合美学、功能、技术和环境，创造宜居和可持续的建筑环境。",
-                strengths: "你具备出色的空间想象力和设计能力，能够将功能需求转化为优美的建筑形式。你掌握建筑技术和材料知识，善于协调工程、预算和法规要求。",
-                prospects: "建筑师在建筑设计院、房地产公司、政府部门和教育机构都有需求。随着绿色建筑和智能建筑发展，可持续设计能力日益重要。也可向室内设计、城市规划或学术研究发展。",
-                learning: "建议学习建筑设计理论、建筑历史、结构工程和建筑材料。掌握CAD、BIM等设计软件和模型制作技能。了解建筑法规、可持续设计和项目管理。",
-                entryJobs: "建筑设计师助理、施工图设计师、BIM工程师、城市规划助理、室内设计师"
-            },
-            { 
-                id: 29, 
-                name: "工业设计师", 
-                field: "创意/产品",
-                icon: "fas fa-industry",
-                type: "创意类",
-                traits: ["产品思维", "用户中心", "材料工艺", "3D建模", "市场理解"],
-                description: "工业设计师设计和开发物理产品，从电子产品到家具，从交通工具到日用器具。他们结合美学、功能、人机工程和制造可行性，创造有价值的产品体验。",
-                strengths: "你具备出色的产品思维和用户中心设计能力，能够将用户需求转化为实用美观的产品设计。你了解材料工艺和制造流程，善于平衡创意与可行性。",
-                prospects: "工业设计师在产品公司、设计咨询、制造企业和创业公司都有需求。随着智能硬件和IoT发展，兼具技术和设计能力的设计师尤其受欢迎。",
-                learning: "建议学习工业设计原理、人机工程学、材料科学和制造工艺。掌握Rhino、SolidWorks、KeyShot等3D设计和渲染软件。了解市场趋势和用户研究方法。",
-                entryJobs: "产品设计师助理、3D建模师、CMF设计师、用户研究员、设计工程师"
-            },
-            { 
-                id: 30, 
-                name: "时尚设计师", 
-                field: "创意/时尚",
-                icon: "fas fa-tshirt",
-                type: "创意类",
-                traits: ["时尚敏感", "创意表达", "技术掌握", "面料知识", "商业意识"],
-                description: "时尚设计师创作服装和配饰，从成衣到高级定制，从街头时尚到舞台服装。他们通过面料、剪裁和风格表达美学理念和文化趋势。",
-                strengths: "你具备敏锐的时尚敏感度和创意表达能力，能够捕捉潮流趋势并创造独特的设计风格。你掌握服装技术和面料知识，善于将创意概念转化为可穿戴的设计。",
-                prospects: "时尚设计师在服装品牌、时尚媒体、影视制作和个人品牌等领域都有需求。随着国潮兴起和可持续发展关注，本土设计和环保时尚成为新的发展方向。",
-                learning: "建议学习服装设计原理、时尚历史、面料知识和制版技术。掌握设计草图、服装制作和时尚插画技能。了解市场趋势、品牌管理和供应链知识。",
-                entryJobs: "设计助理、版师助理、时尚插画师、面料采购员、时尚编辑助理"
-            },
-            // 服务类职业 (31-40)
-            { 
-                id: 31, 
+                id: 7, 
                 name: "心理咨询师", 
                 field: "服务/健康",
                 icon: "fas fa-heart",
@@ -1208,7 +892,7 @@
                 entryJobs: "心理咨询助理、心理健康教育者、心理测评师、热线咨询员、学校心理辅导员"
             },
             { 
-                id: 32, 
+                id: 8, 
                 name: "教师", 
                 field: "服务/教育",
                 icon: "fas fa-chalkboard-teacher",
@@ -1221,112 +905,7 @@
                 entryJobs: "助教、实习教师、学科教师、培训师、教育顾问"
             },
             { 
-                id: 33, 
-                name: "医生", 
-                field: "服务/医疗",
-                icon: "fas fa-user-md",
-                type: "服务类",
-                traits: ["医学知识", "临床技能", "同理心", "决策能力", "抗压能力"],
-                description: "医生诊断和治疗疾病，维护和促进患者健康。通过医学知识、临床经验和专业技能，提供医疗服务和健康指导，拯救生命和减轻痛苦。",
-                strengths: "你具备扎实的医学知识和临床技能，能够准确诊断和治疗疾病。你具有同理心和责任感，能够在压力环境下做出正确决策，为患者提供高质量的医疗服务。",
-                prospects: "医生是医疗系统的核心，随着人口老龄化和健康意识提高，医疗需求持续增长。可向专科医生、医疗管理、医学研究或公共卫生等方向发展。",
-                learning: "需要完成医学专业系统学习，包括基础医学、临床医学和实习培训。掌握不断更新的医学知识和技术，参加继续教育和专业认证。培养医患沟通和团队协作能力。",
-                entryJobs: "住院医师、全科医生、专科医师助理、医学研究员、公共卫生医师"
-            },
-            { 
-                id: 34, 
-                name: "护士", 
-                field: "服务/护理",
-                icon: "fas fa-hand-holding-medical",
-                type: "服务类",
-                traits: ["护理技能", "同理心", "耐心细致", "团队协作", "应急处理"],
-                description: "护士提供基础医疗护理，协助医生治疗，照顾患者日常生活，进行健康教育和心理支持。他们是医疗团队的重要成员，连接医患关系。",
-                strengths: "你具备专业的护理技能和强烈的同理心，能够为患者提供全面细致的护理服务。你耐心细致，善于团队协作，能够在紧急情况下保持冷静和专业。",
-                prospects: "护士是全球紧缺的职业之一，随着医疗需求增长和护理专业化发展，护士有广泛的职业选择。可向专科护士、护理管理、护理教育或社区健康等方向发展。",
-                learning: "需要完成护理专业系统学习，包括基础医学、护理理论和临床实践。掌握护理操作技能和患者评估方法，参加继续教育和专业认证。",
-                entryJobs: "注册护士、护士助理、专科护士、社区护士、护理教育员"
-            },
-            { 
-                id: 35, 
-                name: "律师", 
-                field: "服务/法律",
-                icon: "fas fa-gavel",
-                type: "服务类",
-                traits: ["法律知识", "逻辑思维", "辩论技巧", "研究能力", "职业道德"],
-                description: "律师提供法律咨询和代理服务，帮助客户理解法律权利和义务，解决法律纠纷，起草法律文件。他们在司法系统中维护正义和法律秩序。",
-                strengths: "你具备扎实的法律知识和出色的逻辑思维能力，能够分析复杂法律问题并提出解决方案。你善于辩论和沟通，具有强烈的职业道德和正义感。",
-                prospects: "律师在法律事务所、企业法务部门、政府机构和非营利组织都有需求。随着法治社会建设，法律专业人才需求持续增长。可向合伙人、法务总监、法官或法学教授发展。",
-                learning: "需要完成法律专业系统学习并通过司法考试。掌握法律研究、文书起草和法庭辩论技能。了解特定领域的法律知识和实践经验，参加继续法律教育。",
-                entryJobs: "律师助理、法务专员、法律顾问助理、公证员助理、司法考试备考者"
-            },
-            { 
-                id: 36, 
-                name: "社会工作者", 
-                field: "服务/公益",
-                icon: "fas fa-hands-helping",
-                type: "服务类",
-                traits: ["社会关怀", "沟通协调", "资源整合", "危机干预", "文化敏感"],
-                description: "社会工作者帮助个人、家庭和社区解决社会问题，提供支持服务，促进社会公平和福祉。他们在社会福利、社区发展和危机干预等领域发挥作用。",
-                strengths: "你具备强烈的社会关怀和出色的沟通协调能力，能够理解服务对象需求并整合资源提供帮助。你善于危机干预和文化敏感，能够在复杂社会环境中提供专业服务。",
-                prospects: "随着社会服务专业化，社会工作者在政府、非营利组织、社区中心和医疗机构都有需求。可向项目管理、政策倡导、督导培训或研究评估等方向发展。",
-                learning: "建议学习社会工作理论、人类行为与社会环境、社会政策和服务方法。掌握个案工作、小组工作和社区工作技巧，参加实习和督导培训。",
-                entryJobs: "社工助理、社区工作者、项目协调员、危机干预专员、社会服务专员"
-            },
-            { 
-                id: 37, 
-                name: "营养师", 
-                field: "服务/健康",
-                icon: "fas fa-apple-alt",
-                type: "服务类",
-                traits: ["营养知识", "科学态度", "沟通教育", "个性化方案", "持续学习"],
-                description: "营养师基于营养科学为个人或群体提供饮食建议，设计营养方案，促进健康、预防疾病和辅助治疗。他们在医疗、健身、食品和社区等领域工作。",
-                strengths: "你具备扎实的营养知识和科学态度，能够基于证据提供个性化的营养建议。你善于沟通和教育，能够帮助他人建立健康的饮食习惯和生活方式。",
-                prospects: "随着健康意识提高和慢性病增加，营养师需求持续增长。可在医院、健身中心、食品企业、学校或私人诊所工作，也可从事营养教育和媒体传播。",
-                learning: "建议学习营养学、食品科学、生理学和病理学知识。掌握营养评估、方案设计和效果监测方法，考取注册营养师资格，持续跟进营养研究进展。",
-                entryJobs: "临床营养师、公共营养师、运动营养师、食品营养专员、健康管理师"
-            },
-            { 
-                id: 38, 
-                name: "健身教练", 
-                field: "服务/健康",
-                icon: "fas fa-dumbbell",
-                type: "服务类",
-                traits: ["运动知识", "示范能力", "激励技巧", "安全意识", "客户关系"],
-                description: "健身教练指导个人或团体进行体育锻炼，设计训练方案，提供动作指导和运动建议，帮助客户达到健身目标，改善健康和体能。",
-                strengths: "你具备扎实的运动知识和出色的示范能力，能够设计安全有效的训练方案。你善于激励和沟通，能够建立良好的客户关系，帮助他人坚持锻炼并达成目标。",
-                prospects: "随着健身行业发展和健康意识提高，专业健身教练需求增长。可在健身俱乐部、工作室、企业健康项目或在线平台工作，也可发展个人品牌和培训业务。",
-                learning: "建议学习运动生理学、解剖学、训练方法和营养基础。掌握不同训练体系和器械使用，考取健身教练认证，了解特殊人群训练和安全防护。",
-                entryJobs: "私人教练、团体课教练、运动康复师、健身顾问、体能训练师"
-            },
-            { 
-                id: 39, 
-                name: "职业规划师", 
-                field: "服务/教育",
-                icon: "fas fa-road",
-                type: "服务类",
-                traits: ["职业知识", "咨询技巧", "评估能力", "资源整合", "同理心"],
-                description: "职业规划师帮助个人探索职业兴趣、能力和价值观，制定职业发展计划，提供就业指导和资源支持。他们在教育机构、企业HR和咨询公司工作。",
-                strengths: "你具备广泛的职业知识和专业的咨询技巧，能够帮助他人认识自我和探索职业选择。你善于评估和资源整合，能够提供实用的职业发展建议和支持。",
-                prospects: "随着职业变化加速和终身学习理念普及，职业规划师需求增长。可在学校、大学、职业培训机构、人力资源部门或独立咨询实践工作。",
-                learning: "建议学习职业发展理论、评估工具、咨询方法和劳动力市场知识。掌握职业兴趣测试、简历指导和面试辅导技能，了解不同行业职业路径。",
-                entryJobs: "职业咨询师、就业指导专员、招聘顾问、人才发展专员、生涯教育师"
-            },
-            { 
-                id: 40, 
-                name: "酒店经理", 
-                field: "服务/旅游",
-                icon: "fas fa-hotel",
-                type: "服务类",
-                traits: ["客户服务", "团队管理", "运营协调", "问题解决", "多任务处理"],
-                description: "酒店经理负责酒店日常运营，包括前台、客房、餐饮和活动等服务，确保客人满意度和运营效率。他们在旅游接待业提供高品质的住宿体验。",
-                strengths: "你具备出色的客户服务能力和团队管理技巧，能够协调各部门提供无缝的酒店体验。你善于问题解决和多任务处理，能够在动态环境中保持运营效率和质量。",
-                prospects: "随着旅游业发展和消费升级，酒店管理人才需求持续。可在连锁酒店、度假村、精品酒店或会展中心工作，职业发展路径包括区域经理、品牌总监或总经理。",
-                learning: "建议学习酒店管理、旅游接待、客户服务和运营管理知识。掌握预订系统、收入管理和质量控制方法，了解酒店营销和可持续发展趋势。",
-                entryJobs: "前台接待、客房主管、餐饮助理、销售协调员、宾客关系专员"
-            },
-            // 管理类职业 (41-50)
-            { 
-                id: 41, 
+                id: 9, 
                 name: "项目经理", 
                 field: "管理/运营",
                 icon: "fas fa-project-diagram",
@@ -1339,12 +918,527 @@
                 entryJobs: "项目助理、项目协调员、项目经理（助理）、产品经理、运营经理"
             },
             { 
-                id: 42, 
-                name: "运营总监", 
-                field: "管理/运营",
-                icon: "fas fa-cogs",
-                type: "管理类",
-                traits: ["流程优化", "团队管理", "数据分析", "战略执行", "跨部门协调"],
-                description: "运营总监负责企业日常运营管理，优化业务流程，提高效率和生产力，确保运营目标达成。他们在生产、服务或平台型企业中发挥关键作用。",
-                strengths: "你具备出色的流程优化能力和团队管理技巧，能够设计和改进高效的运营体系。你善于数据分析和战略执行，能够协调跨部门资源实现运营目标。",
-                prospects: "运营总监是企业管理的核心岗位，随着精细化管理和数字化转型，运营专业人才需求增长。可向首席运营官、总经理或创业方向发
+                id: 10, 
+                name: "医生", 
+                field: "服务/医疗",
+                icon: "fas fa-user-md",
+                type: "服务类",
+                traits: ["医学知识", "临床技能", "同理心", "决策能力", "抗压能力"],
+                description: "医生诊断和治疗疾病，维护和促进患者健康。通过医学知识、临床经验和专业技能，提供医疗服务和健康指导，拯救生命和减轻痛苦。",
+                strengths: "你具备扎实的医学知识和临床技能，能够准确诊断和治疗疾病。你具有同理心和责任感，能够在压力环境下做出正确决策，为患者提供高质量的医疗服务。",
+                prospects: "医生是医疗系统的核心，随着人口老龄化和健康意识提高，医疗需求持续增长。可向专科医生、医疗管理、医学研究或公共卫生等方向发展。",
+                learning: "需要完成医学专业系统学习，包括基础医学、临床医学和实习培训。掌握不断更新的医学知识和技术，参加继续教育和专业认证。培养医患沟通和团队协作能力。",
+                entryJobs: "住院医师、全科医生、专科医师助理、医学研究员、公共卫生医师"
+            }
+        ];
+
+        // 25道测试问题
+        const questions = [
+            {
+                id: 1,
+                text: "在解决问题时，你更倾向于？",
+                options: [
+                    { text: "分析数据，寻找逻辑关系", careerId: 1 },
+                    { text: "咨询他人意见，集体讨论", careerId: 9 },
+                    { text: "凭直觉和创造力寻找方案", careerId: 6 },
+                    { text: "制定系统化的解决步骤", careerId: 2 }
+                ]
+            },
+            {
+                id: 2,
+                text: "你更喜欢的工作环境是？",
+                options: [
+                    { text: "安静、独立的办公室或实验室", careerId: 1 },
+                    { text: "开放、互动的团队空间", careerId: 4 },
+                    { text: "灵活、自由的工作场所", careerId: 6 },
+                    { text: "结构化、有明确流程的环境", careerId: 8 }
+                ]
+            },
+            {
+                id: 3,
+                text: "哪种活动最吸引你？",
+                options: [
+                    { text: "编写程序或解决技术难题", careerId: 1 },
+                    { text: "分析市场趋势或商业数据", careerId: 5 },
+                    { text: "创作艺术作品或设计作品", careerId: 6 },
+                    { text: "帮助他人解决问题", careerId: 7 }
+                ]
+            },
+            {
+                id: 4,
+                text: "你如何描述你的沟通风格？",
+                options: [
+                    { text: "直接、逻辑清晰，注重事实", careerId: 1 },
+                    { text: "有说服力，注重影响他人", careerId: 4 },
+                    { text: "富有想象力和表达力", careerId: 6 },
+                    { text: "耐心倾听，关注他人感受", careerId: 7 }
+                ]
+            },
+            {
+                id: 5,
+                text: "面对新任务，你的第一反应是？",
+                options: [
+                    { text: "制定详细的执行计划", careerId: 9 },
+                    { text: "研究相关的技术或知识", careerId: 1 },
+                    { text: "思考如何创新或与众不同", careerId: 6 },
+                    { text: "了解任务对他人或团队的影响", careerId: 7 }
+                ]
+            },
+            {
+                id: 6,
+                text: "你最看重工作中的什么？",
+                options: [
+                    { text: "技术挑战和学习机会", careerId: 1 },
+                    { text: "收入和职业发展空间", careerId: 5 },
+                    { text: "创造性和自我表达", careerId: 6 },
+                    { text: "社会影响和意义", careerId: 8 }
+                ]
+            },
+            {
+                id: 7,
+                text: "你如何处理压力？",
+                options: [
+                    { text: "系统分析问题，制定解决方案", careerId: 2 },
+                    { text: "与他人讨论，寻求支持", careerId: 7 },
+                    { text: "通过创造性活动放松", careerId: 6 },
+                    { text: "调整计划，重新分配资源", careerId: 9 }
+                ]
+            },
+            {
+                id: 8,
+                text: "你更喜欢哪种学习方式？",
+                options: [
+                    { text: "动手实践，解决实际问题", careerId: 1 },
+                    { text: "系统学习理论框架", careerId: 5 },
+                    { text: "观察模仿，然后创新", careerId: 6 },
+                    { text: "与他人讨论和分享", careerId: 8 }
+                ]
+            },
+            {
+                id: 9,
+                text: "在团队中，你通常扮演什么角色？",
+                options: [
+                    { text: "技术专家，解决难题", careerId: 1 },
+                    { text: "协调者，促进合作", careerId: 9 },
+                    { text: "创意提供者，提出新想法", careerId: 6 },
+                    { text: "支持者，帮助团队成员", careerId: 7 }
+                ]
+            },
+            {
+                id: 10,
+                text: "你更擅长处理哪种信息？",
+                options: [
+                    { text: "数字和统计数据", careerId: 2 },
+                    { text: "文字和语言信息", careerId: 4 },
+                    { text: "视觉和图像信息", careerId: 6 },
+                    { text: "人际关系和情感信息", careerId: 7 }
+                ]
+            },
+            {
+                id: 11,
+                text: "你如何做决策？",
+                options: [
+                    { text: "基于数据和逻辑分析", careerId: 2 },
+                    { text: "考虑商业利益和风险", careerId: 5 },
+                    { text: "凭直觉和创意灵感", careerId: 6 },
+                    { text: "考虑对他人的影响", careerId: 8 }
+                ]
+            },
+            {
+                id: 12,
+                text: "你更喜欢哪种工作节奏？",
+                options: [
+                    { text: "专注深入，长时间研究一个问题", careerId: 1 },
+                    { text: "快节奏，多任务处理", careerId: 4 },
+                    { text: "灵活自由，按自己的节奏", careerId: 6 },
+                    { text: "稳定规律，可预测的日程", careerId: 8 }
+                ]
+            },
+            {
+                id: 13,
+                text: "你对成功的定义更接近？",
+                options: [
+                    { text: "解决复杂技术难题", careerId: 1 },
+                    { text: "实现商业目标和经济收益", careerId: 5 },
+                    { text: "创作出有影响力的作品", careerId: 6 },
+                    { text: "帮助他人成长和改变", careerId: 7 }
+                ]
+            },
+            {
+                id: 14,
+                text: "你如何应对失败？",
+                options: [
+                    { text: "分析原因，改进方法", careerId: 2 },
+                    { text: "调整策略，尝试新方法", careerId: 4 },
+                    { text: "从中寻找创意灵感", careerId: 6 },
+                    { text: "寻求他人建议和支持", careerId: 7 }
+                ]
+            },
+            {
+                id: 15,
+                text: "你更喜欢的工作成果是？",
+                options: [
+                    { text: "功能完善的软件或系统", careerId: 1 },
+                    { text: "详细的商业报告或分析", careerId: 5 },
+                    { text: "美观的视觉设计或创意作品", careerId: 6 },
+                    { text: "看到他人因你的帮助而进步", careerId: 8 }
+                ]
+            },
+            {
+                id: 16,
+                text: "你如何看待规则和流程？",
+                options: [
+                    { text: "作为效率工具，但可以优化", careerId: 9 },
+                    { text: "需要严格遵守的技术规范", careerId: 1 },
+                    { text: "可能限制创造力的框架", careerId: 6 },
+                    { text: "确保公平和质量的保障", careerId: 8 }
+                ]
+            },
+            {
+                id: 17,
+                text: "你更喜欢哪种社交活动？",
+                options: [
+                    { text: "技术交流会或研讨会", careerId: 1 },
+                    { text: "商务社交或行业会议", careerId: 4 },
+                    { text: "艺术展览或创意工作坊", careerId: 6 },
+                    { text: "志愿服务或社区活动", careerId: 7 }
+                ]
+            },
+            {
+                id: 18,
+                text: "你如何管理时间？",
+                options: [
+                    { text: "制定详细的时间表和计划", careerId: 9 },
+                    { text: "按优先级处理任务", careerId: 5 },
+                    { text: "根据灵感和状态调整", careerId: 6 },
+                    { text: "为他人需求预留时间", careerId: 7 }
+                ]
+            },
+            {
+                id: 19,
+                text: "你对新技术的态度是？",
+                options: [
+                    { text: "热衷学习并掌握最新技术", careerId: 1 },
+                    { text: "关注其商业应用价值", careerId: 4 },
+                    { text: "思考如何创造性应用", careerId: 6 },
+                    { text: "关注其对人们生活的影响", careerId: 8 }
+                ]
+            },
+            {
+                id: 20,
+                text: "你更喜欢独立工作还是团队合作？",
+                options: [
+                    { text: "大部分时间独立工作", careerId: 1 },
+                    { text: "团队合作，但保持独立性", careerId: 5 },
+                    { text: "灵活，根据项目需要调整", careerId: 6 },
+                    { text: "喜欢团队合作和互动", careerId: 7 }
+                ]
+            },
+            {
+                id: 21,
+                text: "你如何应对批评？",
+                options: [
+                    { text: "理性分析，改进工作", careerId: 2 },
+                    { text: "作为改进产品或服务的反馈", careerId: 3 },
+                    { text: "作为创意改进的参考", careerId: 6 },
+                    { text: "理解批评者的立场和需求", careerId: 7 }
+                ]
+            },
+            {
+                id: 22,
+                text: "你更关注工作的哪个方面？",
+                options: [
+                    { text: "技术实现的质量和效率", careerId: 1 },
+                    { text: "商业价值和市场表现", careerId: 4 },
+                    { text: "创意表达和美学价值", careerId: 6 },
+                    { text: "社会意义和人际关系", careerId: 8 }
+                ]
+            },
+            {
+                id: 23,
+                text: "你更喜欢处理哪种问题？",
+                options: [
+                    { text: "逻辑难题或技术挑战", careerId: 1 },
+                    { text: "商业策略或市场问题", careerId: 5 },
+                    { text: "设计或创意表达问题", careerId: 6 },
+                    { text: "人际关系或沟通问题", careerId: 7 }
+                ]
+            },
+            {
+                id: 24,
+                text: "你如何衡量工作成果？",
+                options: [
+                    { text: "技术指标和性能数据", careerId: 1 },
+                    { text: "商业指标和财务数据", careerId: 5 },
+                    { text: "创意质量和美学评价", careerId: 6 },
+                    { text: "用户满意度和社会影响", careerId: 8 }
+                ]
+            },
+            {
+                id: 25,
+                text: "你希望十年后的职业状态是？",
+                options: [
+                    { text: "技术专家或架构师", careerId: 1 },
+                    { text: "企业高管或创业者", careerId: 5 },
+                    { text: "知名创作者或艺术家", careerId: 6 },
+                    { text: "资深导师或咨询专家", careerId: 7 }
+                ]
+            }
+        ];
+
+        // 应用状态
+        const state = {
+            currentQuestionIndex: 0,
+            answers: new Array(questions.length).fill(null),
+            careerScores: new Array(careersDatabase.length).fill(0)
+        };
+
+        // DOM元素
+        const coverPage = document.getElementById('coverPage');
+        const testPage = document.getElementById('testPage');
+        const resultPage = document.getElementById('resultPage');
+        const startBtn = document.getElementById('startBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const currentQuestionElement = document.getElementById('currentQuestion');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+
+        // 结果页元素
+        const resultIcon = document.getElementById('resultIcon');
+        const resultName = document.getElementById('resultName');
+        const resultField = document.getElementById('resultField');
+        const resultDescription = document.getElementById('resultDescription');
+        const resultTraits = document.getElementById('resultTraits');
+        const matchPercentage = document.getElementById('matchPercentage');
+        const strengthsAnalysis = document.getElementById('strengthsAnalysis');
+        const prospectsAnalysis = document.getElementById('prospectsAnalysis');
+        const learningAnalysis = document.getElementById('learningAnalysis');
+        const entryJobsAnalysis = document.getElementById('entryJobsAnalysis');
+        const otherCareersList = document.getElementById('otherCareersList');
+
+        // 初始化应用
+        function init() {
+            console.log("初始化应用");
+            
+            // 事件监听
+            startBtn.addEventListener('click', startTest);
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            restartBtn.addEventListener('click', restartTest);
+            shareBtn.addEventListener('click', shareResult);
+            
+            // 初始显示封面页
+            coverPage.style.display = 'flex';
+            testPage.style.display = 'none';
+            resultPage.style.display = 'none';
+        }
+
+        // 开始测试
+        function startTest() {
+            console.log("开始测试");
+            
+            coverPage.style.display = 'none';
+            testPage.style.display = 'block';
+            resultPage.style.display = 'none';
+            
+            state.currentQuestionIndex = 0;
+            state.answers.fill(null);
+            state.careerScores.fill(0);
+            
+            showQuestion(state.currentQuestionIndex);
+        }
+
+        // 显示问题
+        function showQuestion(index) {
+            console.log("显示问题", index);
+            
+            const question = questions[index];
+            
+            // 更新进度条和文本
+            const progress = ((index + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `第${index + 1}题，共${questions.length}题`;
+            currentQuestionElement.textContent = index + 1;
+            
+            // 设置问题文本
+            questionText.textContent = question.text;
+            
+            // 清空选项容器
+            optionsContainer.innerHTML = '';
+            
+            // 添加选项
+            question.options.forEach((option, optionIndex) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (state.answers[index] === optionIndex) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <div class="option-icon">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div class="option-text">${option.text}</div>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index, optionIndex));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // 更新导航按钮状态
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = state.answers[index] === null;
+            
+            if (index === questions.length - 1) {
+                nextBtn.innerHTML = '查看结果 <i class="fas fa-chart-bar"></i>';
+            } else {
+                nextBtn.innerHTML = '下一题 <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        // 选择选项
+        function selectOption(questionIndex, optionIndex) {
+            console.log("选择选项", questionIndex, optionIndex);
+            
+            // 移除之前的选择
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // 标记当前选择
+            options[optionIndex].classList.add('selected');
+            
+            // 保存答案
+            state.answers[questionIndex] = optionIndex;
+            
+            // 启用下一题按钮
+            nextBtn.disabled = false;
+            
+            // 更新职业得分
+            const selectedOption = questions[questionIndex].options[optionIndex];
+            state.careerScores[selectedOption.careerId - 1] += 1;
+        }
+
+        // 显示上一题
+        function showPreviousQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                showQuestion(state.currentQuestionIndex);
+            }
+        }
+
+        // 显示下一题
+        function showNextQuestion() {
+            if (state.currentQuestionIndex < questions.length - 1) {
+                state.currentQuestionIndex++;
+                showQuestion(state.currentQuestionIndex);
+            } else {
+                // 最后一题，显示结果
+                showResult();
+            }
+        }
+
+        // 显示结果
+        function showResult() {
+            console.log("显示结果");
+            
+            // 计算最终职业匹配
+            const maxScore = Math.max(...state.careerScores);
+            const maxScoreIndex = state.careerScores.indexOf(maxScore);
+            const matchedCareer = careersDatabase[maxScoreIndex];
+            
+            console.log("匹配的职业", matchedCareer);
+            
+            // 计算匹配百分比
+            const percentage = Math.min(95, Math.max(70, Math.round((maxScore / 25) * 100)));
+            
+            // 设置结果页面内容
+            resultIcon.innerHTML = `<i class="${matchedCareer.icon}"></i>`;
+            resultName.textContent = matchedCareer.name;
+            resultField.textContent = matchedCareer.field;
+            resultDescription.textContent = matchedCareer.description;
+            matchPercentage.textContent = `${percentage}%`;
+            
+            // 添加特征标签
+            resultTraits.innerHTML = '';
+            matchedCareer.traits.forEach(trait => {
+                const traitElement = document.createElement('div');
+                traitElement.className = 'trait';
+                traitElement.textContent = trait;
+                resultTraits.appendChild(traitElement);
+            });
+            
+            // 添加详细分析
+            strengthsAnalysis.textContent = matchedCareer.strengths;
+            prospectsAnalysis.textContent = matchedCareer.prospects;
+            learningAnalysis.textContent = matchedCareer.learning;
+            entryJobsAnalysis.textContent = matchedCareer.entryJobs;
+            
+            // 添加其他可能匹配的职业
+            otherCareersList.innerHTML = '';
+            
+            // 找到得分第二和第三的职业
+            const sortedScores = [...state.careerScores].map((score, index) => ({ score, index }))
+                .sort((a, b) => b.score - a.score);
+            
+            // 显示前4个其他职业（排除已经匹配的）
+            let count = 0;
+            for (let i = 0; i < sortedScores.length && count < 4; i++) {
+                if (sortedScores[i].index !== maxScoreIndex) {
+                    const career = careersDatabase[sortedScores[i].index];
+                    const otherCareerElement = document.createElement('div');
+                    otherCareerElement.className = 'other-career';
+                    otherCareerElement.innerHTML = `
+                        <div class="other-career-icon"><i class="${career.icon}"></i></div>
+                        <div class="other-career-name">${career.name}</div>
+                        <div class="other-career-field">${career.field}</div>
+                    `;
+                    otherCareersList.appendChild(otherCareerElement);
+                    count++;
+                }
+            }
+            
+            // 切换到结果页
+            coverPage.style.display = 'none';
+            testPage.style.display = 'none';
+            resultPage.style.display = 'block';
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 重新测试
+        function restartTest() {
+            startTest();
+        }
+
+        // 分享结果
+        function shareResult() {
+            const careerName = resultName.textContent;
+            const shareText = `我刚完成了「测试适合你的职业」，我的匹配职业是${careerName}！你也来测试一下吧~`;
+            
+            // 使用Web Share API如果可用
+            if (navigator.share) {
+                navigator.share({
+                    title: '我的职业匹配测试结果',
+                    text: shareText,
+                    url: window.location.href
+                })
+                .catch(error => console.log('分享失败:', error));
+            } else {
+                // 备用方案：复制到剪贴板
+                navigator.clipboard.writeText(shareText)
+                    .then(() => alert('结果已复制到剪贴板，快去分享给朋友吧！'))
+                    .catch(err => alert('请手动复制分享结果'));
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
