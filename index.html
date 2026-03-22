@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>星蕴工坊 | 25维星格测试·专属宇宙报告</title>
+    <title>星蕴工坊 | 30维星格测试·专属宇宙报告</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- html2canvas 截图库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(145deg, #0b0b2b 0%, #14144a 100%);
             font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
@@ -22,16 +17,8 @@
             padding: 1.5rem 1rem 2.5rem;
             min-height: 100vh;
         }
-
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+        .container { max-width: 720px; margin: 0 auto; }
+        .hero { text-align: center; margin-bottom: 2rem; }
         .hero h1 {
             font-size: 2.2rem;
             background: linear-gradient(135deg, #FFE6B0, #C792FF, #7F7CFF);
@@ -44,11 +31,7 @@
             align-items: center;
             gap: 10px;
         }
-        .hero p {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
+        .hero p { font-size: 0.95rem; opacity: 0.8; margin-top: 0.5rem; }
         .badge {
             background: rgba(255,255,245,0.15);
             backdrop-filter: blur(4px);
@@ -58,7 +41,6 @@
             display: inline-block;
             margin-top: 0.8rem;
         }
-
         .card {
             background: rgba(20, 25, 65, 0.65);
             backdrop-filter: blur(12px);
@@ -68,7 +50,6 @@
             margin-bottom: 1.5rem;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
         }
-
         .section-title {
             font-size: 1.35rem;
             font-weight: 600;
@@ -79,7 +60,6 @@
             border-left: 4px solid #f5b042;
             padding-left: 0.8rem;
         }
-
         .zodiac-selector select {
             background: #1e1f3a;
             border: 1px solid #5f5bb0;
@@ -92,48 +72,12 @@
             cursor: pointer;
             width: 100%;
         }
-
-        /* 分步答题样式 */
-        .step-container {
-            min-height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .progress-bar {
-            background: #2a2a5a;
-            border-radius: 20px;
-            height: 6px;
-            margin-bottom: 1.8rem;
-            overflow: hidden;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #f5b042, #ff7e05);
-            border-radius: 20px;
-            transition: width 0.3s ease;
-        }
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: #ffdfa5;
-        }
-        .question-text {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
-        .options-step {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-        }
+        .step-container { min-height: 420px; display: flex; flex-direction: column; justify-content: space-between; }
+        .progress-bar { background: #2a2a5a; border-radius: 20px; height: 6px; margin-bottom: 1.8rem; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #f5b042, #ff7e05); border-radius: 20px; transition: width 0.3s ease; }
+        .question-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; font-size: 0.85rem; color: #ffdfa5; }
+        .question-text { font-size: 1.35rem; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.4; }
+        .options-step { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
         .option-step {
             background: rgba(255,255,245,0.08);
             border-radius: 60px;
@@ -145,25 +89,10 @@
             transition: all 0.2s;
             border: 1px solid transparent;
         }
-        .option-step.selected {
-            background: #7d6eff;
-            border-color: #ffd966;
-            box-shadow: 0 0 10px #b6a8ff;
-        }
-        .option-step .opt-icon {
-            font-size: 1.2rem;
-            width: 28px;
-        }
-        .option-step .opt-text {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
+        .option-step.selected { background: #7d6eff; border-color: #ffd966; box-shadow: 0 0 10px #b6a8ff; }
+        .option-step .opt-icon { font-size: 1.2rem; width: 28px; }
+        .option-step .opt-text { font-size: 0.95rem; font-weight: 500; }
+        .nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.5rem; }
         .nav-btn {
             background: rgba(30,30,80,0.8);
             border: 1px solid #ffb347;
@@ -176,21 +105,11 @@
             flex: 1;
             text-align: center;
         }
-        .nav-btn.primary {
-            background: linear-gradient(95deg, #FFB347, #FF7E05);
-            color: #1f1a3a;
-            border: none;
-        }
+        .nav-btn.primary { background: linear-gradient(95deg, #FFB347, #FF7E05); color: #1f1a3a; border: none; }
         .nav-btn:active { transform: scale(0.97); }
         .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
 
-        /* 结果区域 - 丰富板块 */
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+        .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
         .result-item {
             background: rgba(12, 12, 35, 0.7);
             border-radius: 1.4rem;
@@ -220,49 +139,13 @@
             border-left: 3px solid #f5b042;
             padding-left: 0.7rem;
         }
-        .personality-text {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            opacity: 0.92;
-        }
-        .energy-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            margin: 0.8rem 0;
-        }
-        .energy-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.8rem;
-        }
-        .energy-bar-bg {
-            flex: 1;
-            background: #2a2a5a;
-            border-radius: 10px;
-            height: 8px;
-            overflow: hidden;
-        }
-        .energy-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ffb347, #ff7e05);
-            width: 0%;
-            border-radius: 10px;
-        }
-        .keywords {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.5rem 0;
-        }
-        .keyword {
-            background: #7d6eff40;
-            border-radius: 30px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.7rem;
-            border: 0.5px solid #ffd966;
-        }
+        .personality-text { font-size: 0.85rem; line-height: 1.5; opacity: 0.92; }
+        .energy-bars { display: flex; flex-direction: column; gap: 0.6rem; margin: 0.8rem 0; }
+        .energy-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; }
+        .energy-bar-bg { flex: 1; background: #2a2a5a; border-radius: 10px; height: 8px; overflow: hidden; }
+        .energy-bar-fill { height: 100%; background: linear-gradient(90deg, #ffb347, #ff7e05); width: 0%; border-radius: 10px; }
+        .keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+        .keyword { background: #7d6eff40; border-radius: 30px; padding: 0.2rem 0.8rem; font-size: 0.7rem; border: 0.5px solid #ffd966; }
         .share-tips {
             background: #26295e;
             border-radius: 1.2rem;
@@ -275,51 +158,17 @@
             gap: 0.6rem;
             margin-top: 1rem;
         }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #f5b042;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: #f5eac1;
-        }
-        .footer-sell {
-            text-align: center;
-            font-size: 0.7rem;
-            margin-top: 2rem;
-            opacity: 0.7;
-            border-top: 1px dashed rgba(255,255,200,0.2);
-            padding-top: 1.2rem;
-        }
-        .toast-msg {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2e2a5a;
-            backdrop-filter: blur(12px);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            z-index: 999;
-            color: #ffefb9;
-            box-shadow: 0 4px 12px black;
-            pointer-events: none;
-        }
-        @media (max-width: 550px) {
-            .result-grid { gap: 0.7rem; }
-            .result-name { font-size: 1rem; }
-            .question-text { font-size: 1.1rem; }
-        }
+        .btn-outline { background: transparent; border: 1px solid #f5b042; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.75rem; font-weight: 500; cursor: pointer; color: #f5eac1; }
+        .footer-sell { text-align: center; font-size: 0.7rem; margin-top: 2rem; opacity: 0.7; border-top: 1px dashed rgba(255,255,200,0.2); padding-top: 1.2rem; }
+        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2e2a5a; backdrop-filter: blur(12px); padding: 0.5rem 1.2rem; border-radius: 40px; font-size: 0.8rem; z-index: 999; color: #ffefb9; box-shadow: 0 4px 12px black; pointer-events: none; }
+        @media (max-width: 550px) { .result-grid { gap: 0.7rem; } .result-name { font-size: 1rem; } .question-text { font-size: 1.1rem; } }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="hero">
         <h1><i class="fas fa-star-of-life"></i> 星蕴工坊 <i class="fas fa-moon"></i></h1>
-        <p>十二星座 ✦ 25维灵魂探索 · 生成你的全息宇宙报告</p>
+        <p>十二星座 ✦ 30维灵魂探索 · 生成你的全息宇宙报告</p>
         <div class="badge"><i class="fas fa-dragon"></i> 角色·灵宠·星球·天赋 | 光明暗影 | 星运箴言 | 共鸣指数</div>
     </div>
 
@@ -340,7 +189,7 @@
 
     <!-- 分步答题卡片 -->
     <div class="card" id="stepCard">
-        <div class="section-title"><i class="fas fa-feather-alt"></i> 第二步 · 25道星魂问答 (逐题深度探索)</div>
+        <div class="section-title"><i class="fas fa-feather-alt"></i> 第二步 · 30道星魂问答 (逐题深度探索)</div>
         <div id="stepContainer" class="step-container"></div>
     </div>
 
@@ -348,31 +197,25 @@
     <div class="card" id="resultCard" style="display: none;">
         <div class="section-title"><i class="fas fa-globe-asia"></i> 你的专属星蕴报告</div>
         <div id="resultContent">
-            <!-- 星辰角色卡四件套 -->
             <div class="result-grid" id="resultGrid"></div>
-            <!-- 性格光谱分析（光明+暗影） -->
             <div class="personality-block" id="lightShadowBlock"></div>
-            <!-- 星运箴言 & 年度关键词 + 天赋激活建议 -->
             <div class="personality-block" id="proverbBlock"></div>
-            <!-- 宇宙共鸣指数（五维能量图） -->
             <div class="personality-block" id="energyBlock"></div>
             <div class="share-tips">
-                <span><i class="fas fa-crown"></i> 专属宇宙报告 · 小红书晒出你的星格图谱</span>
+                <span><i class="fas fa-crown"></i> 专属宇宙报告 · 晒出你的星格图谱</span>
                 <button id="saveImgBtn" class="btn-outline"><i class="fas fa-camera"></i> 保存为图片</button>
             </div>
         </div>
-        <div style="margin-top: 10px; font-size: 0.7rem; text-align: center; opacity:0.6">
-            🌟 基于星座+25维答案深度生成，星尘为你书写
-        </div>
+        <div style="margin-top: 10px; font-size: 0.7rem; text-align: center; opacity:0.6">🌟 基于星座+30维答案深度生成，星尘为你书写</div>
     </div>
     <div class="footer-sell">
-        <i class="fas fa-store"></i> 星蕴工坊 · 限定数字藏品 | 解锁完整星盘壁纸 & 高阶设定请联系星灵阁<br>
-        ✨ 分享小红书 @星蕴工坊 获取更多专属组合 ✨
+        <i class="fas fa-store"></i> 星蕴工坊 · 限定数字藏品<br>
+        ✨ 十二星座箴言 ✨
     </div>
 </div>
 
 <script>
-    // ---------- 25道精心设计的性格测试题 (保持多样性与深度) ----------
+    // ---------- 30道精心设计的性格测试题（新增5题，总量30）----------
     const QUESTIONS = [
         { text: "① 你偏爱哪种色彩氛围？", options: ["🔥 炽烈红/金", "🌿 自然翠/棕", "💧 静谧蓝/紫", "✨ 星光银/幻白"] },
         { text: "② 你最向往的冒险类型？", options: ["⚔️ 史诗战斗/英雄传说", "📖 神秘探索/古老遗迹", "🧙 魔法修行/星辰智慧", "🌌 创造艺术/梦境漫游"] },
@@ -398,10 +241,16 @@
         { text: "㉒ 你对“孤独”的态度？", options: ["🔋 充电良机，享受独处", "😟 偶尔不适，需要联结", "🌀 创作源泉，沉思时刻", "🏹 挑战自我，独立强大"] },
         { text: "㉓ 你更偏爱哪种娱乐活动？", options: ["🎮 竞技对抗/冒险游戏", "🎨 艺术创作/手工DIY", "📚 深度阅读/知识探索", "🧘 冥想放松/自然漫步"] },
         { text: "㉔ 你认为自己的核心驱动力是？", options: ["🏆 成就与认可", "🔍 求知与理解", "❤️ 情感与联结", "🕊️ 自由与创造"] },
-        { text: "㉕ 你希望他人如何描述你？", options: ["🔥 勇敢无畏，开拓者", "🌱 温暖可靠，治愈者", "🧠 睿智深邃，思想者", "🎭 神秘独特，艺术家"] }
+        { text: "㉕ 你希望他人如何描述你？", options: ["🔥 勇敢无畏，开拓者", "🌱 温暖可靠，治愈者", "🧠 睿智深邃，思想者", "🎭 神秘独特，艺术家"] },
+        // 新增5题 (26-30)
+        { text: "㉖ 你对科技与未来的态度？", options: ["🚀 拥抱变革，热衷前沿", "⚙️ 实用主义，服务生活", "🌿 审慎平衡，敬畏自然", "✨ 幻想浪漫，诗意科技"] },
+        { text: "㉗ 你与自然的联结程度？", options: ["🏞️ 常常远足，身心合一", "🌳 偶尔放松，欣赏美景", "🏙️ 城市生活，舒适便利", "🧘 内在冥想，心灵自然"] },
+        { text: "㉘ 你更倾向哪种沟通风格？", options: ["🗣️ 直接坦率，一针见血", "🎭 委婉含蓄，照顾情绪", "📝 逻辑严密，条理清晰", "💬 幽默风趣，轻松氛围"] },
+        { text: "㉙ 你如何看待规则与自由？", options: ["📜 尊重规则，有序稳定", "🕊️ 自由至上，突破框架", "⚖️ 灵活变通，见机行事", "🌀 内在自律，外在不羁"] },
+        { text: "㉚ 你理想中的“成功”是什么？", options: ["🏆 名望成就，影响世界", "💖 幸福关系，内心满足", "🔍 智慧洞见，真理探索", "🎨 创造杰作，留下印记"] }
     ];
 
-    // ---------- 数据池 ----------
+    // 数据池 (角色/宠物/星球/天赋)
     const ROLE_POOL = [
         { name: "赤焰骑士", desc: "烈火意志，守护星火的战神", icon: "⚔️🔥" }, { name: "霜月贤者", desc: "冰晶智慧，编织预言的长者", icon: "❄️📜" },
         { name: "翠风游侠", desc: "与风同行，自由穿梭的林间射手", icon: "🏹🍃" }, { name: "星穹祭司", desc: "连结星辰之力，神圣治愈者", icon: "✨🌟" },
@@ -480,7 +329,8 @@
     function generateFinalReport() {
         const zodiacId = parseInt(document.getElementById('zodiacSelect').value,10);
         const quizVals = [...answers];
-        const prime = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97];
+        // 30个质数系数（足够覆盖）
+        const prime = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113];
         let roleSeed=zodiacId*131, petSeed=zodiacId*97, planetSeed=zodiacId*73, talentSeed=zodiacId*113;
         for(let i=0;i<quizVals.length;i++){
             const val=quizVals[i], coeff=prime[i%prime.length];
@@ -491,14 +341,12 @@
         const planet = PLANET_POOL[Math.abs(planetSeed)%PLANET_POOL.length];
         const talent = TALENT_POOL[Math.abs(talentSeed)%TALENT_POOL.length];
 
-        // 性格光谱 & 其他分析
         const freq = [0,0,0,0]; quizVals.forEach(v=>freq[v]++);
         const dominant = freq.indexOf(Math.max(...freq));
         const lightDark = getLightShadow(zodiacId, dominant);
         const proverb = getProverbAndKeyword(zodiacId, dominant, talent);
         const energy = getEnergyIndexes(quizVals);
 
-        // 渲染四卡片
         document.getElementById('resultGrid').innerHTML = `
             <div class="result-item"><div class="result-icon">${role.icon}</div><div class="result-label">专属角色</div><div class="result-name">${role.name}</div><div class="result-desc">${role.desc}</div></div>
             <div class="result-item"><div class="result-icon">${pet.icon}</div><div class="result-label">灵性宠物</div><div class="result-name">${pet.name}</div><div class="result-desc">${pet.desc}</div></div>
@@ -509,13 +357,13 @@
         
         const energyHtml = `<div class="personality-title"><i class="fas fa-chart-line"></i> 宇宙共鸣指数</div><div class="energy-bars">
             ${Object.entries(energy).map(([key,val])=>`<div class="energy-item"><span style="width:70px">${key}</span><div class="energy-bar-bg"><div class="energy-bar-fill" style="width:${val}%"></div></div><span>${val}%</span></div>`).join('')}
-        </div><div class="personality-text" style="font-size:0.75rem;">* 基于25题答案倾向计算，反映你当下的星格共振</div>`;
+        </div><div class="personality-text" style="font-size:0.75rem;">* 基于30题答案倾向计算，反映你当下的星格共振</div>`;
         document.getElementById('energyBlock').innerHTML = energyHtml;
 
         stepCard.style.display = 'none';
         resultCard.style.display = 'block';
         resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        showToast("✨ 星蕴报告生成完毕！截图分享你的专属宇宙 ✨",2000);
+        showToast("✨ 30维星蕴报告生成完毕！截图分享你的专属宇宙 ✨",2000);
     }
 
     function getLightShadow(zodiacId, dominant) {
@@ -531,12 +379,8 @@
         const keywordBase = keywordsMap[zodiacId] || ["星辰","探索"];
         const talentWord = talent.name.slice(0,2);
         const keywords = [keywordBase[0], keywordBase[1], talentWord, ["炽焰","霜华","翠岚","星轨"][dominant]];
-        const proverbs = [
-            "你是一团星火，点燃黑暗也温暖自己。","大地沉默，却承载万物生长。","流水不争先，争的是滔滔不绝。","风没有形状，却改变了世界。"
-        ];
-        const adviceList = [
-            "每日留一刻独处，让火焰沉淀为智慧。","尝试小冒险，给稳固生活一抹亮色。","用艺术表达情感，将敏感化为创作。","建立微小承诺，让自由有落地之处。"
-        ];
+        const proverbs = ["你是一团星火，点燃黑暗也温暖自己。","大地沉默，却承载万物生长。","流水不争先，争的是滔滔不绝。","风没有形状，却改变了世界。"];
+        const adviceList = ["每日留一刻独处，让火焰沉淀为智慧。","尝试小冒险，给稳固生活一抹亮色。","用艺术表达情感，将敏感化为创作。","建立微小承诺，让自由有落地之处。"];
         return {
             text: `✨ 「${proverbs[dominant]}」 ✨ 年度关键词：${keywords[0]} · ${keywords[1]}`,
             keywords: keywords.slice(0,3),
@@ -553,7 +397,7 @@
             if(i%5===3) emo+= (v+1)*5;
             if(i%5===4) cre+= (v+1)*5;
         });
-        const max = 25*5*0.8;
+        const max = 30*5*0.8;  // 30题，每项最多6次取值，最大分30*5=150，按80%为理想上限
         return { "行动力": Math.min(100, Math.round(act/max*100)), "社交力": Math.min(100, Math.round(soc/max*100)), "思维力": Math.min(100, Math.round(int/max*100)), "共情力": Math.min(100, Math.round(emo/max*100)), "创造力": Math.min(100, Math.round(cre/max*100)) };
     }
 
@@ -569,11 +413,11 @@
             const link=document.createElement('a');
             const zodiacSelect=document.getElementById('zodiacSelect');
             const zodiacName=zodiacSelect.options[zodiacSelect.selectedIndex]?.text.split(' ')[0]||'星座';
-            link.download=`星蕴工坊_${zodiacName}_星蕴报告.png`;
+            link.download=`星蕴工坊_${zodiacName}_30维报告.png`;
             link.href=canvas.toDataURL('image/png');
             link.click();
             document.body.style.overflow=orig;
-            showToast("✅ 图片已保存，快去小红书分享你的宇宙报告吧！",2500);
+            showToast("✅ 图片已保存，分享你的宇宙报告吧！",2500);
         } catch(e){ showToast("截图失败，请重试",1500); }
     }
 
