@@ -3,53 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>星蕴工坊 | 30维星格测试·专属宇宙报告</title>
+    <title>内在小孩创伤类型测试 · 疗愈你的童年印记</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- html2canvas 截图库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: linear-gradient(145deg, #0b0b2b 0%, #14144a 100%);
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            color: #f0eef7;
-            padding: 1.5rem 1rem 2.5rem;
-            min-height: 100vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container { max-width: 720px; margin: 0 auto; }
-        .hero { text-align: center; margin-bottom: 2rem; }
-        .hero h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(135deg, #FFE6B0, #C792FF, #7F7CFF);
+
+        body {
+            background: linear-gradient(145deg, #2c1e2f 0%, #1a142f 100%);
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            color: #faf3e5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 2.5rem;
+        }
+
+        /* 封面页样式 */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2a1e3a, #0e0a1f);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+            transition: opacity 0.5s ease;
+            overflow-y: auto;
+        }
+        .cover-card {
+            background: rgba(30, 22, 48, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 3rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            max-width: 90%;
+            width: 500px;
+            border: 1px solid rgba(255, 215, 180, 0.4);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.6s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cover-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #FFB7B2, #D4A5FF);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+        .cover h1 {
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #FFD6A5, #FFB7B2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .cover p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+        .cover-deco {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .cover-deco i {
+            font-size: 2rem;
+            color: #FFB7B2;
+            opacity: 0.7;
+        }
+        .start-btn {
+            background: linear-gradient(95deg, #FFB7B2, #D4A5FF);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: #1f1a2a;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.6rem;
         }
-        .hero p { font-size: 0.95rem; opacity: 0.8; margin-top: 0.5rem; }
-        .badge {
-            background: rgba(255,255,245,0.15);
-            backdrop-filter: blur(4px);
-            border-radius: 40px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin-top: 0.8rem;
-        }
+        .start-btn:active { transform: scale(0.97); }
+        .start-btn i { font-size: 1.2rem; }
+
+        /* 原有卡片样式调整 */
         .card {
-            background: rgba(20, 25, 65, 0.65);
+            background: rgba(30, 22, 48, 0.75);
             backdrop-filter: blur(12px);
             border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 215, 180, 0.3);
             padding: 1.5rem 1.2rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
         }
+
         .section-title {
             font-size: 1.35rem;
             font-weight: 600;
@@ -57,29 +131,53 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border-left: 4px solid #f5b042;
+            border-left: 4px solid #FFB7B2;
             padding-left: 0.8rem;
         }
-        .zodiac-selector select {
-            background: #1e1f3a;
-            border: 1px solid #5f5bb0;
-            border-radius: 60px;
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            color: #ffffff;
-            font-weight: 500;
-            outline: none;
-            cursor: pointer;
-            width: 100%;
+
+        /* 分步答题样式 (与之前一致) */
+        .step-container {
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .step-container { min-height: 420px; display: flex; flex-direction: column; justify-content: space-between; }
-        .progress-bar { background: #2a2a5a; border-radius: 20px; height: 6px; margin-bottom: 1.8rem; overflow: hidden; }
-        .progress-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #f5b042, #ff7e05); border-radius: 20px; transition: width 0.3s ease; }
-        .question-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; font-size: 0.85rem; color: #ffdfa5; }
-        .question-text { font-size: 1.35rem; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.4; }
-        .options-step { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+        .progress-bar {
+            background: #3a2a4a;
+            border-radius: 20px;
+            height: 6px;
+            margin-bottom: 1.8rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #FFB7B2, #D4A5FF);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #FFD6A5;
+        }
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        .options-step {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
         .option-step {
-            background: rgba(255,255,245,0.08);
+            background: rgba(255,240,210,0.08);
             border-radius: 60px;
             padding: 0.9rem 1.2rem;
             display: flex;
@@ -89,65 +187,98 @@
             transition: all 0.2s;
             border: 1px solid transparent;
         }
-        .option-step.selected { background: #7d6eff; border-color: #ffd966; box-shadow: 0 0 10px #b6a8ff; }
-        .option-step .opt-icon { font-size: 1.2rem; width: 28px; }
-        .option-step .opt-text { font-size: 0.95rem; font-weight: 500; }
-        .nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.5rem; }
+        .option-step.selected {
+            background: #7f6b9e;
+            border-color: #FFB7B2;
+            box-shadow: 0 0 10px #d4a5ff;
+        }
+        .option-step .opt-icon {
+            font-size: 1.2rem;
+            width: 28px;
+        }
+        .option-step .opt-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
         .nav-btn {
-            background: rgba(30,30,80,0.8);
-            border: 1px solid #ffb347;
+            background: rgba(50, 40, 70, 0.8);
+            border: 1px solid #FFB7B2;
             padding: 0.7rem 1.2rem;
             border-radius: 60px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
-            color: #fff3cf;
+            color: #FFE6D5;
             flex: 1;
             text-align: center;
         }
-        .nav-btn.primary { background: linear-gradient(95deg, #FFB347, #FF7E05); color: #1f1a3a; border: none; }
+        .nav-btn.primary {
+            background: linear-gradient(95deg, #FFB7B2, #D4A5FF);
+            color: #1f1a2a;
+            border: none;
+        }
         .nav-btn:active { transform: scale(0.97); }
         .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
 
-        .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-        .result-item {
-            background: rgba(12, 12, 35, 0.7);
-            border-radius: 1.4rem;
-            padding: 1rem 0.8rem;
+        /* 结果区域 */
+        .result-type {
             text-align: center;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,215,150,0.3);
+            margin-bottom: 1.5rem;
+            position: relative;
         }
-        .result-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .result-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; background: #ffb34730; display: inline-block; padding: 0.2rem 0.7rem; border-radius: 30px; margin-bottom: 0.5rem; }
-        .result-name { font-size: 1.2rem; font-weight: 700; margin: 0.3rem 0; }
-        .result-desc { font-size: 0.7rem; opacity: 0.8; }
-
-        .personality-block {
-            background: rgba(0,0,0,0.4);
+        .type-pattern {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255,215,180,0.2);
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+        }
+        .result-type h2 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #FFD6A5, #FFB7B2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .type-badge {
+            background: #ffb7b230;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        .result-block {
+            background: rgba(0,0,0,0.35);
             border-radius: 1.5rem;
             padding: 1rem;
             margin-bottom: 1rem;
         }
-        .personality-title {
+        .result-block-title {
             font-weight: bold;
             margin-bottom: 0.5rem;
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border-left: 3px solid #f5b042;
+            border-left: 3px solid #FFB7B2;
             padding-left: 0.7rem;
         }
-        .personality-text { font-size: 0.85rem; line-height: 1.5; opacity: 0.92; }
-        .energy-bars { display: flex; flex-direction: column; gap: 0.6rem; margin: 0.8rem 0; }
-        .energy-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; }
-        .energy-bar-bg { flex: 1; background: #2a2a5a; border-radius: 10px; height: 8px; overflow: hidden; }
-        .energy-bar-fill { height: 100%; background: linear-gradient(90deg, #ffb347, #ff7e05); width: 0%; border-radius: 10px; }
-        .keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
-        .keyword { background: #7d6eff40; border-radius: 30px; padding: 0.2rem 0.8rem; font-size: 0.7rem; border: 0.5px solid #ffd966; }
+        .result-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.92;
+        }
         .share-tips {
-            background: #26295e;
+            background: #2f2348;
             border-radius: 1.2rem;
             padding: 0.8rem;
             font-size: 0.75rem;
@@ -158,136 +289,224 @@
             gap: 0.6rem;
             margin-top: 1rem;
         }
-        .btn-outline { background: transparent; border: 1px solid #f5b042; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.75rem; font-weight: 500; cursor: pointer; color: #f5eac1; }
-        .footer-sell { text-align: center; font-size: 0.7rem; margin-top: 2rem; opacity: 0.7; border-top: 1px dashed rgba(255,255,200,0.2); padding-top: 1.2rem; }
-        .toast-msg { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #2e2a5a; backdrop-filter: blur(12px); padding: 0.5rem 1.2rem; border-radius: 40px; font-size: 0.8rem; z-index: 999; color: #ffefb9; box-shadow: 0 4px 12px black; pointer-events: none; }
-        @media (max-width: 550px) { .result-grid { gap: 0.7rem; } .result-name { font-size: 1rem; } .question-text { font-size: 1.1rem; } }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #FFB7B2;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #FFE6D5;
+        }
+        .footer-sell {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 2rem;
+            opacity: 0.7;
+            border-top: 1px dashed rgba(255,215,180,0.3);
+            padding-top: 1.2rem;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2f2348;
+            backdrop-filter: blur(12px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            z-index: 999;
+            color: #FFE6D5;
+            box-shadow: 0 4px 12px black;
+            pointer-events: none;
+        }
+        @media (max-width: 550px) {
+            .question-text { font-size: 1.1rem; }
+            .option-step { padding: 0.6rem 1rem; }
+            .result-type h2 { font-size: 1.5rem; }
+            .type-pattern { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="hero">
-        <h1><i class="fas fa-star-of-life"></i> 星蕴工坊 <i class="fas fa-moon"></i></h1>
-        <p>十二星座 ✦ 30维灵魂探索 · 生成你的全息宇宙报告</p>
-        <div class="badge"><i class="fas fa-dragon"></i> 角色·灵宠·星球·天赋 | 光明暗影 | 星运箴言 | 共鸣指数</div>
-    </div>
-
-    <!-- 星座卡片 -->
-    <div class="card">
-        <div class="section-title"><i class="fas fa-zodiac"></i> 第一步 · 你的星辰印记</div>
-        <div class="zodiac-selector">
-            <select id="zodiacSelect">
-                <option value="0">♈ 白羊座 (03.21-04.19)</option><option value="1">♉ 金牛座 (04.20-05.20)</option>
-                <option value="2">♊ 双子座 (05.21-06.21)</option><option value="3">♋ 巨蟹座 (06.22-07.22)</option>
-                <option value="4">♌ 狮子座 (07.23-08.22)</option><option value="5">♍ 处女座 (08.23-09.22)</option>
-                <option value="6">♎ 天秤座 (09.23-10.23)</option><option value="7">♏ 天蝎座 (10.24-11.22)</option>
-                <option value="8">♐ 射手座 (11.23-12.21)</option><option value="9">♑ 摩羯座 (12.22-01.19)</option>
-                <option value="10">♒ 水瓶座 (01.20-02.18)</option><option value="11">♓ 双鱼座 (02.19-03.20)</option>
-            </select>
+<!-- 封面页 -->
+<div class="cover" id="coverPage">
+    <div class="cover-card">
+        <div class="cover-icon">
+            <i class="fas fa-child"></i> <i class="fas fa-heart-broken"></i>
         </div>
+        <h1>内在小孩·创伤类型</h1>
+        <p>30道灵魂之问 · 看见你内心那个曾经受伤的小孩</p>
+        <div class="cover-deco">
+            <i class="fas fa-feather-alt"></i>
+            <i class="fas fa-dove"></i>
+            <i class="fas fa-hand-holding-heart"></i>
+            <i class="fas fa-tree"></i>
+            <i class="fas fa-star-of-life"></i>
+        </div>
+        <p style="font-size: 0.85rem;">每个人心中都住着一个内在小孩<br>他/她记录着童年的欢笑与伤痕</p>
+        <button class="start-btn" id="startBtn"><i class="fas fa-play"></i> 开始探索我的内在小孩</button>
+        <div style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.6;">✨ 全程匿名 · 疗愈觉察 ✨</div>
     </div>
+</div>
 
+<div class="container" id="mainContent" style="display: none;">
     <!-- 分步答题卡片 -->
     <div class="card" id="stepCard">
-        <div class="section-title"><i class="fas fa-feather-alt"></i> 第二步 · 30道星魂问答 (逐题深度探索)</div>
+        <div class="section-title"><i class="fas fa-seedling"></i> 探索你的内在小孩 · 30道深度自测</div>
         <div id="stepContainer" class="step-container"></div>
     </div>
 
-    <!-- 结果展示区（丰富板块） -->
+    <!-- 结果展示区 -->
     <div class="card" id="resultCard" style="display: none;">
-        <div class="section-title"><i class="fas fa-globe-asia"></i> 你的专属星蕴报告</div>
+        <div class="section-title"><i class="fas fa-dove"></i> 你的内在小孩疗愈报告</div>
         <div id="resultContent">
-            <div class="result-grid" id="resultGrid"></div>
-            <div class="personality-block" id="lightShadowBlock"></div>
-            <div class="personality-block" id="proverbBlock"></div>
-            <div class="personality-block" id="energyBlock"></div>
+            <div id="resultTypeArea"></div>
+            <div id="resultDetailArea"></div>
+            <div id="resultHealingArea"></div>
+            <div id="resultPracticeArea"></div>
             <div class="share-tips">
-                <span><i class="fas fa-crown"></i> 专属宇宙报告 · 晒出你的星格图谱</span>
-                <button id="saveImgBtn" class="btn-outline"><i class="fas fa-camera"></i> 保存为图片</button>
+                <span><i class="fas fa-hand-holding-heart"></i> 看见即是疗愈 · 分享给同样需要拥抱内在小孩的朋友</span>
+                <button id="saveImgBtn" class="btn-outline"><i class="fas fa-camera"></i> 保存报告图片</button>
             </div>
         </div>
-        <div style="margin-top: 10px; font-size: 0.7rem; text-align: center; opacity:0.6">🌟 基于星座+30维答案深度生成，星尘为你书写</div>
+        <div style="margin-top: 10px; font-size: 0.7rem; text-align: center; opacity:0.6">🌟 本测试基于内在小孩疗愈理论，仅作自我觉察参考</div>
     </div>
     <div class="footer-sell">
-        <i class="fas fa-store"></i> 星蕴工坊 · 限定数字藏品<br>
-        ✨ 十二星座箴言 ✨
+        <i class="fas fa-leaf"></i> 深度疗愈课程 | 内在小孩冥想 | 1v1心理陪伴 可私信咨询<br>
+        ✨ 关注 @内在星球疗愈所 获取更多心灵成长内容 ✨
     </div>
 </div>
 
 <script>
-    // ---------- 30道精心设计的性格测试题（新增5题，总量30）----------
+    // ---------- 30道内在小孩创伤维度测试题 ----------
     const QUESTIONS = [
-        { text: "① 你偏爱哪种色彩氛围？", options: ["🔥 炽烈红/金", "🌿 自然翠/棕", "💧 静谧蓝/紫", "✨ 星光银/幻白"] },
-        { text: "② 你最向往的冒险类型？", options: ["⚔️ 史诗战斗/英雄传说", "📖 神秘探索/古老遗迹", "🧙 魔法修行/星辰智慧", "🌌 创造艺术/梦境漫游"] },
-        { text: "③ 社交场合中的你通常是？", options: ["🎉 气氛中心，热情领袖", "🤝 温和可靠，默默支持", "🎭 理性观察，智谋担当", "🌙 独立浪漫，自由灵魂"] },
-        { text: "④ 理想中的家园必须包含？", options: ["🏰 宏伟尖塔/坚固壁垒", "🌊 临水秘境/自然庭院", "🪄 藏书塔/魔法工坊", "✨ 悬浮露台/星穹穹顶"] },
-        { text: "⑤ 面对压力时你的第一反应？", options: ["💪 迎难而上，正面突破", "🔄 寻求盟友，合作解决", "🧘 冷静分析，规划步骤", "🎨 逃离现实，沉浸爱好"] },
-        { text: "⑥ 你更欣赏哪种智慧？", options: ["⚡ 果决锐利，快速应变", "🌳 沉稳厚重，经验积累", "🔮 直觉灵感，超然洞察", "⚙️ 逻辑精密，解构万物"] },
-        { text: "⑦ 你希望自己的灵魂动物是？", options: ["🦁 雄狮 (王者风范)", "🐺 孤狼 (自由忠诚)", "🦉 猫头鹰 (智慧神秘)", "🐬 海豚 (治愈友善)"] },
-        { text: "⑧ 对“魔法”的想象更接近？", options: ["🔥 元素爆破，毁灭之力", "🍃 自然共生，治愈生长", "✨ 星辰预知，命运织线", "🔮 幻术操控，虚实之间"] },
-        { text: "⑨ 你更偏爱哪种艺术风格？", options: ["🏛️ 古典华丽，史诗感", "🌿 印象自然，朦胧诗意", "🌀 超现实，奇幻怪诞", "📐 极简几何，未来主义"] },
-        { text: "⑩ 你希望拥有的超能力？", options: ["💪 无敌力量/金刚不坏", "🕒 时间操控/暂停", "🧠 读心术/精神感应", "🌌 空间穿梭/瞬移"] },
-        { text: "⑪ 你最喜欢的天气？", options: ["☀️ 晴空万里，阳光炽烈", "🌧️ 细雨绵绵，朦胧诗意", "⛈️ 雷雨交加，震撼磅礴", "❄️ 冰雪纷飞，宁静纯粹"] },
-        { text: "⑫ 你更信任哪种决策方式？", options: ["🔥 直觉冲动，跟随内心", "⚖️ 权衡利弊，追求平衡", "📊 数据理性，逻辑推演", "🤝 听从他人，集体共识"] },
-        { text: "⑬ 你的能量恢复方式？", options: ["🏋️ 高强度运动/挑战", "👥 朋友欢聚/社交充电", "📚 独处阅读/自我沉浸", "🎵 艺术创作/音乐冥想"] },
-        { text: "⑭ 你更向往哪种时代背景？", options: ["🏰 中古奇幻，骑士巨龙", "🚀 未来科幻，星际航行", "🧙 魔法纪元，秘术学院", "🌿 原始自然，部落共荣"] },
-        { text: "⑮ 你的口头禅风格偏向？", options: ["💥 “冲啊！/没问题！”", "🤔 “嗯…或许/再想想”", "✨ “太棒了/好神奇！”", "📌 “根据计划/应该这样”"] },
-        { text: "⑯ 你更看重人际关系中的？", options: ["❤️ 忠诚与陪伴", "🎯 互相成就与成长", "🧩 新鲜感与刺激", "🌊 包容与无条件接纳"] },
-        { text: "⑰ 你认为自己最像哪种元素？", options: ["🔥 火焰 (热情变革)", "🌍 大地 (稳固务实)", "💨 空气 (灵动交流)", "💧 水流 (感性流动)"] },
-        { text: "⑱ 你更愿意在哪种环境下工作？", options: ["🏢 权威架构，明确目标", "🌿 自由创意，弹性空间", "🤝 团队协作，和谐氛围", "🔬 独立研究，深度专注"] },
-        { text: "⑲ 你如何看待“命运”？", options: ["⚔️ 握在手中，由我创造", "🌀 充满变数，拥抱未知", "🌙 冥冥注定，顺势而为", "🔮 可被解读和引导的星辰"] },
-        { text: "⑳ 你希望留下怎样的传说？", options: ["🏆 英雄史诗，万古流芳", "🌱 润物无声，改变世界", "📜 智慧启迪，思想永存", "🎭 神秘传奇，引人遐想"] },
-        { text: "㉑ 你更擅长哪种思维方式？", options: ["🌊 发散跳跃，灵感迸发", "🗂️ 系统归纳，结构清晰", "⚖️ 辩证批判，权衡利弊", "💖 共情直觉，以人为本"] },
-        { text: "㉒ 你对“孤独”的态度？", options: ["🔋 充电良机，享受独处", "😟 偶尔不适，需要联结", "🌀 创作源泉，沉思时刻", "🏹 挑战自我，独立强大"] },
-        { text: "㉓ 你更偏爱哪种娱乐活动？", options: ["🎮 竞技对抗/冒险游戏", "🎨 艺术创作/手工DIY", "📚 深度阅读/知识探索", "🧘 冥想放松/自然漫步"] },
-        { text: "㉔ 你认为自己的核心驱动力是？", options: ["🏆 成就与认可", "🔍 求知与理解", "❤️ 情感与联结", "🕊️ 自由与创造"] },
-        { text: "㉕ 你希望他人如何描述你？", options: ["🔥 勇敢无畏，开拓者", "🌱 温暖可靠，治愈者", "🧠 睿智深邃，思想者", "🎭 神秘独特，艺术家"] },
-        // 新增5题 (26-30)
-        { text: "㉖ 你对科技与未来的态度？", options: ["🚀 拥抱变革，热衷前沿", "⚙️ 实用主义，服务生活", "🌿 审慎平衡，敬畏自然", "✨ 幻想浪漫，诗意科技"] },
-        { text: "㉗ 你与自然的联结程度？", options: ["🏞️ 常常远足，身心合一", "🌳 偶尔放松，欣赏美景", "🏙️ 城市生活，舒适便利", "🧘 内在冥想，心灵自然"] },
-        { text: "㉘ 你更倾向哪种沟通风格？", options: ["🗣️ 直接坦率，一针见血", "🎭 委婉含蓄，照顾情绪", "📝 逻辑严密，条理清晰", "💬 幽默风趣，轻松氛围"] },
-        { text: "㉙ 你如何看待规则与自由？", options: ["📜 尊重规则，有序稳定", "🕊️ 自由至上，突破框架", "⚖️ 灵活变通，见机行事", "🌀 内在自律，外在不羁"] },
-        { text: "㉚ 你理想中的“成功”是什么？", options: ["🏆 名望成就，影响世界", "💖 幸福关系，内心满足", "🔍 智慧洞见，真理探索", "🎨 创造杰作，留下印记"] }
+        { text: "① 小时候，父母是否经常因为忙碌而忽略你的情感需求？", options: ["总是忽略", "经常忽略", "偶尔忽略", "很少忽略"] },
+        { text: "② 当你想表达自己的感受时，家人通常的反应是？", options: ["不耐烦或打断", "敷衍回应", "耐心听完但无反馈", "认真倾听并共情"] },
+        { text: "③ 你是否记得自己曾因为“不够好”而被严厉批评？", options: ["经常发生", "偶尔发生", "很少发生", "几乎没有"] },
+        { text: "④ 家庭中是否有人情绪很不稳定，让你感到害怕？", options: ["经常有", "有时有", "很少", "从来没有"] },
+        { text: "⑤ 你小时候是否觉得自己必须“听话”才能获得爱？", options: ["完全是这样", "大部分情况", "有时这样", "从不这样"] },
+        { text: "⑥ 当你想尝试新事物时，家人常说的话是？", options: ["你不行/别冒险", "先问问我们", "小心一点就好", "支持你去试试"] },
+        { text: "⑦ 你是否曾被家人当众嘲笑或贬低？", options: ["多次发生", "偶尔发生", "很少", "从未"] },
+        { text: "⑧ 童年时期，你是否经历过与重要亲人的分离（如父母离异、寄养等）？", options: ["深刻创伤性分离", "有分离但仍有联系", "短暂分离", "没有分离"] },
+        { text: "⑨ 当你犯错时，家里通常的氛围是？", options: ["严厉惩罚", "冷淡处理", "讲道理但要求完美", "包容并鼓励改正"] },
+        { text: "⑩ 你是否觉得自己从小就要照顾家人的情绪？", options: ["完全是", "经常是", "偶尔是", "从来不是"] },
+        { text: "⑪ 你小时候是否害怕表达不同意见？", options: ["非常害怕", "比较害怕", "有点顾虑", "敢于表达"] },
+        { text: "⑫ 家人是否曾拿你和别人比较，让你觉得自己很差？", options: ["经常比较", "偶尔比较", "很少比较", "从不比较"] },
+        { text: "⑬ 你是否目睹过家庭暴力或激烈争吵？", options: ["经常", "偶尔", "很少", "从未"] },
+        { text: "⑭ 当你感到难过时，是否有人会安慰你？", options: ["从来没有人", "很少", "偶尔有人", "总是有人"] },
+        { text: "⑮ 你小时候是否觉得自己不被任何人理解？", options: ["总是这样", "经常这样", "有时这样", "从不"] },
+        { text: "⑯ 家人是否对你的生活有过多控制（如交友、穿着、选择）？", options: ["完全控制", "较多控制", "有时干涉", "尊重自主"] },
+        { text: "⑰ 你是否因为害怕被抛弃而讨好别人？", options: ["总是", "经常", "有时", "从不"] },
+        { text: "⑱ 你童年时的情绪是否经常被否定（如“不许哭”“这有什么好怕的”）？", options: ["经常被否定", "有时被否定", "很少", "从不"] },
+        { text: "⑲ 你是否曾经觉得自己是家庭的“累赘”？", options: ["强烈感觉", "有时感觉", "偶尔闪过", "从未"] },
+        { text: "⑳ 你是否记得有重要的人突然从你生活中消失？", options: ["有，创伤很深", "有，但影响不大", "没有突然消失", "完全稳定"] },
+        { text: "㉑ 你小时候是否经常一个人待着，感到孤独？", options: ["经常孤独", "有时孤独", "很少", "从不"] },
+        { text: "㉒ 当你取得成绩时，家人是否吝啬表扬？", options: ["从不表扬", "很少表扬", "偶尔表扬", "经常表扬"] },
+        { text: "㉓ 家里是否有严格的规矩，违反就会受罚？", options: ["非常严苛", "比较严格", "一般", "宽松民主"] },
+        { text: "㉔ 你是否曾在学校或家庭中遭受过羞辱性的惩罚？", options: ["多次经历", "一两次", "听说过但未经历", "从未"] },
+        { text: "㉕ 你小时候是否害怕大声说话或发出声音？", options: ["非常害怕", "有点害怕", "不太怕", "完全不怕"] },
+        { text: "㉖ 你是否觉得父母的爱是有条件的（必须表现好才被爱）？", options: ["完全有条件的爱", "大部分有", "偶尔感觉", "无条件的爱"] },
+        { text: "㉗ 你童年时是否常被留下独自一人？", options: ["经常独自留守", "有时", "很少", "从不"] },
+        { text: "㉘ 家人是否曾对你的外貌或能力进行贬低？", options: ["经常贬低", "偶尔", "很少", "从不"] },
+        { text: "㉙ 你是否曾在争吵中被威胁“不要你了”？", options: ["多次被威胁", "一两次", "很少", "从未"] },
+        { text: "㉚ 总体而言，你的童年安全感程度？", options: ["非常缺乏安全感", "不太安全", "基本安全", "非常安全"] }
     ];
 
-    // 数据池 (角色/宠物/星球/天赋)
-    const ROLE_POOL = [
-        { name: "赤焰骑士", desc: "烈火意志，守护星火的战神", icon: "⚔️🔥" }, { name: "霜月贤者", desc: "冰晶智慧，编织预言的长者", icon: "❄️📜" },
-        { name: "翠风游侠", desc: "与风同行，自由穿梭的林间射手", icon: "🏹🍃" }, { name: "星穹祭司", desc: "连结星辰之力，神圣治愈者", icon: "✨🌟" },
-        { name: "暗夜魅影", desc: "诡秘潜行，掌控阴影之刃", icon: "🌙🗡️" }, { name: "大地守护者", desc: "坚如磐石，自然共鸣的泰坦", icon: "🪨🌿" },
-        { name: "幻梦织灵", desc: "编织梦境，造访意识的旅者", icon: "🦋🌌" }, { name: "雷霆霸主", desc: "驾驭雷电，战场主宰", icon: "⚡👑" },
-        { name: "星辰驯兽师", desc: "与星兽为伴，宇宙引路人", icon: "🐉✨" }, { name: "灵心造物主", desc: "创造奇迹，赋予万物灵魂", icon: "🔮⚙️" },
-        { name: "辉光圣徒", desc: "圣洁光辉，破晓之使者", icon: "☀️🕯️" }, { name: "秘涡咒术师", desc: "掌控涡流，改写因果", icon: "🌀📖" }
+    // 6种创伤类型定义（新增图案字段）
+    const TRAUMA_TYPES = [
+        {
+            name: "被遗弃型内在小孩",
+            shortDesc: "你内心深处总害怕被抛弃，容易在关系中过度依赖或讨好。",
+            fullDesc: "这种创伤源于童年时重要抚养者的情感忽视、分离或威胁抛弃。你成年后常常担心别人会离开你，在亲密关系中容易患得患失，甚至不惜牺牲自我来换取安全感。你习惯性地将他人需求放在首位，却压抑自己的真实感受。",
+            healingAdvice: "1. 练习“自我安抚”：当感到被抛弃的恐惧时，对自己说“现在的我是安全的，我可以陪伴自己”。\n2. 建立清晰的边界：学会在关系中表达自己的需求，允许别人有不同选择。\n3. 重新养育内在小孩：想象你拥抱那个害怕的小时候的自己，给他无条件的承诺。",
+            practice: "【每日练习】写下三件“我今天为自己做的事”，无论多小。然后对镜子里的自己说：“我值得被爱，不因任何条件。”坚持21天。",
+            pattern: "🌙🐾💔",   // 代表孤独与依恋
+            icon: "fa-cloud-moon"
+        },
+        {
+            name: "被否定型内在小孩",
+            shortDesc: "你总是怀疑自己不够好，追求完美，害怕批评。",
+            fullDesc: "童年时你经常被批评、被比较，或只有达到标准才能得到认可。长大后你内化了严厉的自我批判，总觉得“我不够好”，容易陷入完美主义，害怕失败，对他人的评价过度敏感。",
+            healingAdvice: "1. 练习“自我肯定”：每天记录自己的三个优点或成就，无论大小。\n2. 允许自己犯错：把错误视为学习机会，而不是自我价值的否定。\n3. 区分“事实”与“评判”：当自我批评出现时，问自己“这是事实还是过去的回音？”",
+            practice: "【自我肯定日记】每天睡前写下：“今天我做了……我对自己感到满意，因为……”。同时，对镜子说：“我本来的样子就足够好。”",
+            pattern: "📝⚖️🌱",
+            icon: "fa-file-alt"
+        },
+        {
+            name: "被控制型内在小孩",
+            shortDesc: "你害怕做决定，常感到窒息，难以活出真实的自己。",
+            fullDesc: "童年时你的自主权被过度剥夺，家人替你做了太多选择。成年后你缺乏主见，容易被他人的意见左右，要么彻底顺从，要么在压抑后突然爆发反抗。你内心深处渴望自由，却又害怕承担责任。",
+            healingAdvice: "1. 从小决定开始：每天为自己做一个小决定（吃什么、穿什么），强化自主感。\n2. 设立边界：对他人过度的干涉温和而坚定地说“不”。\n3. 探索真实兴趣：尝试那些你曾经想做但被禁止的事情，重新连接内在渴望。",
+            practice: "【自主力练习】每周做一件“完全由自己决定”的事，并记录感受。例如：独自去一个地方、买一件自己喜欢但别人可能不认可的小物。",
+            pattern: "🔗🕊️🌿",
+            icon: "fa-handcuffs"
+        },
+        {
+            name: "被羞辱型内在小孩",
+            shortDesc: "你容易感到羞耻，不敢展现真实自我，害怕被嘲笑。",
+            fullDesc: "童年时你经历过当众贬低、羞辱或嘲讽，让你觉得自己“丢人”。成年后你极度在意他人眼光，害怕犯错后成为笑柄，习惯性自我贬低，甚至用自嘲来防御。",
+            healingAdvice: "1. 区分“羞耻”与“内疚”：羞耻是“我不好”，内疚是“我做错了事”。告诉自己“事情可以错，但我本身无错”。\n2. 练习自我接纳：每天对着镜子说：“我接受我的全部，包括不完美”。\n3. 寻找安全的人：和那些不评判你的人分享你的感受，逐步重建信任。",
+            practice: "【拥抱羞耻练习】写下你曾感到羞耻的一件事，然后以成人的视角给当时的自己写一封信，表达理解和安慰。",
+            pattern: "😔🌻✨",
+            icon: "fa-face-frown"
+        },
+        {
+            name: "受惊吓型内在小孩",
+            shortDesc: "你容易焦虑、警觉，常处于应激状态，难以放松。",
+            fullDesc: "童年经历过家庭暴力、激烈冲突或突发事件，让你长期处于恐惧中。成年后你的神经系统高度警觉，容易焦虑、失眠，对冲突和不确定性过度敏感，总在“备战”状态。",
+            healingAdvice: "1. 学习身体安抚：深呼吸、轻拍胸口、拥抱自己，告诉身体“现在很安全”。\n2. 建立稳定节奏：规律作息、固定仪式（如泡茶、散步）能带来安全感。\n3. 减少刺激：避免过度摄入负面新闻，创造宁静的物理环境。",
+            practice: "【安全锚点练习】每天花5分钟找一个让你感到安全的地方（或想象一个安全场景），深呼吸，对自己说：“此刻，我在这里，我是安全的。”",
+            pattern: "⚡🌊🕯️",
+            icon: "fa-bolt"
+        },
+        {
+            name: "孤独型内在小孩",
+            shortDesc: "你习惯独来独往，难以信任他人，渴望连接又害怕靠近。",
+            fullDesc: "童年时情感被忽视，缺乏陪伴和情感回应。你学会了自己安慰自己，也形成了“只能靠自己”的信念。成年后你难以打开心扉，即使渴望亲密，也会下意识推开别人。",
+            healingAdvice: "1. 逐步建立信任：从低风险的关系开始（如兴趣小组、支持性社群），慢慢练习分享。\n2. 与内在小孩对话：每天花时间陪伴自己，像对待朋友一样倾听内心的声音。\n3. 允许依赖：明白求助是健康的，尝试向可靠的人表达小需求。",
+            practice: "【联结练习】每周主动联系一个人（朋友、家人），聊10分钟真心话。同时，写一封给“孤独的内在小孩”的信，承诺不再让他孤单。",
+            pattern: "🌲🌌🔮",
+            icon: "fa-tree"
+        }
     ];
-    const PET_POOL = [
-        { name: "炽焰幼龙", desc: "火焰吐息，忠诚伙伴", icon: "🐉🔥" }, { name: "冰晶雪狐", desc: "优雅机敏，带来冰雪祝福", icon: "🦊❄️" },
-        { name: "翠羽风蝶", desc: "传递幸运，振翅生风", icon: "🦋🍃" }, { name: "星尘小鹿", desc: "脚踏银河，温顺灵兽", icon: "🦌✨" },
-        { name: "幻影灵猫", desc: "穿梭虚实，暗夜向导", icon: "🐱🌙" }, { name: "岩甲龟兽", desc: "沉稳守护，古老智慧", icon: "🐢⛰️" },
-        { name: "雷翼幼鹏", desc: "电闪雷鸣，天空霸主雏形", icon: "🦅⚡" }, { name: "月光兔灵", desc: "治愈光环，萌动星辰", icon: "🐇🌕" },
-        { name: "机械智芯", desc: "精密构造，超维助手", icon: "🤖⚙️" }, { name: "幽光水母", desc: "漂浮幻光，深海之梦", icon: "🌊💡" },
-        { name: "花冠精灵", desc: "自然之语，百花宠儿", icon: "🌸🧚" }
-    ];
-    const PLANET_POOL = [
-        { name: "赤红战神星", desc: "无尽火域，试炼之地", icon: "🪐🔥" }, { name: "霜铸水晶星", desc: "永冻晶簇，回响预言", icon: "💎❄️" },
-        { name: "翡翠梦境星", desc: "生命之网，远古丛林", icon: "🌳🍃" }, { name: "苍穹风鸣环", desc: "永恒风暴，音律之环", icon: "🌀🎵" },
-        { name: "幻梦琉璃星", desc: "欲望与幻觉交织的迷境", icon: "🪞✨" }, { name: "暗曜冥渊星", desc: "神秘深渊，禁忌知识", icon: "🌑👁️" },
-        { name: "圣辉晨星", desc: "光芒万丈，秩序之源", icon: "☀️🏛️" }, { name: "机械泰坦域", desc: "齿轮与钢铁的文明", icon: "⚙️🤖" },
-        { name: "琥珀时光星", desc: "凝固时空，永恒静谧", icon: "⏳🟠" }, { name: "星云幻境", desc: "星尘造物，极光漫天", icon: "🌌✨" }
-    ];
-    const TALENT_POOL = [
-        { name: "燎原之火", desc: "点燃变革，将热情化为行动力", icon: "🔥⚡" }, { name: "冰心慧眼", desc: "冷静洞察，看透事物本质", icon: "❄️👁️" },
-        { name: "翠岚共鸣", desc: "与自然万物建立深层链接", icon: "🌿🍃" }, { name: "星轨预言", desc: "窥见命运轨迹，指引方向", icon: "✨🔮" },
-        { name: "暗影编织", desc: "操控阴影与隐秘力量", icon: "🌑🕸️" }, { name: "磐石意志", desc: "不屈不挠，永恒守护", icon: "🪨💪" },
-        { name: "幻梦创造", desc: "将幻想化为现实的艺术", icon: "🎨🌌" }, { name: "雷霆裁决", desc: "审判与力量兼具的威能", icon: "⚡⚖️" },
-        { name: "星辰驯化", desc: "沟通星兽，驾驭宇宙生灵", icon: "🐉✨" }, { name: "灵能造物", desc: "凭空创造精密器械与生命", icon: "🔧💡" },
-        { name: "辉光圣愈", desc: "治愈身心，驱散黑暗", icon: "☀️🕯️" }, { name: "涡流命运", desc: "改写因果，操纵概率", icon: "🌀📜" }
-    ];
+
+    // 评分函数（与原逻辑一致）
+    function getScores(qIndex, optIdx) {
+        const primaryMap = [
+            0,0,1,4,2,2,3,0,1,2,  // 1-10
+            2,1,4,0,5,2,0,3,0,0,  // 11-20
+            5,1,2,3,4,1,0,1,0,5   // 21-30
+        ];
+        const primary = primaryMap[qIndex];
+        let baseScore = 3 - optIdx;
+        let scores = new Array(6).fill(0);
+        scores[primary] = baseScore;
+        if (primary === 0) { scores[5] += Math.floor(baseScore * 0.5); }
+        if (primary === 1) { scores[3] += Math.floor(baseScore * 0.5); }
+        if (primary === 2) { scores[0] += Math.floor(baseScore * 0.4); }
+        if (primary === 3) { scores[1] += Math.floor(baseScore * 0.5); }
+        if (primary === 4) { scores[5] += Math.floor(baseScore * 0.4); }
+        if (primary === 5) { scores[0] += Math.floor(baseScore * 0.4); }
+        return scores;
+    }
 
     let answers = new Array(QUESTIONS.length).fill(null);
     let currentIndex = 0;
     let stepContainer = document.getElementById('stepContainer');
     let resultCard = document.getElementById('resultCard');
     let stepCard = document.getElementById('stepCard');
+    let coverPage = document.getElementById('coverPage');
+    let mainContent = document.getElementById('mainContent');
+
+    // 开始按钮事件
+    document.getElementById('startBtn').addEventListener('click', () => {
+        coverPage.style.display = 'none';
+        mainContent.style.display = 'block';
+        renderStep();
+    });
 
     function renderStep() {
         const q = QUESTIONS[currentIndex];
@@ -299,11 +518,11 @@
         });
         const progressPercent = (currentIndex / QUESTIONS.length) * 100;
         const isLast = (currentIndex === QUESTIONS.length - 1);
-        const nextBtnText = isLast ? '✨ 提交并查看报告 ✨' : '下一题 →';
+        const nextBtnText = isLast ? '✨ 看见我的内在小孩 ✨' : '下一题 →';
         const showPrev = currentIndex > 0;
         stepContainer.innerHTML = `
             <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%;"></div></div>
-            <div class="question-header"><span>第 ${currentIndex+1} / ${QUESTIONS.length} 题</span><span><i class="fas fa-star-of-life"></i> 星魂探索</span></div>
+            <div class="question-header"><span>第 ${currentIndex+1} / ${QUESTIONS.length} 题</span><span><i class="fas fa-star-of-life"></i> 倾听内在声音</span></div>
             <div class="question-text">${q.text}</div>
             <div class="options-step" id="stepOptions">${optionsHtml}</div>
             <div class="nav-buttons">${showPrev ? '<div class="nav-btn" id="prevBtn"><i class="fas fa-arrow-left"></i> 上一题</div>' : '<div class="nav-btn disabled">上一题</div>'}
@@ -318,90 +537,63 @@
         });
         document.getElementById('prevBtn')?.addEventListener('click', () => { if(currentIndex>0){ currentIndex--; renderStep(); } });
         document.getElementById('nextBtn').addEventListener('click', () => {
-            if(answers[currentIndex] === null){ showToast("✨ 请选择一个选项，继续探索 ✨",1500); return; }
+            if(answers[currentIndex] === null){ showToast("请选择一个选项，继续探索你的内在小孩",1500); return; }
             if(currentIndex === QUESTIONS.length-1){
-                if(!answers.every(a=>a!==null)){ showToast("⚠️ 还有未完成的题目，请返回检查 ⚠️",1800); return; }
-                generateFinalReport();
+                if(!answers.every(a=>a!==null)){ showToast("还有未完成的题目，请返回检查",1800); return; }
+                generateResult();
             } else { currentIndex++; renderStep(); }
         });
     }
 
-    function generateFinalReport() {
-        const zodiacId = parseInt(document.getElementById('zodiacSelect').value,10);
-        const quizVals = [...answers];
-        // 30个质数系数（足够覆盖）
-        const prime = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113];
-        let roleSeed=zodiacId*131, petSeed=zodiacId*97, planetSeed=zodiacId*73, talentSeed=zodiacId*113;
-        for(let i=0;i<quizVals.length;i++){
-            const val=quizVals[i], coeff=prime[i%prime.length];
-            roleSeed += val*coeff*7; petSeed += val*coeff*11; planetSeed += val*coeff*13; talentSeed += val*coeff*19;
+    function generateResult() {
+        let typeScores = new Array(6).fill(0);
+        for (let i=0; i<answers.length; i++) {
+            let inc = getScores(i, answers[i]);
+            for (let t=0; t<6; t++) typeScores[t] += inc[t];
         }
-        const role = ROLE_POOL[Math.abs(roleSeed)%ROLE_POOL.length];
-        const pet = PET_POOL[Math.abs(petSeed)%PET_POOL.length];
-        const planet = PLANET_POOL[Math.abs(planetSeed)%PLANET_POOL.length];
-        const talent = TALENT_POOL[Math.abs(talentSeed)%TALENT_POOL.length];
-
-        const freq = [0,0,0,0]; quizVals.forEach(v=>freq[v]++);
-        const dominant = freq.indexOf(Math.max(...freq));
-        const lightDark = getLightShadow(zodiacId, dominant);
-        const proverb = getProverbAndKeyword(zodiacId, dominant, talent);
-        const energy = getEnergyIndexes(quizVals);
-
-        document.getElementById('resultGrid').innerHTML = `
-            <div class="result-item"><div class="result-icon">${role.icon}</div><div class="result-label">专属角色</div><div class="result-name">${role.name}</div><div class="result-desc">${role.desc}</div></div>
-            <div class="result-item"><div class="result-icon">${pet.icon}</div><div class="result-label">灵性宠物</div><div class="result-name">${pet.name}</div><div class="result-desc">${pet.desc}</div></div>
-            <div class="result-item"><div class="result-icon">${planet.icon}</div><div class="result-label">源力星球</div><div class="result-name">${planet.name}</div><div class="result-desc">${planet.desc}</div></div>
-            <div class="result-item"><div class="result-icon">${talent.icon}</div><div class="result-label">星蕴天赋</div><div class="result-name">${talent.name}</div><div class="result-desc">${talent.desc}</div></div>`;
-        document.getElementById('lightShadowBlock').innerHTML = `<div class="personality-title"><i class="fas fa-yin-yang"></i> 性格光谱 · 光明与暗影</div><div class="personality-text">${lightDark}</div>`;
-        document.getElementById('proverbBlock').innerHTML = `<div class="personality-title"><i class="fas fa-quote-left"></i> 星运箴言 & 天赋启迪</div><div class="personality-text">${proverb.text}</div><div class="keywords">${proverb.keywords.map(k=>`<span class="keyword">#${k}</span>`).join('')}</div><div class="personality-text" style="margin-top:0.6rem;"><i class="fas fa-lightbulb"></i> 天赋激活建议：${proverb.advice}</div>`;
-        
-        const energyHtml = `<div class="personality-title"><i class="fas fa-chart-line"></i> 宇宙共鸣指数</div><div class="energy-bars">
-            ${Object.entries(energy).map(([key,val])=>`<div class="energy-item"><span style="width:70px">${key}</span><div class="energy-bar-bg"><div class="energy-bar-fill" style="width:${val}%"></div></div><span>${val}%</span></div>`).join('')}
-        </div><div class="personality-text" style="font-size:0.75rem;">* 基于30题答案倾向计算，反映你当下的星格共振</div>`;
-        document.getElementById('energyBlock').innerHTML = energyHtml;
-
+        let maxScore = -1, maxType = 0;
+        for (let i=0; i<6; i++) {
+            if (typeScores[i] > maxScore) {
+                maxScore = typeScores[i];
+                maxType = i;
+            }
+        }
+        const trauma = TRAUMA_TYPES[maxType];
+        // 渲染结果（带图案）
+        document.getElementById('resultTypeArea').innerHTML = `
+            <div class="result-type">
+                <div class="type-pattern"><i class="fas ${trauma.icon}"></i> ${trauma.pattern}</div>
+                <h2>${trauma.name}</h2>
+                <div class="type-badge"><i class="fas fa-hand-sparkles"></i> 你的内在小孩核心创伤类型</div>
+                <div class="result-block" style="margin-top:0.8rem;"><div class="result-text">${trauma.shortDesc}</div></div>
+            </div>
+        `;
+        document.getElementById('resultDetailArea').innerHTML = `
+            <div class="result-block">
+                <div class="result-block-title"><i class="fas fa-book-open"></i> 详细解读</div>
+                <div class="result-text">${trauma.fullDesc}</div>
+            </div>
+        `;
+        document.getElementById('resultHealingArea').innerHTML = `
+            <div class="result-block">
+                <div class="result-block-title"><i class="fas fa-seedling"></i> 疗愈建议</div>
+                <div class="result-text" style="white-space: pre-line;">${trauma.healingAdvice}</div>
+            </div>
+        `;
+        document.getElementById('resultPracticeArea').innerHTML = `
+            <div class="result-block">
+                <div class="result-block-title"><i class="fas fa-puzzle-piece"></i> 专属自我练习</div>
+                <div class="result-text" style="white-space: pre-line;">${trauma.practice}</div>
+            </div>
+        `;
         stepCard.style.display = 'none';
         resultCard.style.display = 'block';
         resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        showToast("✨ 30维星蕴报告生成完毕！截图分享你的专属宇宙 ✨",2000);
-    }
-
-    function getLightShadow(zodiacId, dominant) {
-        const zodiacTraits = ["白羊:勇气的另一面是急躁","金牛:稳固的另一面是固执","双子:灵动的另一面是善变","巨蟹:温柔的另一面是情绪化","狮子:自信的另一面是自负","处女:完美的另一面是挑剔","天秤:和谐的另一面是犹豫","天蝎:深度的另一面是占有","射手:自由的另一面是散漫","摩羯:坚韧的另一面是冷漠","水瓶:创新的另一面是叛逆","双鱼:慈悲的另一面是逃避"];
-        const core = ["🔥行动之火","🌿大地之稳","💧情感之水","🌪️自由之风"][dominant];
-        const light = ["你拥有点燃一切的激情与行动力","你是令人安心的磐石与守护者","你具备穿透心灵的共情与创造力","你向往无拘无束的智慧与远方"][dominant];
-        const dark = ["但需警惕急躁与过度主导","但需避免固执与抗拒变化","但需防止情绪泛滥与依赖","但需注意飘忽不定与责任逃避"][dominant];
-        return `✨ 光明面：${light}。✨ 暗影面：${dark}。${zodiacTraits[zodiacId]} 你的星盘提示，接纳两面才能完整。`;
-    }
-
-    function getProverbAndKeyword(zodiacId, dominant, talent) {
-        const keywordsMap = [["勇气","开拓"],["耐心","富足"],["沟通","多变"],["关怀","守护"],["荣耀","热情"],["精进","秩序"],["优雅","平衡"],["深邃","蜕变"],["自由","冒险"],["责任","成就"],["革新","独立"],["梦幻","灵性"]];
-        const keywordBase = keywordsMap[zodiacId] || ["星辰","探索"];
-        const talentWord = talent.name.slice(0,2);
-        const keywords = [keywordBase[0], keywordBase[1], talentWord, ["炽焰","霜华","翠岚","星轨"][dominant]];
-        const proverbs = ["你是一团星火，点燃黑暗也温暖自己。","大地沉默，却承载万物生长。","流水不争先，争的是滔滔不绝。","风没有形状，却改变了世界。"];
-        const adviceList = ["每日留一刻独处，让火焰沉淀为智慧。","尝试小冒险，给稳固生活一抹亮色。","用艺术表达情感，将敏感化为创作。","建立微小承诺，让自由有落地之处。"];
-        return {
-            text: `✨ 「${proverbs[dominant]}」 ✨ 年度关键词：${keywords[0]} · ${keywords[1]}`,
-            keywords: keywords.slice(0,3),
-            advice: adviceList[dominant] + " 结合你的天赋「"+talent.name+"」，主动练习将天赋融入日常。"
-        };
-    }
-
-    function getEnergyIndexes(quizVals) {
-        let act=0, soc=0, int=0, emo=0, cre=0;
-        quizVals.forEach((v,i)=>{
-            if(i%5===0) act+= (v+1)*5;
-            if(i%5===1) soc+= (v+1)*5;
-            if(i%5===2) int+= (v+1)*5;
-            if(i%5===3) emo+= (v+1)*5;
-            if(i%5===4) cre+= (v+1)*5;
-        });
-        const max = 30*5*0.8;  // 30题，每项最多6次取值，最大分30*5=150，按80%为理想上限
-        return { "行动力": Math.min(100, Math.round(act/max*100)), "社交力": Math.min(100, Math.round(soc/max*100)), "思维力": Math.min(100, Math.round(int/max*100)), "共情力": Math.min(100, Math.round(emo/max*100)), "创造力": Math.min(100, Math.round(cre/max*100)) };
+        showToast("报告已生成 · 看见即是疗愈的开始",2000);
     }
 
     function showToast(msg,dur){ let t=document.querySelector('.toast-msg'); if(t) t.remove(); let d=document.createElement('div'); d.className='toast-msg'; d.innerText=msg; document.body.appendChild(d); setTimeout(()=>d.remove(),dur); }
+
     async function captureResultCard(){
         if(resultCard.style.display==='none'){ showToast("请先完成测试并生成报告",1500); return; }
         const target=document.getElementById('resultContent');
@@ -409,20 +601,18 @@
         try{
             const orig=document.body.style.overflow;
             document.body.style.overflow='hidden';
-            const canvas=await html2canvas(target,{scale:2.5,backgroundColor:'#0b0b2b',logging:false});
+            const canvas=await html2canvas(target,{scale:2.5,backgroundColor:'#1a142f',logging:false});
             const link=document.createElement('a');
-            const zodiacSelect=document.getElementById('zodiacSelect');
-            const zodiacName=zodiacSelect.options[zodiacSelect.selectedIndex]?.text.split(' ')[0]||'星座';
-            link.download=`星蕴工坊_${zodiacName}_30维报告.png`;
+            link.download=`内在小孩疗愈报告.png`;
             link.href=canvas.toDataURL('image/png');
             link.click();
             document.body.style.overflow=orig;
-            showToast("✅ 图片已保存，分享你的宇宙报告吧！",2500);
+            showToast("✅ 报告已保存，可以分享给需要的朋友",2500);
         } catch(e){ showToast("截图失败，请重试",1500); }
     }
 
-    function init(){ renderStep(); document.getElementById('saveImgBtn')?.addEventListener('click',captureResultCard); }
-    init();
+    // 注意：页面初始封面显示，主内容隐藏，未开始时不渲染答题（避免空）
+    document.getElementById('saveImgBtn')?.addEventListener('click',captureResultCard);
 </script>
 </body>
 </html>
