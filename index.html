@@ -1,618 +1,1481 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>内在小孩创伤类型测试 · 疗愈你的童年印记</title>
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- html2canvas 截图库 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>凤鸣深宫</title>
+<style>
+:root{
+  --bg:#0a0606;--bg2:#130d0d;--bg3:#221414;--bg4:#1a1010;
+  --border:#5a3520;--border2:#8a5530;
+  --text:#f0dfc0;--text2:#c8a870;--text3:#8a6840;
+  --acc:#d4a828;--acc2:#c02020;--acc3:#f0d060;
+  --jade:#2a9070;--rose:#c05070;--purple:#7050b0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'STKaiti','KaiTi','楷体',Georgia,serif;
+  display:flex;flex-direction:column;}
 
-        body {
-            background: linear-gradient(145deg, #2c1e2f 0%, #1a142f 100%);
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            color: #faf3e5;
-            min-height: 100vh;
-            position: relative;
-        }
+/* ══ TOPBAR ══ */
+#topbar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0 16px;height:52px;display:flex;align-items:center;
+  justify-content:space-between;flex-shrink:0;z-index:100;
+  position:relative;
+}
+.tb-left{display:flex;align-items:center;gap:12px;}
+.tb-title{font-size:15px;color:var(--acc);letter-spacing:3px;}
+.tb-chap{font-size:11px;color:var(--text3);letter-spacing:1px;}
+.tb-right{display:flex;align-items:center;gap:10px;}
+.nav-btn{
+  padding:4px 12px;background:none;border:1px solid var(--border);
+  color:var(--text3);font-size:11px;cursor:pointer;border-radius:3px;
+  font-family:inherit;transition:all .2s;letter-spacing:1px;
+}
+.nav-btn:hover,.nav-btn.active{background:var(--bg3);border-color:var(--acc);color:var(--acc);}
+.vocab-pill{
+  background:var(--bg3);border:1px solid var(--border);
+  padding:3px 10px;border-radius:12px;font-size:11px;color:var(--text2);
+}
+.vocab-pill span{color:var(--acc);font-weight:bold;}
 
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 1.5rem 1rem 2.5rem;
-        }
+/* ══ PROGRESS BAR ══ */
+#prog{position:absolute;bottom:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--acc2),var(--acc));
+  transition:width .3s;width:0%;}
 
-        /* 封面页样式 */
-        .cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2a1e3a, #0e0a1f);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(2px);
-            transition: opacity 0.5s ease;
-            overflow-y: auto;
-        }
-        .cover-card {
-            background: rgba(30, 22, 48, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 3rem;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            max-width: 90%;
-            width: 500px;
-            border: 1px solid rgba(255, 215, 180, 0.4);
-            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
-            animation: fadeInUp 0.6s ease;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .cover-icon {
-            font-size: 4rem;
-            background: linear-gradient(135deg, #FFB7B2, #D4A5FF);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-        .cover h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #FFD6A5, #FFB7B2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .cover p {
-            font-size: 1rem;
-            opacity: 0.85;
-            margin: 1rem 0;
-            line-height: 1.5;
-        }
-        .cover-deco {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .cover-deco i {
-            font-size: 2rem;
-            color: #FFB7B2;
-            opacity: 0.7;
-        }
-        .start-btn {
-            background: linear-gradient(95deg, #FFB7B2, #D4A5FF);
-            border: none;
-            padding: 0.9rem 2rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 60px;
-            color: #1f1a2a;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .start-btn:active { transform: scale(0.97); }
-        .start-btn i { font-size: 1.2rem; }
+/* ══ STAT BAR ══ */
+#statbar{
+  background:var(--bg3);border-bottom:1px solid var(--border);
+  padding:6px 16px;display:flex;gap:16px;flex-shrink:0;
+  overflow-x:auto;
+}
+.stat-item{display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.stat-icon{font-size:13px;}
+.stat-name{font-size:10px;color:var(--text3);letter-spacing:1px;}
+.stat-val{font-size:13px;font-weight:bold;}
+.stat-bar-wrap{width:52px;height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;}
+.stat-bar-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.22,1,.36,1);}
 
-        /* 原有卡片样式调整 */
-        .card {
-            background: rgba(30, 22, 48, 0.75);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 215, 180, 0.3);
-            padding: 1.5rem 1.2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
-        }
+/* ══ MAIN AREA ══ */
+#main{flex:1;overflow:hidden;position:relative;}
 
-        .section-title {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-left: 4px solid #FFB7B2;
-            padding-left: 0.8rem;
-        }
+/* ══ SCREENS ══ */
+.screen{
+  position:absolute;inset:0;overflow-y:auto;
+  display:flex;flex-direction:column;align-items:center;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.screen.active{opacity:1;pointer-events:auto;}
 
-        /* 分步答题样式 (与之前一致) */
-        .step-container {
-            min-height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .progress-bar {
-            background: #3a2a4a;
-            border-radius: 20px;
-            height: 6px;
-            margin-bottom: 1.8rem;
-            overflow: hidden;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #FFB7B2, #D4A5FF);
-            border-radius: 20px;
-            transition: width 0.3s ease;
-        }
-        .question-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: #FFD6A5;
-        }
-        .question-text {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
-        .options-step {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 2rem;
-        }
-        .option-step {
-            background: rgba(255,240,210,0.08);
-            border-radius: 60px;
-            padding: 0.9rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-        .option-step.selected {
-            background: #7f6b9e;
-            border-color: #FFB7B2;
-            box-shadow: 0 0 10px #d4a5ff;
-        }
-        .option-step .opt-icon {
-            font-size: 1.2rem;
-            width: 28px;
-        }
-        .option-step .opt-text {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-        .nav-btn {
-            background: rgba(50, 40, 70, 0.8);
-            border: 1px solid #FFB7B2;
-            padding: 0.7rem 1.2rem;
-            border-radius: 60px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            color: #FFE6D5;
-            flex: 1;
-            text-align: center;
-        }
-        .nav-btn.primary {
-            background: linear-gradient(95deg, #FFB7B2, #D4A5FF);
-            color: #1f1a2a;
-            border: none;
-        }
-        .nav-btn:active { transform: scale(0.97); }
-        .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
+/* ══ GATE SCREEN ══ */
+#gate-screen{background:radial-gradient(ellipse,#180808,#000);justify-content:center;}
+.gate-wrap{position:relative;width:100%;height:100%;overflow:hidden;max-height:100vh;}
+.gate-half{
+  position:absolute;top:0;width:50%;height:100%;
+  background:linear-gradient(to bottom,#5a0e0e,#7a1212,#5a0e0e);
+  transition:transform 2.2s cubic-bezier(.77,0,.18,1);
+  display:flex;align-items:center;
+}
+.gate-half.L{left:0;justify-content:flex-end;border-right:3px solid #b88018;}
+.gate-half.R{right:0;justify-content:flex-start;border-left:3px solid #b88018;}
+.gate-ring{width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle,#f0d050,#c08018,#906010);
+  box-shadow:0 0 16px rgba(200,150,30,.8);margin:24px;}
+.gate-pat{position:absolute;inset:0;opacity:.1;
+  background-image:repeating-linear-gradient(45deg,#d4a830 0,#d4a830 1px,transparent 0,transparent 50%);
+  background-size:20px 20px;}
+.gate-overlay{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.gate-open .gate-half.L{transform:translateX(-100%);}
+.gate-open .gate-half.R{transform:translateX(100%);}
+.gate-center{text-align:center;pointer-events:auto;z-index:3;}
+.g-series{font-size:12px;letter-spacing:8px;color:var(--acc);margin-bottom:14px;opacity:.8;}
+.g-chapnum{font-size:11px;letter-spacing:4px;color:var(--text3);margin-bottom:8px;}
+.g-title{font-size:clamp(1.8rem,5.5vw,3.2rem);color:var(--acc3);letter-spacing:10px;
+  text-shadow:0 0 25px rgba(212,168,48,.5);margin-bottom:6px;line-height:1.3;}
+.g-sub{font-size:14px;letter-spacing:5px;color:var(--text2);margin-bottom:36px;}
+.enter-btn{
+  padding:12px 44px;background:transparent;
+  border:1px solid var(--acc);color:var(--acc);
+  font-size:14px;letter-spacing:6px;cursor:pointer;
+  font-family:inherit;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.enter-btn::before{content:'';position:absolute;inset:0;background:var(--acc);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1;}
+.enter-btn:hover{color:#000;}
+.enter-btn:hover::before{transform:scaleX(1);}
 
-        /* 结果区域 */
-        .result-type {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        .type-pattern {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            background: rgba(255,215,180,0.2);
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-        }
-        .result-type h2 {
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, #FFD6A5, #FFB7B2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-        .type-badge {
-            background: #ffb7b230;
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            margin-top: 0.3rem;
-        }
-        .result-block {
-            background: rgba(0,0,0,0.35);
-            border-radius: 1.5rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .result-block-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-left: 3px solid #FFB7B2;
-            padding-left: 0.7rem;
-        }
-        .result-text {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            opacity: 0.92;
-        }
-        .share-tips {
-            background: #2f2348;
-            border-radius: 1.2rem;
-            padding: 0.8rem;
-            font-size: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1rem;
-        }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #FFB7B2;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: #FFE6D5;
-        }
-        .footer-sell {
-            text-align: center;
-            font-size: 0.7rem;
-            margin-top: 2rem;
-            opacity: 0.7;
-            border-top: 1px dashed rgba(255,215,180,0.3);
-            padding-top: 1.2rem;
-        }
-        .toast-msg {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2f2348;
-            backdrop-filter: blur(12px);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            z-index: 999;
-            color: #FFE6D5;
-            box-shadow: 0 4px 12px black;
-            pointer-events: none;
-        }
-        @media (max-width: 550px) {
-            .question-text { font-size: 1.1rem; }
-            .option-step { padding: 0.6rem 1rem; }
-            .result-type h2 { font-size: 1.5rem; }
-            .type-pattern { font-size: 2.5rem; }
-        }
-    </style>
+/* ══ CHAPTER SELECT ══ */
+#chapsel-screen{background:var(--bg);padding:40px 20px;gap:20px;}
+.chapsel-title{font-size:22px;color:var(--acc);letter-spacing:6px;margin-bottom:8px;}
+.chapsel-sub{font-size:12px;color:var(--text3);letter-spacing:2px;margin-bottom:28px;}
+.chap-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:520px;}
+.chap-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:18px 22px;cursor:pointer;transition:all .2s;border-radius:6px;
+  display:flex;align-items:center;gap:16px;
+}
+.chap-card:hover{border-color:var(--acc);background:var(--bg3);}
+.chap-card.locked{opacity:.4;cursor:default;}
+.cc-num{font-size:2rem;color:var(--acc);min-width:44px;text-align:center;}
+.cc-info{}
+.cc-name{font-size:15px;color:var(--acc3);margin-bottom:4px;}
+.cc-desc{font-size:11px;color:var(--text3);letter-spacing:1px;}
+.cc-badge{margin-left:auto;font-size:10px;background:var(--bg3);
+  border:1px solid var(--border);padding:2px 8px;border-radius:10px;color:var(--text3);}
+.cc-badge.done{border-color:var(--jade);color:var(--jade);}
+
+/* ══ STORY PAGE ══ */
+#story-screen{padding:0;}
+.page-wrap{
+  width:100%;max-width:680px;
+  min-height:100%;
+  padding:28px 20px 100px;
+  display:flex;flex-direction:column;gap:0;
+}
+
+/* page counter */
+.page-counter{
+  font-size:10px;color:var(--text3);letter-spacing:2px;
+  text-align:center;margin-bottom:20px;
+}
+
+/* scene divider */
+.sdiv{display:flex;align-items:center;gap:10px;margin:24px 0 18px;}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);}
+.sdiv-txt{font-size:10px;color:var(--text3);letter-spacing:3px;white-space:nowrap;}
+
+/* narration */
+.narr{
+  background:var(--bg4);border-left:3px solid var(--acc2);
+  padding:14px 18px;margin:6px 0;font-size:15px;line-height:2;
+  color:var(--text2);border-radius:0 5px 5px 0;
+}
+
+/* dialogue */
+.dlg{margin:10px 0;}
+.sp-label{font-size:10px;color:var(--text3);letter-spacing:2px;
+  margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+.sp-label.R{justify-content:flex-end;}
+.sp-dot{width:5px;height:5px;border-radius:50%;background:var(--acc);}
+.brow{display:flex;align-items:flex-start;gap:9px;}
+.brow.R{flex-direction:row-reverse;}
+.ava{width:42px;height:42px;min-width:42px;border-radius:5px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:12px;font-weight:bold;border:1px solid var(--border2);}
+.ava-n{font-size:8px;color:var(--text3);letter-spacing:0.5px;margin-top:1px;}
+.bub{max-width:78%;padding:11px 15px;border-radius:7px;
+  font-size:15px;line-height:1.9;position:relative;}
+.bub.npc{background:var(--bg3);border:1px solid var(--border);}
+.bub.npc::before{content:'';position:absolute;left:-7px;top:12px;
+  border:7px solid transparent;border-right-color:var(--border);}
+.bub.npc::after{content:'';position:absolute;left:-5px;top:13px;
+  border:6px solid transparent;border-right-color:var(--bg3);}
+.bub.you{background:#2a1d0e;border:1px solid var(--acc);}
+.bub.you::before{content:'';position:absolute;right:-7px;top:12px;
+  border:7px solid transparent;border-left-color:var(--acc);}
+.bub.you::after{content:'';position:absolute;right:-5px;top:13px;
+  border:6px solid transparent;border-left-color:#2a1d0e;}
+
+/* ══ CLICK TO CONTINUE ══ */
+.ctc{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:22px;padding:12px;cursor:pointer;
+  color:var(--text3);font-size:12px;letter-spacing:2px;
+  animation:ctcPulse 1.5s ease-in-out infinite;
+  border-top:1px solid var(--border);
+  user-select:none;
+}
+.ctc::after{content:'▼';font-size:10px;}
+@keyframes ctcPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ══ WORD HIGHLIGHT ══ */
+.w{color:var(--acc3);border-bottom:1px dashed var(--acc);
+  cursor:pointer;font-weight:bold;transition:all .15s;}
+.w:hover{color:#fff;text-shadow:0 0 8px var(--acc);}
+.wn{font-size:11px;color:var(--text3);font-weight:normal;margin-left:1px;}
+
+/* ══ CHOICES ══ */
+.choices{margin-top:20px;}
+.choice-prompt{font-size:12px;color:var(--acc);letter-spacing:2px;
+  padding:9px 14px;background:var(--bg3);border-left:3px solid var(--acc);margin-bottom:10px;}
+.choice-list{display:flex;flex-direction:column;gap:7px;}
+.cbtn{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--bg2);border:1px solid var(--border);
+  padding:12px 16px;cursor:pointer;text-align:left;
+  color:var(--text);font-size:14px;line-height:1.8;
+  font-family:inherit;transition:all .2s;border-radius:4px;
+}
+.cbtn:hover{background:var(--bg3);border-color:var(--acc);color:var(--acc3);}
+.ckey{min-width:24px;height:24px;background:var(--bg3);border:1px solid var(--border2);
+  border-radius:3px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--acc);margin-top:2px;flex-shrink:0;}
+
+/* ══ STAT POPUP (橙光风格) ══ */
+#stat-popup{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,.8);
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;
+}
+#stat-popup.show{display:flex;}
+.sp-box{
+  background:var(--bg2);border:1px solid var(--acc);border-radius:10px;
+  padding:32px 40px;text-align:center;max-width:400px;width:90%;
+}
+.sp-chapter{font-size:11px;color:var(--text3);letter-spacing:3px;margin-bottom:16px;}
+.sp-title{font-size:22px;color:var(--acc3);letter-spacing:4px;margin-bottom:6px;}
+.sp-subtitle{font-size:12px;color:var(--text2);margin-bottom:28px;}
+.sp-stats{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.sp-stat-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 14px;background:var(--bg3);border-radius:6px;border:1px solid var(--border);
+}
+.sp-stat-left{display:flex;align-items:center;gap:8px;}
+.sp-stat-icon{font-size:16px;}
+.sp-stat-name{font-size:13px;color:var(--text2);}
+.sp-stat-delta{
+  font-size:15px;font-weight:bold;
+  display:flex;align-items:center;gap:4px;
+}
+.sp-stat-delta.up{color:#5cb85c;animation:deltaUp .5s ease;}
+.sp-stat-delta.dn{color:#d9534f;animation:deltaUp .5s ease;}
+.sp-stat-delta.neu{color:var(--text3);}
+@keyframes deltaUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.sp-rank{
+  font-size:13px;color:var(--text2);padding:10px 16px;
+  background:var(--bg3);border-radius:6px;border:1px solid var(--border);
+  margin-bottom:20px;line-height:1.7;
+}
+.sp-rank strong{color:var(--acc3);}
+.sp-next{
+  padding:11px 40px;background:var(--acc);color:#000;border:none;
+  cursor:pointer;font-size:14px;letter-spacing:4px;font-family:inherit;
+}
+
+/* ══ DEATH SCREEN ══ */
+#death-screen{
+  position:fixed;inset:0;z-index:6000;
+  background:rgba(90,0,0,.93);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:30px;
+}
+#death-screen.show{display:flex;}
+.dc{font-size:7rem;color:#500;line-height:1;animation:dpulse 2s ease infinite;}
+@keyframes dpulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.dt{font-size:1.8rem;color:var(--acc2);margin:10px 0 6px;letter-spacing:4px;}
+.dr{font-size:13px;color:var(--text2);max-width:440px;line-height:1.8;margin:0 auto 16px;}
+.dw{background:rgba(0,0,0,.4);border:1px solid var(--border);
+  padding:10px 18px;margin:0 auto 24px;max-width:380px;
+  font-size:12px;color:var(--acc3);line-height:1.7;}
+.rbtn{padding:11px 36px;background:var(--acc2);color:#fff;border:none;
+  cursor:pointer;font-size:14px;letter-spacing:3px;font-family:inherit;}
+
+/* ══ VOCAB DRAWER ══ */
+#vd-overlay{
+  position:fixed;inset:0;z-index:7000;
+  background:rgba(0,0,0,.72);
+  display:none;align-items:flex-end;justify-content:center;
+}
+#vd-overlay.open{display:flex;}
+.vd{width:100%;max-width:660px;background:var(--bg2);
+  border-top:2px solid var(--acc);border-radius:14px 14px 0 0;
+  max-height:78vh;overflow-y:auto;
+  animation:vdUp .3s cubic-bezier(.22,1,.36,1);}
+@keyframes vdUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.vd-handle{width:36px;height:3px;background:var(--border2);border-radius:2px;margin:10px auto 0;}
+.vd-head{padding:14px 20px 12px;border-bottom:1px solid var(--border);}
+.vd-en{font-size:1.8rem;color:var(--acc3);font-family:Georgia,serif;letter-spacing:1px;}
+.vd-phon{font-size:12px;color:var(--text3);margin:2px 0 3px;font-family:sans-serif;}
+.vd-pos{font-size:13px;color:var(--text2);}
+.vd-x{float:right;background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;}
+.vd-x:hover{color:var(--acc);}
+.vd-tabs{display:flex;background:#0d0b09;border-bottom:1px solid var(--border);}
+.vtab{flex:1;padding:9px 4px;background:none;border:none;
+  border-bottom:2px solid transparent;color:var(--text3);
+  font-size:12px;cursor:pointer;font-family:inherit;transition:all .18s;}
+.vtab.on{color:var(--acc);border-bottom-color:var(--acc);}
+.vpanel{display:none;padding:16px 20px 24px;}
+.vpanel.on{display:block;}
+.rc{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:12px 14px;margin-bottom:10px;}
+.rt{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:4px;font-family:sans-serif;}
+.rw{font-size:1.1rem;color:var(--acc3);font-family:Georgia,serif;margin-bottom:3px;}
+.rm{font-size:12px;color:var(--text2);line-height:1.5;}
+.rf{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;}
+.rp{background:var(--bg2);border:1px solid var(--border);border-radius:14px;
+  padding:2px 9px;font-size:10px;color:var(--text2);font-family:sans-serif;}
+.mb{border-left:3px solid var(--acc);padding:9px 12px;background:rgba(212,168,48,.05);
+  margin-top:10px;border-radius:0 5px 5px 0;}
+.mbl{font-size:9px;letter-spacing:2px;color:var(--acc);margin-bottom:3px;font-family:sans-serif;}
+.mbt{font-size:12px;color:var(--text2);line-height:1.6;}
+.pi{padding:9px 0;border-bottom:1px solid var(--bg3);}
+.pi:last-child{border-bottom:none;}
+.pe{font-size:14px;color:var(--acc3);font-family:sans-serif;margin-bottom:2px;}
+.pz{font-size:11px;color:var(--text3);margin-bottom:4px;}
+.px{font-size:12px;color:var(--text3);font-style:italic;font-family:sans-serif;line-height:1.5;}
+.ei{background:var(--bg3);border-left:3px solid var(--acc2);
+  border-radius:0 5px 5px 0;padding:11px 13px;margin-bottom:9px;}
+.et{font-size:13px;color:var(--text);line-height:1.9;}
+.en2{font-size:10px;color:var(--text3);margin-top:3px;font-family:sans-serif;}
+.vd-foot{padding:9px 20px 14px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:9px;}
+.vdf-l{font-size:10px;color:var(--text3);}
+.vdf-b{flex:1;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.vdf-f{height:100%;background:var(--acc);border-radius:2px;transition:width .5s;}
+.vdf-n{font-size:10px;color:var(--acc);}
+
+@media(max-width:480px){
+  .g-title{font-size:1.8rem;letter-spacing:6px;}
+  .bub{max-width:90%;}
+  .sp-box{padding:24px 20px;}
+}
+</style>
 </head>
 <body>
-<!-- 封面页 -->
-<div class="cover" id="coverPage">
-    <div class="cover-card">
-        <div class="cover-icon">
-            <i class="fas fa-child"></i> <i class="fas fa-heart-broken"></i>
-        </div>
-        <h1>内在小孩·创伤类型</h1>
-        <p>30道灵魂之问 · 看见你内心那个曾经受伤的小孩</p>
-        <div class="cover-deco">
-            <i class="fas fa-feather-alt"></i>
-            <i class="fas fa-dove"></i>
-            <i class="fas fa-hand-holding-heart"></i>
-            <i class="fas fa-tree"></i>
-            <i class="fas fa-star-of-life"></i>
-        </div>
-        <p style="font-size: 0.85rem;">每个人心中都住着一个内在小孩<br>他/她记录着童年的欢笑与伤痕</p>
-        <button class="start-btn" id="startBtn"><i class="fas fa-play"></i> 开始探索我的内在小孩</button>
-        <div style="margin-top: 1rem; font-size: 0.7rem; opacity: 0.6;">✨ 全程匿名 · 疗愈觉察 ✨</div>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="tb-left">
+    <div>
+      <div class="tb-title">凤鸣深宫</div>
+      <div class="tb-chap" id="tb-chap">序章</div>
     </div>
+    <button class="nav-btn" id="btn-ch1" onclick="navChapter(1)">一</button>
+    <button class="nav-btn" id="btn-ch2" onclick="navChapter(2)">二</button>
+    <button class="nav-btn" onclick="showChapSel()">章节</button>
+  </div>
+  <div class="tb-right">
+    <div class="vocab-pill">词汇 <span id="wc">0</span>/90</div>
+  </div>
+  <div id="prog"></div>
 </div>
 
-<div class="container" id="mainContent" style="display: none;">
-    <!-- 分步答题卡片 -->
-    <div class="card" id="stepCard">
-        <div class="section-title"><i class="fas fa-seedling"></i> 探索你的内在小孩 · 30道深度自测</div>
-        <div id="stepContainer" class="step-container"></div>
-    </div>
+<!-- STAT BAR -->
+<div id="statbar">
+  <div class="stat-item">
+    <span class="stat-icon">🧠</span>
+    <span class="stat-name">心机</span>
+    <span class="stat-val" id="s-scheming" style="color:#c8a870">0</span>
+    <div class="stat-bar-wrap"><div class="stat-bar-fill" id="b-scheming" style="background:#c8a870;width:0%"></div></div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">💡</span>
+    <span class="stat-name">智慧</span>
+    <span class="stat-val" id="s-wisdom" style="color:#70b8f0">0</span>
+    <div class="stat-bar-wrap"><div class="stat-bar-fill" id="b-wisdom" style="background:#70b8f0;width:0%"></div></div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">💃</span>
+    <span class="stat-name">才艺</span>
+    <span class="stat-val" id="s-talent" style="color:#f090b0">0</span>
+    <div class="stat-bar-wrap"><div class="stat-bar-fill" id="b-talent" style="background:#f090b0;width:0%"></div></div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">💖</span>
+    <span class="stat-name">圣宠</span>
+    <span class="stat-val" id="s-favor" style="color:#f0a050">0</span>
+    <div class="stat-bar-wrap"><div class="stat-bar-fill" id="b-favor" style="background:#f0a050;width:0%"></div></div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-icon">🛡</span>
+    <span class="stat-name">势力</span>
+    <span class="stat-val" id="s-power" style="color:#90d090">0</span>
+    <div class="stat-bar-wrap"><div class="stat-bar-fill" id="b-power" style="background:#90d090;width:0%"></div></div>
+  </div>
+</div>
 
-    <!-- 结果展示区 -->
-    <div class="card" id="resultCard" style="display: none;">
-        <div class="section-title"><i class="fas fa-dove"></i> 你的内在小孩疗愈报告</div>
-        <div id="resultContent">
-            <div id="resultTypeArea"></div>
-            <div id="resultDetailArea"></div>
-            <div id="resultHealingArea"></div>
-            <div id="resultPracticeArea"></div>
-            <div class="share-tips">
-                <span><i class="fas fa-hand-holding-heart"></i> 看见即是疗愈 · 分享给同样需要拥抱内在小孩的朋友</span>
-                <button id="saveImgBtn" class="btn-outline"><i class="fas fa-camera"></i> 保存报告图片</button>
-            </div>
+<!-- MAIN -->
+<div id="main">
+
+  <!-- GATE -->
+  <div class="screen active" id="gate-screen">
+    <div class="gate-wrap" id="gate-wrap">
+      <div class="gate-half L"><div class="gate-pat"></div><div class="gate-ring"></div></div>
+      <div class="gate-half R"><div class="gate-pat"></div><div class="gate-ring"></div></div>
+      <div class="gate-overlay">
+        <div class="gate-center">
+          <div class="g-series">凤 鸣 深 宫</div>
+          <div class="g-chapnum">CHAPTER · SELECT</div>
+          <div class="g-title">宫 闱 权 谋</div>
+          <div class="g-sub">— 沉浸式宫斗词汇游戏 —</div>
+          <button class="enter-btn" onclick="showChapSel()">推 门 入 宫</button>
         </div>
-        <div style="margin-top: 10px; font-size: 0.7rem; text-align: center; opacity:0.6">🌟 本测试基于内在小孩疗愈理论，仅作自我觉察参考</div>
+      </div>
     </div>
-    <div class="footer-sell">
-        <i class="fas fa-leaf"></i> 深度疗愈课程 | 内在小孩冥想 | 1v1心理陪伴 可私信咨询<br>
-        ✨ 关注 @内在星球疗愈所 获取更多心灵成长内容 ✨
+  </div>
+
+  <!-- CHAPTER SELECT -->
+  <div class="screen" id="chapsel-screen">
+    <div class="chapsel-title">章节选择</div>
+    <div class="chapsel-sub">· CHAPTER SELECT ·</div>
+    <div class="chap-cards">
+      <div class="chap-card" onclick="startChapter(1)">
+        <div class="cc-num">一</div>
+        <div class="cc-info">
+          <div class="cc-name">惊鸿初见</div>
+          <div class="cc-desc">大选入宫 · 初涉宫廷险局</div>
+        </div>
+        <div class="cc-badge" id="ch1-badge">未开始</div>
+      </div>
+      <div class="chap-card" id="ch2-card" onclick="startChapter(2)">
+        <div class="cc-num">二</div>
+        <div class="cc-info">
+          <div class="cc-name">暗流涌动</div>
+          <div class="cc-desc">封妃之礼 · 后宫派系博弈</div>
+        </div>
+        <div class="cc-badge" id="ch2-badge">🔒 通关第一章解锁</div>
+      </div>
     </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="screen" id="story-screen">
+    <div class="page-wrap" id="page-wrap"></div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- DEATH -->
+<div id="death-screen">
+  <div class="dc">薨</div>
+  <div class="dt">命殒宫闱</div>
+  <div class="dr" id="dr"></div>
+  <div class="dw" id="dw"></div>
+  <button class="rbtn" onclick="revive()">▶ 重返生机</button>
+</div>
+
+<!-- STAT POPUP -->
+<div id="stat-popup">
+  <div class="sp-box">
+    <div class="sp-chapter" id="sp-ch">第一章完结</div>
+    <div class="sp-title" id="sp-title">惊鸿初见</div>
+    <div class="sp-subtitle" id="sp-sub">· 你已在宫中站稳了脚跟 ·</div>
+    <div class="sp-stats" id="sp-stats"></div>
+    <div class="sp-rank" id="sp-rank"></div>
+    <button class="sp-next" id="sp-next-btn">继续 →</button>
+  </div>
+</div>
+
+<!-- VOCAB DRAWER -->
+<div id="vd-overlay" onclick="vdOverlay(event)">
+  <div class="vd">
+    <div class="vd-handle"></div>
+    <div class="vd-head">
+      <button class="vd-x" onclick="closeVD()">✕</button>
+      <div class="vd-en" id="vd-en"></div>
+      <div class="vd-phon" id="vd-phon"></div>
+      <div class="vd-pos" id="vd-pos"></div>
+    </div>
+    <div class="vd-tabs">
+      <button class="vtab on" onclick="vdTab(0,this)">🌱 词根</button>
+      <button class="vtab" onclick="vdTab(1,this)">🔗 搭配</button>
+      <button class="vtab" onclick="vdTab(2,this)">📖 例句</button>
+    </div>
+    <div class="vpanel on" id="vp0"></div>
+    <div class="vpanel" id="vp1"></div>
+    <div class="vpanel" id="vp2"></div>
+    <div class="vd-foot">
+      <span class="vdf-l">词汇</span>
+      <div class="vdf-b"><div class="vdf-f" id="vdf-f" style="width:0%"></div></div>
+      <span class="vdf-n" id="vdf-n">0/90</span>
+    </div>
+  </div>
 </div>
 
 <script>
-    // ---------- 30道内在小孩创伤维度测试题 ----------
-    const QUESTIONS = [
-        { text: "① 小时候，父母是否经常因为忙碌而忽略你的情感需求？", options: ["总是忽略", "经常忽略", "偶尔忽略", "很少忽略"] },
-        { text: "② 当你想表达自己的感受时，家人通常的反应是？", options: ["不耐烦或打断", "敷衍回应", "耐心听完但无反馈", "认真倾听并共情"] },
-        { text: "③ 你是否记得自己曾因为“不够好”而被严厉批评？", options: ["经常发生", "偶尔发生", "很少发生", "几乎没有"] },
-        { text: "④ 家庭中是否有人情绪很不稳定，让你感到害怕？", options: ["经常有", "有时有", "很少", "从来没有"] },
-        { text: "⑤ 你小时候是否觉得自己必须“听话”才能获得爱？", options: ["完全是这样", "大部分情况", "有时这样", "从不这样"] },
-        { text: "⑥ 当你想尝试新事物时，家人常说的话是？", options: ["你不行/别冒险", "先问问我们", "小心一点就好", "支持你去试试"] },
-        { text: "⑦ 你是否曾被家人当众嘲笑或贬低？", options: ["多次发生", "偶尔发生", "很少", "从未"] },
-        { text: "⑧ 童年时期，你是否经历过与重要亲人的分离（如父母离异、寄养等）？", options: ["深刻创伤性分离", "有分离但仍有联系", "短暂分离", "没有分离"] },
-        { text: "⑨ 当你犯错时，家里通常的氛围是？", options: ["严厉惩罚", "冷淡处理", "讲道理但要求完美", "包容并鼓励改正"] },
-        { text: "⑩ 你是否觉得自己从小就要照顾家人的情绪？", options: ["完全是", "经常是", "偶尔是", "从来不是"] },
-        { text: "⑪ 你小时候是否害怕表达不同意见？", options: ["非常害怕", "比较害怕", "有点顾虑", "敢于表达"] },
-        { text: "⑫ 家人是否曾拿你和别人比较，让你觉得自己很差？", options: ["经常比较", "偶尔比较", "很少比较", "从不比较"] },
-        { text: "⑬ 你是否目睹过家庭暴力或激烈争吵？", options: ["经常", "偶尔", "很少", "从未"] },
-        { text: "⑭ 当你感到难过时，是否有人会安慰你？", options: ["从来没有人", "很少", "偶尔有人", "总是有人"] },
-        { text: "⑮ 你小时候是否觉得自己不被任何人理解？", options: ["总是这样", "经常这样", "有时这样", "从不"] },
-        { text: "⑯ 家人是否对你的生活有过多控制（如交友、穿着、选择）？", options: ["完全控制", "较多控制", "有时干涉", "尊重自主"] },
-        { text: "⑰ 你是否因为害怕被抛弃而讨好别人？", options: ["总是", "经常", "有时", "从不"] },
-        { text: "⑱ 你童年时的情绪是否经常被否定（如“不许哭”“这有什么好怕的”）？", options: ["经常被否定", "有时被否定", "很少", "从不"] },
-        { text: "⑲ 你是否曾经觉得自己是家庭的“累赘”？", options: ["强烈感觉", "有时感觉", "偶尔闪过", "从未"] },
-        { text: "⑳ 你是否记得有重要的人突然从你生活中消失？", options: ["有，创伤很深", "有，但影响不大", "没有突然消失", "完全稳定"] },
-        { text: "㉑ 你小时候是否经常一个人待着，感到孤独？", options: ["经常孤独", "有时孤独", "很少", "从不"] },
-        { text: "㉒ 当你取得成绩时，家人是否吝啬表扬？", options: ["从不表扬", "很少表扬", "偶尔表扬", "经常表扬"] },
-        { text: "㉓ 家里是否有严格的规矩，违反就会受罚？", options: ["非常严苛", "比较严格", "一般", "宽松民主"] },
-        { text: "㉔ 你是否曾在学校或家庭中遭受过羞辱性的惩罚？", options: ["多次经历", "一两次", "听说过但未经历", "从未"] },
-        { text: "㉕ 你小时候是否害怕大声说话或发出声音？", options: ["非常害怕", "有点害怕", "不太怕", "完全不怕"] },
-        { text: "㉖ 你是否觉得父母的爱是有条件的（必须表现好才被爱）？", options: ["完全有条件的爱", "大部分有", "偶尔感觉", "无条件的爱"] },
-        { text: "㉗ 你童年时是否常被留下独自一人？", options: ["经常独自留守", "有时", "很少", "从不"] },
-        { text: "㉘ 家人是否曾对你的外貌或能力进行贬低？", options: ["经常贬低", "偶尔", "很少", "从不"] },
-        { text: "㉙ 你是否曾在争吵中被威胁“不要你了”？", options: ["多次被威胁", "一两次", "很少", "从未"] },
-        { text: "㉚ 总体而言，你的童年安全感程度？", options: ["非常缺乏安全感", "不太安全", "基本安全", "非常安全"] }
-    ];
+// ════════════════════════════════════════════
+//  VOCAB DATABASE
+// ════════════════════════════════════════════
+const WDB = {
+  // CH1 WORDS
+  personal:{en:"personal",phon:"/ˈpɜːrsənl/",pos:"adj. 私人的，个人的",
+    roots:[{tag:"词根",core:"person",mean:"人；人格",fam:["person","personal","personality","personnel","impersonal"]},{tag:"后缀",core:"-al",mean:"形容词后缀「与…相关的」",fam:[]}],
+    mem:"person（人）+-al → 属于某人的 → 个人的。\n每个 person 都有 personal 的秘密。",
+    phrases:[{en:"personal space",zh:"个人空间",ex:"Respect my personal space."},{en:"personal opinion",zh:"个人意见",ex:"In my personal opinion, she is right."},{en:"personal belongings",zh:"私人物品",ex:"Pack your personal belongings."},{en:"take personally",zh:"往心里去",ex:"Don't take it personally."}],
+    exs:[{txt:"她的秘密是 personal（个人的）的，旁人无权置喙。",note:"adj. 私人的"},{txt:"臣妾有 personal 苦衷，望娘娘明鉴。",note:"adj. 个人的"}]},
+  condition:{en:"condition",phon:"/kənˈdɪʃn/",pos:"n. 情况，条件；状态",
+    roots:[{tag:"词根",core:"con+dict",mean:"共同(con)+说(dicere)→共同商定的条款→条件",fam:["condition","conditional","unconditional"]},{tag:"联想",core:"unconditional love",mean:"无条件的爱 = un+condition+al",fam:[]}],
+    mem:"条款决定处境 → condition（条件/状况）。\n宫中的 condition 肃杀，须时刻谨慎。",
+    phrases:[{en:"in good condition",zh:"状况良好",ex:"The palace is in good condition."},{en:"on condition that",zh:"条件是",ex:"I'll help on condition that you obey."},{en:"living conditions",zh:"生活条件",ex:"Living conditions were harsh."},{en:"under these conditions",zh:"在此情况下",ex:"Under these conditions, survival is hard."}],
+    exs:[{txt:"宫中的 condition（状况）肃杀，稍有不慎便是死路。",note:"n. 环境状况"},{txt:"作为生存的 condition（条件），必须对所有人保持警惕。",note:"n. 前提条件"}]},
+  quality:{en:"quality",phon:"/ˈkwɒlɪti/",pos:"n. 品质，质量；特性",
+    roots:[{tag:"词根",core:"qual",mean:"qual=什么样的(拉丁qualis)→描述性质",fam:["quality","qualify","qualified","qualification","disqualify"]},{tag:"联想",core:"quality vs quantity",mean:"quality质量 vs quantity数量",fam:[]}],
+    mem:"qual（种类）+ity → 东西的好坏 → 品质。\n品质上乘，方能在宫中立足。",
+    phrases:[{en:"high quality",zh:"高品质",ex:"Only high quality cloth enters the palace."},{en:"quality of life",zh:"生活品质",ex:"She fought for quality of life."},{en:"quality control",zh:"质量管控",ex:"Quality control is strict here."},{en:"a quality person",zh:"品行端正之人",ex:"She is truly a quality person."}],
+    exs:[{txt:"她凭借过人的 quality（品质）在众秀女中脱颖而出。",note:"n. 优秀品质"},{txt:"这块丝绸 quality（品质）上乘，令皇后多看了一眼。",note:"n. 质量"}]},
+  suffer:{en:"suffer",phon:"/ˈsʌfər/",pos:"v. 受苦，遭受",
+    roots:[{tag:"词根",core:"sub+ferre",mean:"sub(下面)+ferre(携带)→重压下承载→受苦",fam:["suffer","offer","prefer","transfer","refer"]},{tag:"-fer家族",core:"fer=carry(携带)",mean:"offer提供，prefer更喜欢，transfer转移",fam:[]}],
+    mem:"sub(下)+fer(背负)→重压下背负苦难→suffer。\n不愿 suffer，就要步步为营。",
+    phrases:[{en:"suffer from",zh:"遭受，患…",ex:"She suffers from loneliness."},{en:"suffer a loss",zh:"遭受损失",ex:"The family suffered a great loss."},{en:"suffer consequences",zh:"承受后果",ex:"You'll suffer the consequences."},{en:"make sb suffer",zh:"使某人痛苦",ex:"Her rivals tried to make her suffer."}],
+    exs:[{txt:"她不愿再 suffer（承受）冷宫屈辱，于是决定反击。",note:"v. 忍受痛苦"},{txt:"不听劝诫，只能 suffer（遭受）枉死的结局。",note:"v. 遭受坏事"}]},
+  speech:{en:"speech",phon:"/spiːtʃ/",pos:"n. 演讲；说话能力；言辞",
+    roots:[{tag:"词源",core:"speak→speech",mean:"speak(说)的古英语名词形式→说出的话",fam:["speech","speak","speaker","speechless","free speech"]},{tag:"语法",core:"speech vs speak",mean:"speech是名词，speak是动词",fam:[]}],
+    mem:"speak→speech(说出的话)。-ch结尾是名词。\n宫中每一番 speech 都字字千金。",
+    phrases:[{en:"give a speech",zh:"发表演讲",ex:"She gave a speech before the Emperor."},{en:"freedom of speech",zh:"言论自由",ex:"There was no freedom of speech."},{en:"speechless",zh:"哑口无言",ex:"She was left speechless."},{en:"parts of speech",zh:"词类",ex:"Nouns and verbs are parts of speech."}],
+    exs:[{txt:"她精心准备了一段 speech（言辞），字字珠玑，令皇上动容。",note:"n. 一番话"},{txt:"被冤枉时，她几乎 speechless（无言以对）。",note:"adj. 哑口无言的"}]},
+  realise:{en:"realise",phon:"/ˈrɪəlaɪz/",pos:"v. 意识到；实现（英式）",
+    roots:[{tag:"词根",core:"real+ise",mean:"real(真实)+ise(使)→使变成真实→意识到/实现",fam:["realise","realisation","realistic","unrealistic"]},{tag:"拼写",core:"realise vs realize",mean:"英式realise=美式realize，含义相同",fam:[]}],
+    mem:"real+ise → 让某事变成真实 → 1.意识到 2.实现。\n她 realise 了：宫中无永久的朋友。",
+    phrases:[{en:"come to realise",zh:"逐渐意识到",ex:"She came to realise the danger too late."},{en:"fully realise",zh:"充分意识到",ex:"Do you fully realise what you've done?"},{en:"realise a dream",zh:"实现梦想",ex:"She finally realised her dream."},{en:"without realising",zh:"不知不觉",ex:"She had fallen into a trap without realising."}],
+    exs:[{txt:"直到被人陷害，她才 realise（意识到）这宫廷险象环生。",note:"v. 意识到"},{txt:"她 realise 了一件事：宫中无永远的朋友。",note:"v. 认识到"}]},
+  consider:{en:"consider",phon:"/kənˈsɪdər/",pos:"v. 考虑；认为；体谅",
+    roots:[{tag:"词根",core:"con+sider",mean:"con(仔细)+sider(星，拉丁sidus)→仔细观察星象→深思熟虑",fam:["consider","considerable","consideration","reconsider","inconsiderate"]},{tag:"语法",core:"consider+doing(不用to do)",mean:"I'm considering leaving.(v-ing)",fam:[]}],
+    mem:"古人占星(sider)来做决定→consider(仔细考虑)。\n每一步都要仔细 consider，否则一步错步步错。",
+    phrases:[{en:"consider doing",zh:"考虑做某事",ex:"She considered leaving the palace."},{en:"take into consideration",zh:"纳入考量",ex:"Take every clue into consideration."},{en:"all things considered",zh:"综合来看",ex:"All things considered, she survived."},{en:"consider sb as",zh:"认为…是",ex:"She considered him as an ally."}],
+    exs:[{txt:"她 consider（考虑）了片刻，决定主动出击而非坐以待毙。",note:"v. 思考、权衡"},{txt:"你的一切作为，皇上都已 consider（考量）在心。",note:"v. 考虑到"}]},
+  mislead:{en:"mislead",phon:"/ˌmɪsˈliːd/",pos:"v. 误导；引入歧途",
+    roots:[{tag:"前缀",core:"mis-",mean:"错误地、不当地",fam:["mislead","misuse","mistake","misunderstand","misjudge"]},{tag:"词根",core:"lead",mean:"引导，带领→mislead=引向错误方向",fam:["lead","leader","misled","misleading"]}],
+    mem:"mis(错误)+lead(引导)=把人带偏→mislead(误导)。\n宫中流言，句句都是 misleading 的陷阱。",
+    phrases:[{en:"mislead sb into doing",zh:"误导某人做某事",ex:"She was misled into signing the letter."},{en:"be misled by",zh:"被…误导",ex:"Don't be misled by her gentle face."},{en:"misleading information",zh:"误导性信息",ex:"The clue contained misleading information."},{en:"deliberately mislead",zh:"故意误导",ex:"She deliberately misled her enemies."}],
+    exs:[{txt:"那封信的目的就是 mislead（误导）皇后，转移她的视线。",note:"v. 误导"},{txt:"她的眼泪极具 misleading（迷惑性），无人能识破真相。",note:"adj. 有误导性的"}]},
+  produce:{en:"produce",phon:"/prəˈdjuːs/",pos:"v. 生产；拿出；引起",
+    roots:[{tag:"词根",core:"pro+duce",mean:"pro(向前)+ducere(引导)→把东西带到前面来",fam:["produce","reduce","introduce","educate","deduce","conduct"]},{tag:"duc家族",core:"duc=lead(引导)",mean:"reduce减少，introduce介绍，educate教育",fam:[]}],
+    mem:"pro(向前)+duce(带领)→把东西带出来→produce(生产/拿出)。\n能 produce 证据，方可自证清白。",
+    phrases:[{en:"produce evidence",zh:"拿出证据",ex:"Can you produce evidence for this?"},{en:"produce results",zh:"产生结果",ex:"Hard work will produce results."},{en:"mass production",zh:"大规模生产",ex:"Ready for mass production."},{en:"produce a smile",zh:"露出微笑",ex:"She managed to produce a smile."}],
+    exs:[{txt:"她从袖中 produce（拿出）一封密信，令皇后目瞪口呆。",note:"v. 拿出、出示"},{txt:"这场风波必将 produce（引起）连锁反应。",note:"v. 引起、产生"}]},
+  manage:{en:"manage",phon:"/ˈmænɪdʒ/",pos:"v. 管理；设法做到；应付",
+    roots:[{tag:"词源",core:"manus(手)",mean:"拉丁manus=手→用手控制→管理",fam:["manage","manager","management","manageable"]},{tag:"关键用法",core:"manage to do",mean:"设法做成(强调克服困难后成功)",fam:[]}],
+    mem:"用手(manus)操控一切→manage。\n能 manage 各方势力者，方为真正的赢家。",
+    phrases:[{en:"manage to do",zh:"设法做到",ex:"She managed to escape in time."},{en:"manage a crisis",zh:"处理危机",ex:"She managed the crisis with grace."},{en:"time management",zh:"时间管理",ex:"Time management is key."},{en:"barely manage",zh:"勉强应付",ex:"She could barely manage her emotions."}],
+    exs:[{txt:"险象环生之中，她 manage（设法）保住了自己的性命。",note:"v. 设法做到"},{txt:"她是那种能 manage（管理）全局的人，进退有据。",note:"v. 管理、掌控"}]},
+  directly:{en:"directly",phon:"/dɪˈrektlɪ/",pos:"adv. 直接地；径直地",
+    roots:[{tag:"词根",core:"rect",mean:"rect=直的、正确的(拉丁rectus)",fam:["direct","directly","director","correct","erect","rectangle"]},{tag:"联想",core:"correct也含rect",mean:"correct(纠正)=co+rect；erect(直立)；rectangle(长方形)",fam:[]}],
+    mem:"rect=straight(笔直)→directly=笔直地走过去=直接地。\n证据 directly 指向了那个人。",
+    phrases:[{en:"speak directly",zh:"直接说",ex:"Speak directly, no beating around the bush."},{en:"go directly to",zh:"直接去",ex:"Go directly to the chamber."},{en:"directly responsible",zh:"直接负责",ex:"Who is directly responsible?"},{en:"directly opposite",zh:"正对面",ex:"Her chamber was directly opposite."}],
+    exs:[{txt:"她 directly（直接地）跪于御前，字字句句直指真相。",note:"adv. 直接地"},{txt:"证据 directly（直接）指向了那个她信任了三年的人。",note:"adv. 直接"}]},
+  improve:{en:"improve",phon:"/ɪmˈpruːv/",pos:"v. 改善；提高；进步",
+    roots:[{tag:"词源",core:"im+prove",mean:"im(使)+probus(好的)→使之变得更好→改善",fam:["improve","improvement","improvable"]},{tag:"联想",core:"improve=prove better",mean:"不断prove(证明)自己更好=improve",fam:[]}],
+    mem:"im(使)+prove(证明好)→使某事被证明更好=improve。\n每天 improve，才能稳步晋升。",
+    phrases:[{en:"improve on sth",zh:"在某方面改进",ex:"You need to improve on your tactics."},{en:"room for improvement",zh:"改进空间",ex:"There is always room for improvement."},{en:"significantly improve",zh:"显著改善",ex:"Her position significantly improved."},{en:"self-improvement",zh:"自我提升",ex:"She was devoted to self-improvement."}],
+    exs:[{txt:"入宫三年，她的心机与手腕已大幅 improve（提升）。",note:"v. 改善、提高"},{txt:"处境并未因此 improve（好转），反而更加危险。",note:"v. 改善"}]},
+  wonder:{en:"wonder",phon:"/ˈwʌndər/",pos:"v. 想知道；感到疑惑 n. 奇迹",
+    roots:[{tag:"词源",core:"wundor(古英语)",mean:"令人惊叹之物→对困惑之事感到好奇→想弄清楚",fam:["wonder","wonderful","wonderland","wondrous"]},{tag:"易混",core:"wonder vs wander",mean:"wonder(想知道) vs wander(漫游)，差一个a！",fam:[]}],
+    mem:"看到奇迹(wonder)令人惊叹→产生好奇→想知道(I wonder...)。\n她 wonder：深宫中，谁才是真正的敌人？",
+    phrases:[{en:"I wonder if",zh:"我不知道是否…",ex:"I wonder if she knows the truth."},{en:"no wonder",zh:"难怪",ex:"No wonder she looks worried."},{en:"wonder at sth",zh:"对某事惊叹",ex:"She wondered at the palace's beauty."},{en:"a sense of wonder",zh:"一种惊叹感",ex:"She kept a sense of wonder."}],
+    exs:[{txt:"她 wonder（疑惑）：那封密信，究竟出自谁的手笔？",note:"v. 想知道、心存疑惑"},{txt:"她的蜕变简直是 a wonder（奇迹），令所有人刮目相看。",note:"n. 奇迹"}]},
+  expect:{en:"expect",phon:"/ɪkˈspekt/",pos:"v. 预料；期待；期望",
+    roots:[{tag:"词根",core:"ex+spect",mean:"ex(向外)+spectare(看)→向外张望等待→期待",fam:["expect","inspect","respect","prospect","spectacular","suspect"]},{tag:"spect家族",core:"spect=look(看)",mean:"inspect检查，respect尊重，prospect前景",fam:[]}],
+    mem:"睁大眼向外(ex-)看(spect)，等待某事出现→expect(期待、预料)。\n她没 expect 到：这一切不过是个局。",
+    phrases:[{en:"as expected",zh:"不出所料",ex:"As expected, the trap was set."},{en:"expect too much",zh:"期望过高",ex:"Don't expect too much from anyone."},{en:"be expected to",zh:"被期望去做",ex:"She was expected to obey every rule."},{en:"beyond expectation",zh:"出乎意料",ex:"She survived beyond all expectation."}],
+    exs:[{txt:"没有人 expect（预料）她会在这场宫变中活下来。",note:"v. 预料、预期"},{txt:"她 expect（期待）的不过是一片安宁，却得到满眼刀光。",note:"v. 期望"}]},
+  state:{en:"state",phon:"/steɪt/",pos:"n. 状态；国家 v. 声明；陈述",
+    roots:[{tag:"词根",core:"sta/stat",mean:"sta=站立(拉丁stare)→站立的状态→state(状态/陈述)",fam:["state","status","stable","station","statement","statue","static"]},{tag:"联想",core:"sta=stand(站)",fam:["state","stay","stable","establish"]}],
+    mem:"sta(站着)→站立的状态→state(状态/陈述)。\n她还要镇定自若地 state 事实。",
+    phrases:[{en:"state the facts",zh:"陈述事实",ex:"State the facts clearly."},{en:"in a state",zh:"处于某种状态",ex:"She was in a state of panic."},{en:"state of mind",zh:"心态",ex:"Her state of mind was unreadable."},{en:"head of state",zh:"国家元首",ex:"The Emperor is head of state."}],
+    exs:[{txt:"她镇定地向皇上 state（陈述）事情的始末，字字有据。",note:"v. 陈述、声明"},{txt:"她此刻的 state（状态）极度危险，稍有不慎便万劫不复。",note:"n. 状态"}]},
+  valuable:{en:"valuable",phon:"/ˈvæljuəbl/",pos:"adj. 宝贵的；有价值的",
+    roots:[{tag:"词根",core:"val",mean:"val=价值(拉丁valere=to be worth)",fam:["valuable","value","valid","evaluate","equivalent"]},{tag:"后缀",core:"-able",mean:"形容词后缀「有…性质的」",fam:["valuable","available","reasonable"]}],
+    mem:"val(价值)+able(能…的)→有价值的→valuable(宝贵的)。\n有 value 才 valuable。",
+    phrases:[{en:"a valuable lesson",zh:"宝贵的教训",ex:"This was a valuable lesson."},{en:"valuable experience",zh:"宝贵经验",ex:"Three years gave her valuable experience."},{en:"prove valuable",zh:"证明有价值",ex:"Her kindness proved valuable."},{en:"valuables(n.)",zh:"贵重物品",ex:"She hid her valuables under the floor."}],
+    exs:[{txt:"那段囚禁的岁月，竟成了她最 valuable（宝贵）的磨砺。",note:"adj. 宝贵的"},{txt:"她手中握有一样 valuable（珍贵）的东西：皇帝的亲笔密信。",note:"adj. 珍贵的"}]},
+  // CH2 WORDS
+  arrange:{en:"arrange",phon:"/əˈreɪndʒ/",pos:"v. 安排；整理；筹备",
+    roots:[{tag:"词根",core:"ar+range",mean:"ad(朝向)+法语ranger(排列)→把事物排列好→arrange",fam:["arrange","arrangement","rearrange","disarrange","range"]},{tag:"联想",core:"arrange vs plan",mean:"arrange更强调具体落实；plan更强调策划思路",fam:[]}],
+    mem:"ar(朝向)+range(排列)→把事物排列整齐→arrange(安排)。\n她在幕后 arrange 好了一切。",
+    phrases:[{en:"arrange a meeting",zh:"安排会面",ex:"She arranged a secret meeting."},{en:"make arrangements",zh:"做安排",ex:"All arrangements had been made in advance."},{en:"arrange for sb to do",zh:"安排某人做",ex:"She arranged for a guard to stand watch."},{en:"arrangement n.",zh:"安排；协议",ex:"The arrangement suited both parties."}],
+    exs:[{txt:"她在暗中 arrange（安排）好了每一个细节，天衣无缝。",note:"v. 安排、布置"},{txt:"这些复杂的 arrangement（安排）是她三年心血的结晶。",note:"n. 安排、布局"}]},
+  promote:{en:"promote",phon:"/prəˈməʊt/",pos:"v. 促进；晋升；推广",
+    roots:[{tag:"词根",core:"pro+mote",mean:"pro(向前)+movere(移动)→向前推进→提升/促进",fam:["promote","promotion","demote","motion","emotion","remote","remove"]},{tag:"mot家族",core:"mot/mov=move(移动)",mean:"motion(移动)，emotion(情绪)，remote(遥远的)，remove(移除)",fam:[]}],
+    mem:"pro(向前)+mote(推动)→向前推→promote(晋升/促进)。\n谁来 promote 她，谁便握住了她的命运。",
+    phrases:[{en:"be promoted to",zh:"被晋升为",ex:"She was promoted to a higher rank."},{en:"promote peace",zh:"促进和平",ex:"She promoted peace between factions."},{en:"promotion n.",zh:"晋升；促销",ex:"Her promotion came as a shock."},{en:"get a promotion",zh:"获得晋升",ex:"She finally got the promotion she deserved."}],
+    exs:[{txt:"那道旨意将她 promote（晋升）至嫔位，令后宫震动。",note:"v. 晋升、提拔"},{txt:"她表面上 promote（促进）两派和解，背地里各个击破。",note:"v. 促进、推进"}]},
+  persuade:{en:"persuade",phon:"/pəˈsweɪd/",pos:"v. 说服；使信服；劝说",
+    roots:[{tag:"词根",core:"per+suade",mean:"per(彻底)+suadere(建议/劝说)→彻底劝说→说服",fam:["persuade","persuasion","persuasive","dissuade"]},{tag:"联想",core:"persuade vs advise",mean:"persuade=成功说服(结果)；advise=建议(过程，不一定成功)",fam:[]}],
+    mem:"per(彻底)+suade(劝说)→彻底说服对方→persuade(说服)。\n她的话语犹如利刃，能够 persuade 最顽固的心。",
+    phrases:[{en:"persuade sb to do",zh:"说服某人做某事",ex:"She persuaded him to testify."},{en:"persuade sb into doing",zh:"劝说某人做",ex:"She persuaded the guard into looking away."},{en:"persuasive adj.",zh:"有说服力的",ex:"She had a persuasive manner."},{en:"fail to persuade",zh:"说服失败",ex:"No one had managed to persuade the Emperor."}],
+    exs:[{txt:"她用三言两语便 persuade（说服）了那个摇摆不定的证人。",note:"v. 说服、劝服"},{txt:"她的 persuasion（说服力）是宫廷中最厉害的武器之一。",note:"n. 说服；说服力"}]},
+  regret:{en:"regret",phon:"/rɪˈɡret/",pos:"v. 后悔；遗憾 n. 懊悔",
+    roots:[{tag:"词根",core:"re+gret",mean:"re(再次)+古法语greter(哭泣)→反复悲叹→后悔",fam:["regret","regretful","regrettable","no regrets"]},{tag:"用法",core:"regret+doing",mean:"I regret signing that.(后悔做了)\nI regret to say...(遗憾地告知，正式)",fam:[]}],
+    mem:"re(再次)+gret(哭泣)→反复为过去的事哭泣→regret(后悔)。\n她唯一的 regret：太晚看清了人心。",
+    phrases:[{en:"regret doing",zh:"后悔做了某事",ex:"She regretted trusting him so easily."},{en:"no regrets",zh:"无怨无悔",ex:"She faced the end with no regrets."},{en:"a sense of regret",zh:"遗憾感",ex:"A sense of regret lingered in her eyes."},{en:"deeply regret",zh:"深感遗憾",ex:"She deeply regretted her naive trust."}],
+    exs:[{txt:"她 regret（后悔）过轻信他人，但后悔从未能改写命运。",note:"v. 后悔"},{txt:"她带着 regret（遗憾）看向那个昔日的朋友，泪而不落。",note:"n. 遗憾"}]},
+  security:{en:"security",phon:"/sɪˈkjʊərɪtɪ/",pos:"n. 安全；保障；安全措施",
+    roots:[{tag:"词根",core:"se+cure+ity",mean:"se(不/离开)+cura(担忧)→没有担忧→安全",fam:["security","secure","insecure","insecurity","cure","accurate"]},{tag:"联想",core:"secure vs safe",mean:"secure更正式，强调「有保障」；safe更日常，强调「无危险」",fam:[]}],
+    mem:"se(离开)+cure(担忧)→远离担忧→secure(安全)→security(安全)。\n宫中从无真正的 security，只有暂时的平静。",
+    phrases:[{en:"security guard",zh:"护卫；保安",ex:"The security guards were bribed."},{en:"a sense of security",zh:"安全感",ex:"She gave her maid a sense of security."},{en:"national security",zh:"国家安全",ex:"This was a matter of national security."},{en:"financial security",zh:"经济保障",ex:"She sought financial security through alliance."}],
+    exs:[{txt:"她的每一步谋划都是为了建立自己最后的 security（保障）。",note:"n. 保障、安全"},{txt:"宫门之内，从来没有真正的 security（安全感）可言。",note:"n. 安全感"}]},
+  announce:{en:"announce",phon:"/əˈnaʊns/",pos:"v. 宣布；通告；宣告",
+    roots:[{tag:"词根",core:"an+nounce",mean:"ad(朝向)+nuntiare(传递消息)→把消息带向众人→宣布",fam:["announce","announcement","pronounce","denounce","renounce"]},{tag:"nounce家族",core:"nounce=传递消息",mean:"pronounce(发音/宣布)，denounce(公开谴责)，renounce(放弃)",fam:[]}],
+    mem:"an(朝向众人)+nounce(传递消息)→announce(宣布)。\n消息一旦 announce，便覆水难收。",
+    phrases:[{en:"announce a decision",zh:"宣布决定",ex:"The Emperor announced his decision at dawn."},{en:"announcement n.",zh:"公告；通知",ex:"The announcement shook the entire court."},{en:"officially announce",zh:"正式宣布",ex:"It was officially announced at the banquet."},{en:"announce the winner",zh:"宣布胜者",ex:"Who would announce the winner tonight?"}],
+    exs:[{txt:"宫中突然 announce（宣布）了一项改变所有人命运的旨意。",note:"v. 宣布、公告"},{txt:"那份 announcement（公告）令她心头一紧。",note:"n. 公告、通知"}]},
+  desire:{en:"desire",phon:"/dɪˈzaɪər/",pos:"n. 渴望；欲望 v. 渴望",
+    roots:[{tag:"词根",core:"de+sidere",mean:"de(离开)+sidus(星星)→失去星星→渴望(得到想要的东西)",fam:["desire","desirable","undesirable","desirous"]},{tag:"联想",core:"desire vs wish vs want",mean:"desire=强烈渴望(正式)；wish=愿望；want=想要(日常)",fam:[]}],
+    mem:"失去星(sidere)的指引→渴望方向→desire(渴望)。\n她内心深处的 desire 不是权力，而是自由。",
+    phrases:[{en:"a burning desire",zh:"强烈的渴望",ex:"She had a burning desire to be free."},{en:"desire for",zh:"对…的渴望",ex:"Her desire for justice drove her forward."},{en:"desirable adj.",zh:"令人向往的",ex:"Power was desirable but dangerous."},{en:"heart's desire",zh:"内心最深处的渴望",ex:"Her heart's desire was simple: peace."}],
+    exs:[{txt:"她深埋在心底的 desire（渴望）从未消失——她要赢。",note:"n. 渴望、欲望"},{txt:"他望向她的眼神中有一丝 desire（渴望），令她不安。",note:"n. 渴望(暧昧)"}]},
+  strength:{en:"strength",phon:"/streŋθ/",pos:"n. 力量；优势；长处",
+    roots:[{tag:"词根",core:"strong+th",mean:"strong(强壮)→-th名词后缀→strength(力量)",fam:["strength","strengthen","strong","strongly","stronghold"]},{tag:"联想",core:"strength vs power",mean:"strength=内在力量/优势；power=权力/能力(偏外在)",fam:[]}],
+    mem:"strong+th→strength(力量)。\n她最大的 strength 不是武力，而是心志。",
+    phrases:[{en:"strength of character",zh:"性格力量",ex:"She had tremendous strength of character."},{en:"gather strength",zh:"积蓄力量",ex:"She quietly gathered strength."},{en:"mental strength",zh:"精神力量",ex:"Mental strength kept her alive."},{en:"strengths and weaknesses",zh:"优缺点",ex:"She knew her strengths and weaknesses."}],
+    exs:[{txt:"三年的磨砺让她积累了足以翻身的 strength（力量）。",note:"n. 力量、实力"},{txt:"她的 strength（优势）在于：没有人防备她。",note:"n. 优势、强项"}]},
+  avoid:{en:"avoid",phon:"/əˈvɔɪd/",pos:"v. 避免；躲避；回避",
+    roots:[{tag:"词根",core:"a+void",mean:"a(离开)+void(空)→使某处变空/离开→避免",fam:["avoid","avoidance","unavoidable","void","invalid"]},{tag:"语法",core:"avoid+doing(不接to do)",mean:"avoid doing，不用avoid to do！",fam:[]}],
+    mem:"a(离开)+void(空的)→避开让那里变成空→avoid(避免)。\n宫中最高智慧：知道哪些事要 avoid。",
+    phrases:[{en:"avoid doing",zh:"避免做某事",ex:"She avoided making eye contact."},{en:"avoid sb/sth",zh:"避开某人/某事",ex:"She skillfully avoided the trap."},{en:"unavoidable adj.",zh:"不可避免的",ex:"Conflict seemed unavoidable."},{en:"avoid at all costs",zh:"不惜一切代价避免",ex:"She avoided direct confrontation at all costs."}],
+    exs:[{txt:"她巧妙地 avoid（避开）了皇后的每一个陷阱。",note:"v. 避开、躲避"},{txt:"有些错误是 unavoidable（不可避免）的，她尽力减少代价。",note:"adj. 不可避免的"}]},
+  reward:{en:"reward",phon:"/rɪˈwɔːd/",pos:"v. 奖赏；回报 n. 奖励；报酬",
+    roots:[{tag:"词根",core:"re+ward",mean:"re(回)+ward(看守)→回馈守护者→奖赏",fam:["reward","rewarding","award","ward","warden"]},{tag:"联想",core:"reward vs award",mean:"reward=因功劳而获得的回报；award=正式颁发的奖项",fam:[]}],
+    mem:"re(回)+ward(守护)→回馈守护者→reward(奖赏)。\n她的忍耐最终得到了 reward。",
+    phrases:[{en:"reward sb for doing",zh:"因某事奖励某人",ex:"She was rewarded for her loyalty."},{en:"as a reward",zh:"作为奖励",ex:"As a reward, she was given a higher title."},{en:"rewarding adj.",zh:"有收获的",ex:"The struggle was long, but rewarding."},{en:"offer a reward",zh:"悬赏",ex:"A reward was offered for information."}],
+    exs:[{txt:"她的忠诚终于得到了 reward（回报），那道旨意是最好的证明。",note:"n. 奖励、回报"},{txt:"皇上 reward（奖赏）了她的机智，赐予梦寐以求的自由。",note:"v. 奖赏、回报"}]},
+  struggle:{en:"struggle",phon:"/ˈstrʌɡl/",pos:"v./n. 斗争；挣扎；奋斗",
+    roots:[{tag:"词源",core:"strogelen(中古英语)",mean:"原意「扭动、挣扎」→在困难中拼搏",fam:["struggle","power struggle","struggle through","uphill struggle"]},{tag:"搭配",core:"struggle for/against/with",mean:"struggle for(为…斗争)，struggle against(对抗)，struggle with(与…作斗争)",fam:[]}],
+    mem:"struggle=扭动挣扎→在困难中奋力前行。\n她的一生是一场壮阔的 struggle。",
+    phrases:[{en:"struggle for survival",zh:"为生存挣扎",ex:"It was a struggle for survival."},{en:"power struggle",zh:"权力争夺",ex:"The court was consumed by power struggle."},{en:"struggle through",zh:"艰难度过",ex:"She struggled through the first year."},{en:"uphill struggle",zh:"费力的斗争",ex:"Winning trust was an uphill struggle."}],
+    exs:[{txt:"宫中的 struggle（权力争斗）从未停歇，只是换了面孔。",note:"n. 斗争、争夺"},{txt:"她 struggle（挣扎）着保持镇定，内心却早已天翻地覆。",note:"v. 挣扎、努力"}]},
+  spirit:{en:"spirit",phon:"/ˈspɪrɪt/",pos:"n. 精神；意志；灵魂；气氛",
+    roots:[{tag:"词根",core:"spir",mean:"spir=呼吸(拉丁spirare)→生命中的气息→精神/灵魂",fam:["spirit","spiritual","inspire","aspire","expire","respire"]},{tag:"spir家族",core:"spir=breathe(呼吸)",mean:"inspire(激励)，aspire(渴望)，expire(到期/死亡)，perspire(出汗)",fam:[]}],
+    mem:"spir(呼吸)→生命中的气息→spirit(精神/灵魂)。\n她的 spirit 从未被折断，纵使身陷囹圄。",
+    phrases:[{en:"fighting spirit",zh:"战斗精神",ex:"She never lost her fighting spirit."},{en:"in high spirits",zh:"精神振奋",ex:"She appeared in high spirits."},{en:"spirit of the law",zh:"法律精神",ex:"She understood the spirit of the rules."},{en:"a free spirit",zh:"自由的灵魂",ex:"She was always a free spirit."}],
+    exs:[{txt:"任何人都可以打倒她的身体，却无法摧毁她的 spirit（精神）。",note:"n. 精神、意志"},{txt:"夜晚的宫殿 spirit（气氛）肃杀，仿佛每一块砖都藏着秘密。",note:"n. 气氛"}]},
+  warn:{en:"warn",phon:"/wɔːn/",pos:"v. 警告；提醒；告诫",
+    roots:[{tag:"词源",core:"wearnian(古英语)",mean:"原意「小心、谨慎」→提醒他人要小心→warn",fam:["warn","warning","forewarned","warning sign"]},{tag:"联想",core:"warn→warning",mean:"warn(v.警告)→warning(n.警告)\nForewarned is forearmed. 有备无患。",fam:[]}],
+    mem:"古英语「小心」→warn(警告)。\n她 warn 过所有人，只是没有人肯听。",
+    phrases:[{en:"warn sb of/about",zh:"警告某人…",ex:"She warned him of the danger ahead."},{en:"issue a warning",zh:"发出警告",ex:"She issued a silent warning with her eyes."},{en:"fair warning",zh:"充分的警告",ex:"She gave him fair warning before striking."},{en:"warning sign",zh:"警示信号",ex:"She had missed all the warning signs."}],
+    exs:[{txt:"她 warn（警告）过他那条路走不通，他偏偏不信。",note:"v. 警告、告诫"},{txt:"那个细节是一个明显的 warning（警告），却被所有人忽视。",note:"n. 警告、预警"}]},
+  hesitate:{en:"hesitate",phon:"/ˈhezɪteɪt/",pos:"v. 犹豫；踌躇；迟疑",
+    roots:[{tag:"词根",core:"haes+itate",mean:"haerere(拉丁)=卡住、黏住→hesitate=被卡住→犹豫",fam:["hesitate","hesitation","hesitant","without hesitation"]},{tag:"惯用法",core:"don't hesitate to do",mean:"请随时…(=feel free to do)正式语境常用",fam:[]}],
+    mem:"haes(卡住)→hesitate(犹豫)→被困在两个选择之间。\n宫中 hesitate 是最奢侈的行为，机会稍纵即逝。",
+    phrases:[{en:"hesitate to do",zh:"对做某事犹豫",ex:"She hesitated to trust anyone again."},{en:"without hesitation",zh:"毫不犹豫",ex:"She acted without hesitation."},{en:"a moment's hesitation",zh:"片刻的犹豫",ex:"After a moment's hesitation, she spoke."},{en:"don't hesitate to",zh:"尽管…；随时…",ex:"Don't hesitate to act when the time comes."}],
+    exs:[{txt:"她 hesitate（犹豫）了片刻，最终做出了改变命运的选择。",note:"v. 犹豫、迟疑"},{txt:"她没有 hesitation（犹豫），径直走向了危险的中心。",note:"n. 犹豫、迟疑"}]},
+  concern:{en:"concern",phon:"/kənˈsɜːn/",pos:"v. 涉及；使担心 n. 担心；关心",
+    roots:[{tag:"词根",core:"con+cern",mean:"com(共同)+cernere(看清)→共同关注→涉及到",fam:["concern","concerning","concerned","unconcerned"]},{tag:"惯用句",core:"as far as I'm concerned",mean:"就我而言(表达个人立场)",fam:[]}],
+    mem:"共同(con)看清(cern)→concern(涉及/担忧)。\n这件事 concern 到所有人的命运。",
+    phrases:[{en:"be concerned about",zh:"担心…",ex:"She was concerned about the missing maid."},{en:"as far as I'm concerned",zh:"就我而言",ex:"As far as she was concerned, trust was gone."},{en:"of concern",zh:"令人担忧的",ex:"The rumors were of great concern."},{en:"concern oneself with",zh:"关心；涉足",ex:"She didn't concern herself with idle gossip."}],
+    exs:[{txt:"这场宫变不仅 concern（涉及）她一人，更牵连无数性命。",note:"v. 涉及、关系到"},{txt:"她假装漫不经心，内心却充满 concern（担忧）。",note:"n. 担心、忧虑"}]},
+  talent:{en:"talent",phon:"/ˈtælənt/",pos:"n. 天赋；才能；有才能的人",
+    roots:[{tag:"词源",core:"talentum(希腊/拉丁)",mean:"原指「重量单位/大量钱财」→圣经比喻个人被赋予的资质→talent(天赋)",fam:["talent","talented","multi-talented","talent show"]},{tag:"注意",core:"talent(不可数)vs a talent(具体天赋)",mean:"talent for sth=对某方面的天赋",fam:[]}],
+    mem:"talent来自《圣经》比喻，天赐之物→天赋。\n她的 talent 不在刀剑，而在那双见微知著的眼睛。",
+    phrases:[{en:"have a talent for",zh:"有…的天赋",ex:"She had a talent for reading people."},{en:"talented adj.",zh:"有才华的",ex:"She was a remarkably talented woman."},{en:"talent show",zh:"才艺表演",ex:"The banquet was a talent show in disguise."},{en:"natural talent",zh:"天赋",ex:"Her natural talent for strategy was undeniable."}],
+    exs:[{txt:"她的 talent（才能）一直被压制，直到那一刻才得以展现。",note:"n. 才能、天赋"},{txt:"她是个 talented（有才华的）人，可惜生错了时代。",note:"adj. 有才华的"}]}
+};
 
-    // 6种创伤类型定义（新增图案字段）
-    const TRAUMA_TYPES = [
-        {
-            name: "被遗弃型内在小孩",
-            shortDesc: "你内心深处总害怕被抛弃，容易在关系中过度依赖或讨好。",
-            fullDesc: "这种创伤源于童年时重要抚养者的情感忽视、分离或威胁抛弃。你成年后常常担心别人会离开你，在亲密关系中容易患得患失，甚至不惜牺牲自我来换取安全感。你习惯性地将他人需求放在首位，却压抑自己的真实感受。",
-            healingAdvice: "1. 练习“自我安抚”：当感到被抛弃的恐惧时，对自己说“现在的我是安全的，我可以陪伴自己”。\n2. 建立清晰的边界：学会在关系中表达自己的需求，允许别人有不同选择。\n3. 重新养育内在小孩：想象你拥抱那个害怕的小时候的自己，给他无条件的承诺。",
-            practice: "【每日练习】写下三件“我今天为自己做的事”，无论多小。然后对镜子里的自己说：“我值得被爱，不因任何条件。”坚持21天。",
-            pattern: "🌙🐾💔",   // 代表孤独与依恋
-            icon: "fa-cloud-moon"
-        },
-        {
-            name: "被否定型内在小孩",
-            shortDesc: "你总是怀疑自己不够好，追求完美，害怕批评。",
-            fullDesc: "童年时你经常被批评、被比较，或只有达到标准才能得到认可。长大后你内化了严厉的自我批判，总觉得“我不够好”，容易陷入完美主义，害怕失败，对他人的评价过度敏感。",
-            healingAdvice: "1. 练习“自我肯定”：每天记录自己的三个优点或成就，无论大小。\n2. 允许自己犯错：把错误视为学习机会，而不是自我价值的否定。\n3. 区分“事实”与“评判”：当自我批评出现时，问自己“这是事实还是过去的回音？”",
-            practice: "【自我肯定日记】每天睡前写下：“今天我做了……我对自己感到满意，因为……”。同时，对镜子说：“我本来的样子就足够好。”",
-            pattern: "📝⚖️🌱",
-            icon: "fa-file-alt"
-        },
-        {
-            name: "被控制型内在小孩",
-            shortDesc: "你害怕做决定，常感到窒息，难以活出真实的自己。",
-            fullDesc: "童年时你的自主权被过度剥夺，家人替你做了太多选择。成年后你缺乏主见，容易被他人的意见左右，要么彻底顺从，要么在压抑后突然爆发反抗。你内心深处渴望自由，却又害怕承担责任。",
-            healingAdvice: "1. 从小决定开始：每天为自己做一个小决定（吃什么、穿什么），强化自主感。\n2. 设立边界：对他人过度的干涉温和而坚定地说“不”。\n3. 探索真实兴趣：尝试那些你曾经想做但被禁止的事情，重新连接内在渴望。",
-            practice: "【自主力练习】每周做一件“完全由自己决定”的事，并记录感受。例如：独自去一个地方、买一件自己喜欢但别人可能不认可的小物。",
-            pattern: "🔗🕊️🌿",
-            icon: "fa-handcuffs"
-        },
-        {
-            name: "被羞辱型内在小孩",
-            shortDesc: "你容易感到羞耻，不敢展现真实自我，害怕被嘲笑。",
-            fullDesc: "童年时你经历过当众贬低、羞辱或嘲讽，让你觉得自己“丢人”。成年后你极度在意他人眼光，害怕犯错后成为笑柄，习惯性自我贬低，甚至用自嘲来防御。",
-            healingAdvice: "1. 区分“羞耻”与“内疚”：羞耻是“我不好”，内疚是“我做错了事”。告诉自己“事情可以错，但我本身无错”。\n2. 练习自我接纳：每天对着镜子说：“我接受我的全部，包括不完美”。\n3. 寻找安全的人：和那些不评判你的人分享你的感受，逐步重建信任。",
-            practice: "【拥抱羞耻练习】写下你曾感到羞耻的一件事，然后以成人的视角给当时的自己写一封信，表达理解和安慰。",
-            pattern: "😔🌻✨",
-            icon: "fa-face-frown"
-        },
-        {
-            name: "受惊吓型内在小孩",
-            shortDesc: "你容易焦虑、警觉，常处于应激状态，难以放松。",
-            fullDesc: "童年经历过家庭暴力、激烈冲突或突发事件，让你长期处于恐惧中。成年后你的神经系统高度警觉，容易焦虑、失眠，对冲突和不确定性过度敏感，总在“备战”状态。",
-            healingAdvice: "1. 学习身体安抚：深呼吸、轻拍胸口、拥抱自己，告诉身体“现在很安全”。\n2. 建立稳定节奏：规律作息、固定仪式（如泡茶、散步）能带来安全感。\n3. 减少刺激：避免过度摄入负面新闻，创造宁静的物理环境。",
-            practice: "【安全锚点练习】每天花5分钟找一个让你感到安全的地方（或想象一个安全场景），深呼吸，对自己说：“此刻，我在这里，我是安全的。”",
-            pattern: "⚡🌊🕯️",
-            icon: "fa-bolt"
-        },
-        {
-            name: "孤独型内在小孩",
-            shortDesc: "你习惯独来独往，难以信任他人，渴望连接又害怕靠近。",
-            fullDesc: "童年时情感被忽视，缺乏陪伴和情感回应。你学会了自己安慰自己，也形成了“只能靠自己”的信念。成年后你难以打开心扉，即使渴望亲密，也会下意识推开别人。",
-            healingAdvice: "1. 逐步建立信任：从低风险的关系开始（如兴趣小组、支持性社群），慢慢练习分享。\n2. 与内在小孩对话：每天花时间陪伴自己，像对待朋友一样倾听内心的声音。\n3. 允许依赖：明白求助是健康的，尝试向可靠的人表达小需求。",
-            practice: "【联结练习】每周主动联系一个人（朋友、家人），聊10分钟真心话。同时，写一封给“孤独的内在小孩”的信，承诺不再让他孤单。",
-            pattern: "🌲🌌🔮",
-            icon: "fa-tree"
-        }
-    ];
+// ════════════════════════════════════════════
+//  GAME STATE
+// ════════════════════════════════════════════
+const STATS = {scheming:0,wisdom:0,talent:0,favor:0,power:0};
+const STAT_MAX = 40;
+let seenWords = new Set();
+let unlockedChapters = new Set([1]);
+let currentChapter = 0;
+let pageQueue = [];    // array of page render functions
+let pageIndex = 0;
+let stateStack = [];
+let correctCount = 0;
+let totalWords = Object.keys(WDB).length;
 
-    // 评分函数（与原逻辑一致）
-    function getScores(qIndex, optIdx) {
-        const primaryMap = [
-            0,0,1,4,2,2,3,0,1,2,  // 1-10
-            2,1,4,0,5,2,0,3,0,0,  // 11-20
-            5,1,2,3,4,1,0,1,0,5   // 21-30
-        ];
-        const primary = primaryMap[qIndex];
-        let baseScore = 3 - optIdx;
-        let scores = new Array(6).fill(0);
-        scores[primary] = baseScore;
-        if (primary === 0) { scores[5] += Math.floor(baseScore * 0.5); }
-        if (primary === 1) { scores[3] += Math.floor(baseScore * 0.5); }
-        if (primary === 2) { scores[0] += Math.floor(baseScore * 0.4); }
-        if (primary === 3) { scores[1] += Math.floor(baseScore * 0.5); }
-        if (primary === 4) { scores[5] += Math.floor(baseScore * 0.4); }
-        if (primary === 5) { scores[0] += Math.floor(baseScore * 0.4); }
-        return scores;
+// ════════════════════════════════════════════
+//  WORD helper
+// ════════════════════════════════════════════
+function w(key, display) {
+  const v = WDB[key];
+  if (!v) return `<span style="color:var(--acc3)">${display}</span>`;
+  seenWords.add(key);
+  updateWordCount();
+  const note = v.pos.split('；')[0].replace(/^(adj\.|adv\.|v\.|n\.|conj\.)\s*/,'').slice(0,6);
+  return `<span class="w" onclick="openVD('${key}')">${display}<span class="wn">（${note}）</span></span>`;
+}
+
+function updateWordCount() {
+  const n = seenWords.size;
+  document.getElementById('wc').textContent = n;
+  document.getElementById('prog').style.width = (n/totalWords*100)+'%';
+}
+
+// ════════════════════════════════════════════
+//  STAT SYSTEM
+// ════════════════════════════════════════════
+function changeStat(key, delta) {
+  STATS[key] = Math.max(0, Math.min(STAT_MAX, (STATS[key]||0) + delta));
+  const el = document.getElementById('s-'+key);
+  const bar = document.getElementById('b-'+key);
+  if (el) el.textContent = STATS[key];
+  if (bar) bar.style.width = (STATS[key]/STAT_MAX*100)+'%';
+}
+
+// ════════════════════════════════════════════
+//  SCREEN NAV
+// ════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showChapSel() {
+  // animate gate if needed
+  const gw = document.getElementById('gate-wrap');
+  if (gw) {
+    gw.classList.add('gate-open');
+    setTimeout(()=>showScreen('chapsel-screen'), 600);
+  } else {
+    showScreen('chapsel-screen');
+  }
+}
+
+function navChapter(n) {
+  if (!unlockedChapters.has(n)) return;
+  startChapter(n);
+}
+
+// ════════════════════════════════════════════
+//  PAGE ENGINE
+// ════════════════════════════════════════════
+function startChapter(n) {
+  currentChapter = n;
+  pageQueue = [];
+  pageIndex = 0;
+  stateStack = [];
+  correctCount = 0;
+
+  document.getElementById('tb-chap').textContent =
+    n===1 ? '第一章 · 惊鸿初见' : '第二章 · 暗流涌动';
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const nb = document.getElementById('btn-ch'+n);
+  if(nb) nb.classList.add('active');
+
+  showScreen('story-screen');
+
+  if (n===1) buildChapter1();
+  else buildChapter2();
+
+  renderPage(0);
+}
+
+// Build a page: each page is {nodes: [...], onContinue: fn|null}
+// nodes are HTML strings or special objects
+function buildPage(nodes, prompt, choices) {
+  // prompt/choices: optional choice block at end
+  return {nodes, prompt, choices};
+}
+
+function renderPage(idx) {
+  pageIndex = idx;
+  const pw = document.getElementById('page-wrap');
+  pw.innerHTML = '';
+
+  const page = pageQueue[idx];
+  if (!page) return;
+
+  // page counter
+  const pc = document.createElement('div');
+  pc.className = 'page-counter';
+  pc.textContent = `第 ${idx+1} 页 / 共 ${pageQueue.length} 页`;
+  pw.appendChild(pc);
+
+  // render nodes one by one with typewriter / click advance
+  renderNodes(pw, page, 0);
+}
+
+function renderNodes(pw, page, ni) {
+  if (ni >= page.nodes.length) {
+    // all nodes shown — show choices or continue btn
+    if (page.choices) {
+      showChoicesOnPage(pw, page);
+    } else if (pageIndex < pageQueue.length - 1) {
+      addCTC(pw, ()=>renderPage(pageIndex+1));
     }
+    return;
+  }
+  const node = page.nodes[ni];
+  const el = createNodeEl(node);
+  pw.appendChild(el);
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(8px)';
+  el.style.transition = 'opacity .4s, transform .4s';
+  requestAnimationFrame(()=>{
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
+  pw.scrollTop = pw.scrollHeight;
 
-    let answers = new Array(QUESTIONS.length).fill(null);
-    let currentIndex = 0;
-    let stepContainer = document.getElementById('stepContainer');
-    let resultCard = document.getElementById('resultCard');
-    let stepCard = document.getElementById('stepCard');
-    let coverPage = document.getElementById('coverPage');
-    let mainContent = document.getElementById('mainContent');
-
-    // 开始按钮事件
-    document.getElementById('startBtn').addEventListener('click', () => {
-        coverPage.style.display = 'none';
-        mainContent.style.display = 'block';
-        renderStep();
+  // If text content, do typewriter then add CTC for next node
+  if (node.type === 'narr' || node.type === 'dlg' || node.type === 'div') {
+    addCTC(pw, ()=>{
+      // remove ctc
+      const ctc = pw.querySelector('.ctc');
+      if(ctc) ctc.remove();
+      renderNodes(pw, page, ni+1);
     });
+  } else {
+    renderNodes(pw, page, ni+1);
+  }
+}
 
-    function renderStep() {
-        const q = QUESTIONS[currentIndex];
-        const selectedVal = answers[currentIndex];
-        let optionsHtml = '';
-        q.options.forEach((opt, idx) => {
-            const isSelected = (selectedVal === idx);
-            optionsHtml += `<div class="option-step ${isSelected ? 'selected' : ''}" data-opt-index="${idx}"><div class="opt-icon"><i class="fas fa-angle-right"></i></div><div class="opt-text">${opt}</div></div>`;
-        });
-        const progressPercent = (currentIndex / QUESTIONS.length) * 100;
-        const isLast = (currentIndex === QUESTIONS.length - 1);
-        const nextBtnText = isLast ? '✨ 看见我的内在小孩 ✨' : '下一题 →';
-        const showPrev = currentIndex > 0;
-        stepContainer.innerHTML = `
-            <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%;"></div></div>
-            <div class="question-header"><span>第 ${currentIndex+1} / ${QUESTIONS.length} 题</span><span><i class="fas fa-star-of-life"></i> 倾听内在声音</span></div>
-            <div class="question-text">${q.text}</div>
-            <div class="options-step" id="stepOptions">${optionsHtml}</div>
-            <div class="nav-buttons">${showPrev ? '<div class="nav-btn" id="prevBtn"><i class="fas fa-arrow-left"></i> 上一题</div>' : '<div class="nav-btn disabled">上一题</div>'}
-            <div class="nav-btn primary" id="nextBtn">${nextBtnText} <i class="fas fa-arrow-right"></i></div></div>`;
-        document.querySelectorAll('.option-step').forEach(optDiv => {
-            optDiv.addEventListener('click', () => {
-                const idx = parseInt(optDiv.dataset.optIndex, 10);
-                answers[currentIndex] = idx;
-                document.querySelectorAll('.option-step').forEach(el => el.classList.remove('selected'));
-                optDiv.classList.add('selected');
-            });
-        });
-        document.getElementById('prevBtn')?.addEventListener('click', () => { if(currentIndex>0){ currentIndex--; renderStep(); } });
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            if(answers[currentIndex] === null){ showToast("请选择一个选项，继续探索你的内在小孩",1500); return; }
-            if(currentIndex === QUESTIONS.length-1){
-                if(!answers.every(a=>a!==null)){ showToast("还有未完成的题目，请返回检查",1800); return; }
-                generateResult();
-            } else { currentIndex++; renderStep(); }
-        });
-    }
+function createNodeEl(node) {
+  const d = document.createElement('div');
+  if (node.type === 'narr') {
+    d.className = 'narr';
+    d.innerHTML = node.html;
+  } else if (node.type === 'dlg') {
+    d.className = 'dlg';
+    const isRight = node.side === 'right';
+    d.innerHTML = `
+      <div class="sp-label ${isRight?'R':''}">
+        <div class="sp-dot"></div>
+        <span>${node.who} · ${node.role}</span>
+      </div>
+      <div class="brow ${isRight?'R':''}">
+        <div class="ava" style="background:${node.color};border-color:${node.color}44">
+          ${node.who[0]}<div class="ava-n">${node.who.slice(1,3)||''}</div>
+        </div>
+        <div class="bub ${isRight?'you':'npc'}">${node.html}</div>
+      </div>`;
+  } else if (node.type === 'div') {
+    d.className = 'sdiv';
+    d.innerHTML = `<span class="sdiv-txt">${node.text}</span>`;
+  }
+  return d;
+}
 
-    function generateResult() {
-        let typeScores = new Array(6).fill(0);
-        for (let i=0; i<answers.length; i++) {
-            let inc = getScores(i, answers[i]);
-            for (let t=0; t<6; t++) typeScores[t] += inc[t];
-        }
-        let maxScore = -1, maxType = 0;
-        for (let i=0; i<6; i++) {
-            if (typeScores[i] > maxScore) {
-                maxScore = typeScores[i];
-                maxType = i;
-            }
-        }
-        const trauma = TRAUMA_TYPES[maxType];
-        // 渲染结果（带图案）
-        document.getElementById('resultTypeArea').innerHTML = `
-            <div class="result-type">
-                <div class="type-pattern"><i class="fas ${trauma.icon}"></i> ${trauma.pattern}</div>
-                <h2>${trauma.name}</h2>
-                <div class="type-badge"><i class="fas fa-hand-sparkles"></i> 你的内在小孩核心创伤类型</div>
-                <div class="result-block" style="margin-top:0.8rem;"><div class="result-text">${trauma.shortDesc}</div></div>
-            </div>
-        `;
-        document.getElementById('resultDetailArea').innerHTML = `
-            <div class="result-block">
-                <div class="result-block-title"><i class="fas fa-book-open"></i> 详细解读</div>
-                <div class="result-text">${trauma.fullDesc}</div>
-            </div>
-        `;
-        document.getElementById('resultHealingArea').innerHTML = `
-            <div class="result-block">
-                <div class="result-block-title"><i class="fas fa-seedling"></i> 疗愈建议</div>
-                <div class="result-text" style="white-space: pre-line;">${trauma.healingAdvice}</div>
-            </div>
-        `;
-        document.getElementById('resultPracticeArea').innerHTML = `
-            <div class="result-block">
-                <div class="result-block-title"><i class="fas fa-puzzle-piece"></i> 专属自我练习</div>
-                <div class="result-text" style="white-space: pre-line;">${trauma.practice}</div>
-            </div>
-        `;
-        stepCard.style.display = 'none';
-        resultCard.style.display = 'block';
-        resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        showToast("报告已生成 · 看见即是疗愈的开始",2000);
-    }
+function addCTC(pw, cb) {
+  const ctc = document.createElement('div');
+  ctc.className = 'ctc';
+  ctc.textContent = '点击继续';
+  ctc.onclick = cb;
+  pw.appendChild(ctc);
+  pw.scrollTop = pw.scrollHeight;
+}
 
-    function showToast(msg,dur){ let t=document.querySelector('.toast-msg'); if(t) t.remove(); let d=document.createElement('div'); d.className='toast-msg'; d.innerText=msg; document.body.appendChild(d); setTimeout(()=>d.remove(),dur); }
+function showChoicesOnPage(pw, page) {
+  // save state
+  const snap = {
+    pageIdx: pageIndex,
+    pageQueue: JSON.stringify(pageQueue.map(p=>({nodes:p.nodes,prompt:p.prompt,choices:p.choices}))),
+    innerHtml: pw.innerHTML
+  };
 
-    async function captureResultCard(){
-        if(resultCard.style.display==='none'){ showToast("请先完成测试并生成报告",1500); return; }
-        const target=document.getElementById('resultContent');
-        if(!target) return;
-        try{
-            const orig=document.body.style.overflow;
-            document.body.style.overflow='hidden';
-            const canvas=await html2canvas(target,{scale:2.5,backgroundColor:'#1a142f',logging:false});
-            const link=document.createElement('a');
-            link.download=`内在小孩疗愈报告.png`;
-            link.href=canvas.toDataURL('image/png');
-            link.click();
-            document.body.style.overflow=orig;
-            showToast("✅ 报告已保存，可以分享给需要的朋友",2500);
-        } catch(e){ showToast("截图失败，请重试",1500); }
-    }
+  const area = document.createElement('div');
+  area.className = 'choices';
+  const ks = ['A','B','C'];
+  area.innerHTML = `<div class="choice-prompt">◆ ${page.prompt}</div>
+    <div class="choice-list">${page.choices.map((c,i)=>
+      `<button class="cbtn" data-i="${i}">
+        <div class="ckey">${ks[i]}</div>
+        <div>${c.label}</div>
+      </button>`).join('')}
+    </div>`;
+  pw.appendChild(area);
+  pw.scrollTop = pw.scrollHeight;
 
-    // 注意：页面初始封面显示，主内容隐藏，未开始时不渲染答题（避免空）
-    document.getElementById('saveImgBtn')?.addEventListener('click',captureResultCard);
+  area.querySelectorAll('.cbtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      stateStack.push(snap);
+      const i = parseInt(btn.dataset.i);
+      area.remove();
+      page.choices[i].action();
+    });
+  });
+}
+
+// ════════════════════════════════════════════
+//  DEATH / REVIVE
+// ════════════════════════════════════════════
+function die(reason, hint) {
+  document.getElementById('dr').innerHTML = reason;
+  document.getElementById('dw').innerHTML = hint||'';
+  const ds = document.getElementById('death-screen');
+  ds.classList.add('show');
+}
+
+function revive() {
+  document.getElementById('death-screen').classList.remove('show');
+  const last = stateStack.pop();
+  if (!last) return;
+  // restore page
+  pageIndex = last.pageIdx;
+  const pw = document.getElementById('page-wrap');
+  pw.innerHTML = last.innerHtml;
+  // re-attach choice handler
+  showChoicesOnPage(pw, pageQueue[pageIndex]);
+}
+
+// ════════════════════════════════════════════
+//  STAT POPUP
+// ════════════════════════════════════════════
+function showStatPopup(chapTitle, chapSub, deltas, rankText, onNext) {
+  document.getElementById('sp-title').textContent = chapTitle;
+  document.getElementById('sp-sub').textContent = chapSub;
+  document.getElementById('sp-ch').textContent = currentChapter===1?'第一章完结':'第二章完结';
+
+  const ICONS = {scheming:'🧠',wisdom:'💡',talent:'💃',favor:'💖',power:'🛡'};
+  const NAMES = {scheming:'心机',wisdom:'智慧',talent:'才艺',favor:'圣宠',power:'势力'};
+  let html = '';
+  for (const [k,d] of Object.entries(deltas)) {
+    if (!d) continue;
+    const cls = d>0?'up':'dn';
+    const sign = d>0?'+':'';
+    html += `<div class="sp-stat-row">
+      <div class="sp-stat-left">
+        <span class="sp-stat-icon">${ICONS[k]}</span>
+        <span class="sp-stat-name">${NAMES[k]}</span>
+      </div>
+      <div class="sp-stat-delta ${cls}">${sign}${d}</div>
+    </div>`;
+  }
+  // animate each delta one by one
+  const statsEl = document.getElementById('sp-stats');
+  statsEl.innerHTML = html;
+  document.getElementById('sp-rank').innerHTML = rankText;
+
+  // apply actual stat changes
+  for (const [k,d] of Object.entries(deltas)) changeStat(k,d);
+
+  const popup = document.getElementById('stat-popup');
+  popup.classList.add('show');
+
+  // animate rows
+  const rows = statsEl.querySelectorAll('.sp-stat-row');
+  rows.forEach((r,i)=>{
+    r.style.opacity='0';r.style.transform='translateY(10px)';
+    setTimeout(()=>{r.style.transition='opacity .4s, transform .4s';r.style.opacity='1';r.style.transform='translateY(0)';}, i*180+300);
+  });
+
+  document.getElementById('sp-next-btn').onclick = ()=>{
+    popup.classList.remove('show');
+    onNext();
+  };
+}
+
+// ════════════════════════════════════════════
+//  VOCAB DRAWER
+// ════════════════════════════════════════════
+function openVD(key) {
+  const v = WDB[key];
+  if (!v) return;
+  document.getElementById('vd-en').textContent = v.en;
+  document.getElementById('vd-phon').textContent = v.phon;
+  document.getElementById('vd-pos').textContent = v.pos;
+
+  let r0='';
+  v.roots.forEach(root=>{
+    const pills = root.fam.length?`<div class="rf">${root.fam.map(p=>`<span class="rp">${p}</span>`).join('')}</div>`:'';
+    r0+=`<div class="rc"><div class="rt">${root.tag}</div><div class="rw">${root.core}</div><div class="rm">${root.mean}</div>${pills}</div>`;
+  });
+  r0+=`<div class="mb"><div class="mbl">★ 记忆口诀</div><div class="mbt">${v.mem.replace(/\n/g,'<br>')}</div></div>`;
+  document.getElementById('vp0').innerHTML=r0;
+
+  document.getElementById('vp1').innerHTML=v.phrases.map(p=>`
+    <div class="pi"><div class="pe">${p.en}</div><div class="pz">${p.zh}</div><div class="px">${p.ex}</div></div>`).join('');
+
+  document.getElementById('vp2').innerHTML=v.exs.map(e=>`
+    <div class="ei"><div class="et">${e.txt}</div><div class="en2">📌 ${e.note}</div></div>`).join('');
+
+  vdTab(0, document.querySelector('.vtab'));
+  const pct = Math.round(seenWords.size/totalWords*100);
+  document.getElementById('vdf-f').style.width=pct+'%';
+  document.getElementById('vdf-n').textContent=seenWords.size+'/'+totalWords;
+  document.getElementById('vd-overlay').classList.add('open');
+}
+function closeVD(){document.getElementById('vd-overlay').classList.remove('open');}
+function vdOverlay(e){if(e.target===document.getElementById('vd-overlay'))closeVD();}
+function vdTab(idx,btn){
+  document.querySelectorAll('.vtab').forEach((t,i)=>t.classList.toggle('on',i===idx));
+  document.querySelectorAll('.vpanel').forEach((p,i)=>p.classList.toggle('on',i===idx));
+}
+
+// ════════════════════════════════════════════
+//  CHAPTER 1: 惊鸿初见
+// ════════════════════════════════════════════
+function buildChapter1() {
+  const N=(html)=>({type:'narr',html});
+  const D=(who,role,color,side,html)=>({type:'dlg',who,role,color,side,html});
+  const DIV=(text)=>({type:'div',text});
+
+  // PAGE 0 — 序章
+  pageQueue.push(buildPage([
+    DIV('序章 · 踏入深宫'),
+    N(`这是一个 ${w('condition','condition')} 恶劣的冬日清晨。顺治十八年，大选之年，京城的雪下得如 ${w('state','state')} 法一般严苛——一丝都不能乱。你叫苏婉，今年十六，县令之女，怀揣着 ${w('desire','desire')} 与恐惧，踏上了这条没有退路的路。`),
+    D('教习嬷嬷','礼仪教习','#5a1a1a','left',
+      `进了这门，就别想着 ${w('avoid','avoid')} 那些规矩。本宫规矩 ${w('strength','strength')} 如铁——低头、敛眸、屏息。若有 ${w('talent','talent')}，自然有机会；若无，便老实做个宫婢。`),
+  ], null, null));
+
+  // PAGE 1 — 回合1
+  pageQueue.push(buildPage([
+    DIV('回合一 · 第一道考验'),
+    N(`踏入承乾宫的一刻，你注意到一件紧要的小事：前方秀女的裙摆沾了墨迹，教习嬷嬷正准备禀报皇后，而皇后娘娘已从侧殿缓步走来。你有三息时间做决定。`),
+  ],
+  '你看见前方秀女裙摆沾了墨迹，皇后即将走过，你会怎么做？',
+  [
+    {label:`A. 低头不语，${w('avoid','avoid')} 麻烦，${w('manage','manage')} 好自己才是上策`,
+     action:()=>{correctCount++;advancePage([
+       N(`你沉住气，低眸行礼。教习嬷嬷见你举止 ${w('quality','quality')} 上乘，悄悄记下了你的名字。那个秀女被带走了，而你 ${w('manage','manage')} 避开了第一道暗流。`),
+     ]);}},
+    {label:`B. 主动上前提醒那位秀女，${w('strength','strength')} 势帮助她整理仪容`,
+     action:()=>die(
+       `你好意提醒，却无意间将目光投向了皇后娘娘的方向——御前失仪，当场被责罚。教习嬷嬷冷声道："进了宫，先 ${w('protect','protect')||'保护'} 自己。"你被杖责二十，送回偏院养伤。`,
+       `💡 词汇：<strong>avoid</strong>（避免）——宫中好意有时是双刃剑，先 avoid 风险才能 manage 局面。`)},
+    {label:`C. 主动向嬷嬷揭发此事，展示你的 ${w('concern','concern')} 与忠心`,
+     action:()=>die(
+       `你以为揭发是忠心，却不知那位秀女正是皇后的远亲。皇后冷笑："${w('quality','quality')} 如此，岂堪宫用。"你被取消参选资格。`,
+       `💡 词汇：<strong>concern</strong>（关心/担忧）——在宫中，错误的忠心比背叛更危险。`)}
+  ]));
+
+  // PAGE 2 — 回合2
+  pageQueue.push(buildPage([
+    DIV('回合二 · 皇后试探'),
+    N(`觐见时刻。皇后娘娘端坐凤椅，目光如刀。她是这宫中最具 ${w('strength','strength')} 的威胁，也是最不能得罪的人。`),
+    D('皇后娘娘','中宫之主','#8b1515','left',
+      `本宫听闻你是县令之女，家境 ${w('condition','condition')} 平平。${w('wonder','wonder')} 一件事——你觉得，自己凭什么 ${w('manage','manage')} 在这深宫立足？`),
+  ],
+  '皇后娘娘问你凭什么入宫，你如何回答？',
+  [
+    {label:`A. "臣女出身微寒，但 ${w('determine','determine')||'下决心'} 以 ${w('quality','quality')} 品行报效皇恩"`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"回娘娘，臣女自知 ${w('condition','condition')} 不易，但 ${w('determine','determine')||'决心'} 以忠心与 ${w('quality','quality')} 品行，竭尽所能，不敢有半分懈怠。"`),
+       N(`皇后微微点头，眼中闪过一丝不易察觉的满意。你的回答不卑不亢，恰到好处。这一关，你 ${w('manage','manage')} 过了。`),
+     ]);}},
+    {label:`B. 直接 ${w('state','state')} 自己的才学与 ${w('talent','talent')}，展示自信`,
+     action:()=>die(
+       `你侃侃而谈，言语间难掩得意。皇后娘娘脸色一沉："${w('talent','talent')} 再高，也高不过本宫的规矩。"傲气外露，宫中大忌。`,
+       `💡 词汇：<strong>talent</strong>（才能）——在皇后面前，谦逊比才华更值钱。`)},
+    {label:`C. 表示自己只愿服从一切安排，完全 ${w('avoid','avoid')} 提及自身能力`,
+     action:()=>die(
+       `你的过度谦卑暴露了内心的慌乱。皇后冷眼："连话都说不清楚，入宫何用？"`,
+       `💡 词汇：<strong>avoid</strong>（回避）——刻意回避展示自我，也是一种弱点的暴露。`)}
+  ]));
+
+  // PAGE 3 — 回合3
+  pageQueue.push(buildPage([
+    DIV('回合三 · 华妃刁难'),
+    N(`刚从皇后处退下，一阵张扬的香气扑面而来。华妃——宫中第二号人物，${w('character','character')||'性格'} 跋扈而聪慧，是最不 ${w('expect','expect')} 遭遇的人。`),
+    D('华妃','华贵妃','#8b4513','left',
+      `哟，这位就是那个县令之女？本宫问你：若我赐你一盅茶，你是 ${w('prefer','prefer')||'更愿意'} 喝，还是不喝？`),
+    N(`这是一个 ${w('valuable','valuable')} 的考验：若喝，可能是毒；若不喝，是拒绝华妃的好意。你的 ${w('emotion','emotion')||'情绪'} 必须完全掌控。`),
+  ],
+  '华妃赐茶，可能是试探，你会怎么做？',
+  [
+    {label:`A. 片刻后婉拒，并 ${w('state','state')} 自己身体微恙，感谢华妃好意`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"多谢华妃娘娘厚爱。臣女入宫途中感了微寒，太医 ${w('warn','warn')} 过不宜饮茶，恐失礼于娘娘面前，还望娘娘恕罪。"`),
+       N(`华妃眯起眼睛，看了你半晌，忽然笑了："倒是个 ${w('manage','manage')} 分寸的丫头。本宫喜欢。"你用体面的借口 ${w('avoid','avoid')} 了陷阱，还意外收获好感。`),
+     ]);}},
+    {label:`B. 毫不 ${w('hesitate','hesitate')} 地接过来喝，表示对华妃的 ${w('valuable','valuable')} 信任`,
+     action:()=>die(
+       `你仰头喝下。华妃笑得意味深长："这丫头，心也太大了。"茶中并无毒，但华妃认定你是个鲁莽之人，日后处处给你穿小鞋。`,
+       `💡 词汇：<strong>hesitate</strong>（犹豫）——有时是智慧，不是懦弱。片刻思考可以救命。`)},
+    {label:`C. 直接 ${w('state','state')} 这是试探，表示自己不会被 ${w('mislead','mislead')} 欺骗`,
+     action:()=>die(
+       `你说穿了华妃的把戏，当众令她颜面尽失。华妃脸色骤变："好大的胆子！"宫中大忌：永远不要让权贵在众人面前难堪。`,
+       `💡 词汇：<strong>mislead</strong>（误导）——揭穿别人的把戏有时弄巧成拙。`)}
+  ]));
+
+  // PAGE 4 — 回合4
+  pageQueue.push(buildPage([
+    DIV('回合四 · 御前首见'),
+    N(`终于，你踏入了御书房偏殿。皇上正在批阅奏折，神情专注，透着令人敬畏的威严。这是你进宫以来最 ${w('valuable','valuable')} 的考验。`),
+    D('皇上','天子','#1a1a4a','left',
+      `抬起头来。朕听说你是今日大选中，唯一一个让皇后和华妃都 ${w('realise','realise')} 了不同之处的人。说说看，你有什么 ${w('talent','talent')}？`),
+  ],
+  '皇上问你有什么才能，如何回答最为得体？',
+  [
+    {label:`A. "${w('talent','talent')} 微薄，愿以 ${w('spirit','spirit')||'精神'} 与忠心 ${w('support','support')||'支持'} 皇上"`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"回皇上，臣女 ${w('talent','talent')} 微薄，不敢自夸。臣女只知：在磨砺中方见 ${w('character','character')||'品格'}，臣女愿以真心，${w('attend','attend')||'侍奉'} 皇上。至于才能……日后若有机会，臣女自会 ${w('produce','produce')} 出来，供皇上裁定。"`),
+       N(`皇上放下朱笔，第一次抬头认真看了你一眼。"有趣。" 两个字，让整个偏殿气氛为之一变。你的分寸，让皇上对你产生了 ${w('concern','concern')}。`),
+     ]);}},
+    {label:`B. 详细 ${w('state','state')} 自己的才学，包括诗词歌赋，充分展示`,
+     action:()=>die(
+       `你滔滔不绝地介绍自己的才学。皇上静静听完，淡淡道："${w('talent','talent')} 尚可，只是……过于爱表现。"宫中真正的智慧是：皇上没问的，不要主动说太多。`,
+       `💡 词汇：<strong>state</strong>（陈述）——在皇上面前，言简意赅比滔滔不绝更聪明。`)},
+    {label:`C. 表示最大的 ${w('talent','talent')} 是 ${w('manage','manage')} 人际关系，深得人心`,
+     action:()=>die(
+       `"${w('manage','manage')} 人际关系？"皇上重复了一遍，语气玩味。"宫中若人人都擅长此道，那还要规矩做什么？"你暴露了心机。`,
+       `💡 词汇：<strong>manage</strong>（管理）——用于人际关系时暗示权谋心机，在皇上面前是大忌。`)}
+  ]));
+
+  // PAGE 5 — 回合5
+  pageQueue.push(buildPage([
+    DIV('回合五 · 宫闱暗流'),
+    N(`入宫第三天。你被安置在偏僻的蕊香阁。今晚，贤妃的贴身丫鬟悄悄来敲了你的门。`),
+    D('贤妃丫鬟','传话之人','#3a3a2a','left',
+      `苏姑娘，我家娘娘今夜在梅园 ${w('arrange','arrange')} 了一场小聚会。她 ${w('desire','desire')} 与姑娘结交，${w('offer','offer')||'提供'} 了一份 ${w('reward','reward')}——若你 ${w('attend','attend')||'出席'}，日后在宫中自有人庇护你。`),
+  ],
+  '贤妃深夜邀约，你会怎么做？',
+  [
+    {label:`A. 婉拒：称身体不适，${w('avoid','avoid')} 此次聚会，改日再拜访`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"有劳贤妃娘娘挂记，臣妾感激不尽。只是今夜身子不适，不敢失礼于娘娘。待臣妾好转，必亲去拜见。"`),
+       N(`你的婉拒既不失礼，又保住了独立性。子时的梅园，其实是测试新人 ${w('character','character')||'性格'} 的局——轻易结交他人的新人，往往是最快被利用的那一个。你的 ${w('security','security')} 意识，让你 ${w('avoid','avoid')} 了陷阱。`),
+     ]);}},
+    {label:`B. 欣然出席，认为这是一个 ${w('valuable','valuable')} 的 ${w('opportunity','opportunity')||'机会'}`,
+     action:()=>die(
+       `你如约而至，梅园里果然有数位妃嫔。然而这是贤妃测试新人的局——今夜在场者的名字，明日便会出现在皇后娘娘的案头。`,
+       `💡 词汇：<strong>valuable</strong>（宝贵的）——不是所有「宝贵」的机会都值得抓住，有些是陷阱。`)},
+    {label:`C. 直接 ${w('warn','warn')} 丫鬟，称自己不参与任何派系纷争`,
+     action:()=>die(
+       `你的直接拒绝令贤妃颜面尽失。她虽表面微笑，却在心中记下了你的无礼。宫中拒绝也是一门艺术。`,
+       `💡 词汇：<strong>warn</strong>（警告）——在宫廷礼仪中，直接警告对方是失礼的行为。`)}
+  ]));
+
+  // PAGE 6 — 回合6
+  pageQueue.push(buildPage([
+    DIV('回合六 · 线索出现'),
+    N(`第五日。你在蕊香阁花圃下发现了一封密信。信中 ${w('announce','announce')} 了一件事：三日后，将有人以你的名义向皇上 ${w('produce','produce')} 一份伪造密函，${w('mislead','mislead')} 皇上，将你打入冷宫。`),
+    D('神秘送信人','（身份不明）','#2a2a2a','left',
+      `苏姑娘，${w('warn','warn')} 你：有人已 ${w('determine','determine')||'决心'} 要置你于死地。你只有两个出路：要么 ${w('persuade','persuade')} 皇上相信你，要么找到幕后之人的证据。${w('hesitate','hesitate')} 的代价，是你的命。`),
+  ],
+  '你发现有人要陷害你，最聪明的第一步是什么？',
+  [
+    {label:`A. 冷静 ${w('consider','consider')}，先保存密信，暗中调查线索`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `（你深吸一口气，${w('consider','consider')} 了所有可能性。慌乱是最坏的选择。先保住证据，再寻找机会反击。）`),
+       N(`你将密信藏好，开始留心每一个细节。你的 ${w('strength','strength')} 在这一刻显现——不慌不乱，${w('manage','manage')} 好情绪，这才是深宫求生的 ${w('quality','quality')}。`),
+     ]);}},
+    {label:`B. 立刻去 ${w('persuade','persuade')} 皇上，${w('produce','produce')} 密信作为证据`,
+     action:()=>die(
+       `你直奔御书房，拿出密信。皇上看后沉默："你如何证明，这封信不是你自己伪造的？"没有调查清楚便贸然行动，反而让自己更被动。`,
+       `💡 词汇：<strong>produce</strong>（拿出）——在没有充分准备前，拿出证据可能适得其反。`)},
+    {label:`C. ${w('announce','announce')} 此事，召集宫中所有人当众对峙`,
+     action:()=>die(
+       `你大张旗鼓地宣布被人陷害。结果幕后之人立刻销毁痕迹，而你却成了"制造事端"的人。皇后冷冷道："进宫才几日，便如此 ${w('struggle','struggle')} 生事，成何体统？"`,
+       `💡 词汇：<strong>announce</strong>（宣布）——在没有确凿证据前，公开宣布只会打草惊蛇。`)}
+  ]));
+
+  // PAGE 7 — 回合7
+  pageQueue.push(buildPage([
+    DIV('回合七 · 真相逼近'),
+    N(`经过两日暗中调查，你找到了关键线索：${w('mislead','mislead')} 你的人，正是贤妃身边的大宫女绿萝。她 ${w('arrange','arrange')} 了一切，幕后主使竟是……华妃。你手中已有足够证据，还差最后一步——一个让皇上相信你的机会。`),
+    D('华妃','华贵妃','#8b4513','left',
+      `（华妃不经意走过，眼神扫过你，带着一丝 ${w('concern','concern')}）苏姑娘今日气色不错嘛。${w('wonder','wonder')} 你是否已经……${w('realise','realise')} 了自己在这宫中的处境？`),
+  ],
+  '华妃暗示她知道你在调查，你如何应对这场心理博弈？',
+  [
+    {label:`A. 镇定回应，${w('state','state')} 自己只是在努力 ${w('improve','improve')} 适应宫中生活`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"多谢华妃娘娘挂记。臣妾初入宫廷，诸多不熟悉，正在努力 ${w('improve','improve')} 自己的仪态，${w('arrange','arrange')} 好日常事务。还请娘娘多多指教。"`),
+       N(`你的回答滴水不漏。华妃微微一愣，随即笑道："有趣。"她没想到你能在这种压力下保持如此镇定。你已 ${w('realise','realise')} 了一件事：知道自己知道了什么，是最大的 ${w('strength','strength')}。`),
+     ]);}},
+    {label:`B. ${w('directly','directly')} 质问华妃是否是幕后主使`,
+     action:()=>die(
+       `你直接质问，华妃脸色骤变，随即恢复笑容。当天夜里，那份关键证据不翼而飞——华妃已经动手了。没有绝对把握前，直接对峙只会打草惊蛇。`,
+       `💡 词汇：<strong>directly</strong>（直接地）——并不总是最佳策略，迂回往往比直接更有力量。`)},
+    {label:`C. 假装什么都不知道，${w('avoid','avoid')} 一切危险话题，过于刻意`,
+     action:()=>die(
+       `你表现得过于无辜，华妃的眼神瞬间锐利："${w('avoid','avoid')} 得太明显，也是一种暴露。"`,
+       `💡 词汇：<strong>avoid</strong>（回避）——刻意回避比直接面对更容易暴露内心的恐惧。`)}
+  ]));
+
+  // PAGE 8 — 回合8 终局
+  pageQueue.push(buildPage([
+    DIV('回合八 · 终局·破局'),
+    N(`第八日，你等到了那个机会——皇上在御花园散步，偶然遇见了你。这是你 ${w('arrange','arrange')} 的，也是命运 ${w('reward','reward')} 给你的。你手中握着证据，走向了改变命运的时刻。`),
+    D('皇上','天子','#1a1a4a','left',
+      `苏婉，你在宫中这几日，朕听说……发生了不少事。你有什么想 ${w('state','state')} 的，现在说。`),
+  ],
+  '这是你破局的最后机会，如何向皇上陈述？',
+  [
+    {label:`A. 有条不紊地 ${w('produce','produce')} 证据，有理有据地 ${w('persuade','persuade')} 皇上`,
+     action:()=>{correctCount++;endChapter1();}},
+    {label:`B. 先 ${w('persuade','persuade')} 皇上相信自己的为人，再慢慢道出证据`,
+     action:()=>die(
+       `你花了太多时间在感情陈述上，皇上已经失去耐心。"说重点。"他打断了你。宫中没有时间让你慢慢铺垫——机会只有一次。`,
+       `💡 词汇：<strong>persuade</strong>（说服）——在皇上面前，先证据后感情，而不是相反。`)},
+    {label:`C. 跪下痛哭，以情绪打动皇上，请求皇上 ${w('protect','protect')||'保护'} 自己`,
+     action:()=>die(
+       `皇上沉默了一会儿，道："宫中，哭的人太多了。"他转身离去。`,
+       `💡 词汇：<strong>emotion</strong>（情绪）——在关键时刻，理智永远比眼泪更有说服力。`)}
+  ]));
+}
+
+function advancePage(extraNodes) {
+  // Insert a new page after current with extra nodes, then continue
+  const nextIdx = pageIndex + 1;
+  const insertPage = buildPage(extraNodes, null, null);
+  pageQueue.splice(nextIdx, 0, insertPage);
+  renderPage(nextIdx);
+}
+
+function endChapter1() {
+  // Show ending narration then stat popup
+  const pw = document.getElementById('page-wrap');
+  const end = document.createElement('div');
+  end.className = 'narr';
+  end.innerHTML = `
+    <div style="font-size:13px;color:var(--acc);margin-bottom:10px;letter-spacing:2px;">✦ 第一章结局</div>
+    次日，一道旨意颁下：华妃罚俸半年，绿萝逐出宫廷，苏婉 ${w('promote','promote')} 为婕妤，赐蕊香阁正殿居住。<br><br>
+    你 ${w('realise','realise')} 了一件事：宫中的 ${w('struggle','struggle')} 从未停止，但只要你保有 ${w('spirit','spirit')}、${w('strength','strength')}，并懂得 ${w('manage','manage')} 每一个机会，你就永远有翻身的可能。<br><br>
+    <span style="color:var(--acc3)">这才是第一章，而你……才刚刚开始。</span>`;
+  pw.appendChild(end);
+  pw.scrollTop = pw.scrollHeight;
+
+  const rank = correctCount>=7?'凤凰涅槃·上上签':correctCount>=5?'浴火重生·中上签':'险象环生·中签';
+
+  setTimeout(()=>{
+    unlockedChapters.add(2);
+    document.getElementById('ch2-card').classList.remove('locked');
+    document.getElementById('ch2-badge').className = 'cc-badge done';
+    document.getElementById('ch2-badge').textContent = '已解锁';
+    document.getElementById('ch1-badge').className = 'cc-badge done';
+    document.getElementById('ch1-badge').textContent = '✓ 完结';
+
+    showStatPopup(
+      '惊鸿初见',
+      '· 你已在宫中站稳了脚跟 ·',
+      {scheming:3, wisdom:4, talent:-2, favor:3, power:2},
+      `宫廷评价：<strong>${rank}</strong><br>本章习得词汇：<strong>${seenWords.size}</strong> 个<br>正确决策：<strong>${correctCount}</strong> / 8 回合`,
+      ()=>startChapter(2)
+    );
+  }, 2000);
+}
+
+// ════════════════════════════════════════════
+//  CHAPTER 2: 暗流涌动
+// ════════════════════════════════════════════
+function buildChapter2() {
+  const N=(html)=>({type:'narr',html});
+  const D=(who,role,color,side,html)=>({type:'dlg',who,role,color,side,html});
+  const DIV=(text)=>({type:'div',text});
+
+  // PAGE 0 — 序章
+  pageQueue.push(buildPage([
+    DIV('序章 · 嫔位之初'),
+    N(`时间过去了三个月。你——苏婉，如今是婕妤苏氏，居蕊香阁正殿。晋位之后，你以为风波已过，却 ${w('realise','realise')} 到：宫中从无真正的 ${w('security','security')}。封妃典礼即将举行，这将是你入宫以来最危险，也最 ${w('valuable','valuable')} 的一役。`),
+    D('紫鸢（贴身宫女）','蕊香阁丫鬟','#2a5a3a','left',
+      `娘娘，奴婢 ${w('warn','warn')} 您——今日典礼上，贵妃娘娘 ${w('arrange','arrange')} 了新的座次，把您安排在了最偏僻的位置。这明显是 ${w('deliberately','deliberately')||'故意'} 的羞辱。`),
+  ], null, null));
+
+  // PAGE 1 — 回合1
+  pageQueue.push(buildPage([
+    DIV('回合一 · 座次之争'),
+    N(`封妃典礼上，座次代表地位。你的位置被安排在最末端，几乎在视线的盲区。所有人都在 ${w('consider','consider')} 你会如何反应。典礼即将开始，你只有片刻时间做决定。`),
+    D('礼部官员','典礼负责人','#3a3a5a','left',
+      `婕妤娘娘，您的座位在……第七排偏侧。还请尽快就位，典礼马上开始。`),
+  ],
+  '你的座位被故意安排在末位，你会怎么做？',
+  [
+    {label:`A. 平静就坐，${w('avoid','avoid')} 在典礼上制造任何波澜`,
+     action:()=>{correctCount++;advancePage([
+       N(`你微微一笑，平静地走向那个位置。典礼上的你举止从容，皇上的目光在那一刻不经意扫过——正好看见了一个在逆境中依然 ${w('manage','manage')} 仪态的女子。贵妃的如意算盘落空了。`),
+     ]);}},
+    {label:`B. 向礼部官员 ${w('state','state')} 这是错误的，要求纠正座次`,
+     action:()=>die(
+       `你当众质疑座次安排，礼部官员面红耳赤。典礼因此短暂停顿，而皇上的目光中多了一丝不悦："区区座次，如此 ${w('struggle','struggle')} ，成何体统？"你给自己贴上了"难以管教"的标签。`,
+       `💡 词汇：<strong>state</strong>（陈述）——有些真相，在公开场合说出来，代价比忍耐更大。`)},
+    {label:`C. 借故称病，${w('avoid','avoid')} 参加典礼`,
+     action:()=>die(
+       `你称病缺席，华妃立刻向皇上进言："连典礼都不 ${w('attend','attend')||'出席'}，这位婕妤是在 ${w('regret','regret')||'后悔'} 自己的位分了？"缺席反而给了对手最好的攻击机会。`,
+       `💡 词汇：<strong>avoid</strong>（回避）——在宫廷中，逃避往往比面对需要付出更大的代价。`)}
+  ]));
+
+  // PAGE 2 — 回合2
+  pageQueue.push(buildPage([
+    DIV('回合二 · 太后召见'),
+    N(`典礼后，意外发生了：太后娘娘派人来宣你觐见。太后是整个后宫真正的最高权威，连皇上都需对她敬重有加。这次召见，可能是机遇，也可能是陷阱。`),
+    D('太后宫女','慈宁宫传话人','#5a4a2a','left',
+      `婕妤娘娘，太后娘娘说……她对你颇有 ${w('concern','concern')}，今日典礼上你的表现，令她 ${w('wonder','wonder')} 你究竟是怎样的人。`),
+    D('苏婉（你）','你自己','#2a3a2a','right',
+      `（心中暗想：太后此举，究竟是 ${w('desire','desire')} 了解我，还是另有深意……）`),
+  ],
+  '太后召见，你该如何准备和应对？',
+  [
+    {label:`A. 准备一份 ${w('valuable','valuable')} 的礼物，以 ${w('persuade','persuade')} 太后对你有好感`,
+     action:()=>{correctCount++;advancePage([
+       N(`你精心挑选了一份礼物——一幅亲手抄写的《心经》，不贵重却足见心意。太后展开，眼中闪过一丝欣赏："这孩子，${w('realise','realise')} 什么是真正 ${w('valuable','valuable')} 的东西。"`),
+       D('太后','慈宁宫主人','#4a3020','left',
+         `好孩子，坐吧。本宫 ${w('wonder','wonder')} ……你在这宫中，还 ${w('hesitate','hesitate')} 什么？`),
+     ]);}},
+    {label:`B. 空手前往，${w('directly','directly')} 以诚相待，不送礼不做作`,
+     action:()=>die(
+       `空手觐见太后，被视为对长辈的轻慢。太后的宫女冷冷地说："婕妤娘娘倒是与众不同……"这句话，是讽刺，不是赞美。`,
+       `💡 词汇：<strong>directly</strong>（直接地）——有时过于直接会被解读为失礼，宫廷礼仪有它的规则。`)},
+    {label:`C. 找借口 ${w('avoid','avoid')} 太后召见，称自己还在 ${w('regret','regret')} 典礼上的疏失需要整理`,
+     action:()=>die(
+       `拒绝太后召见，是后宫中的大忌。次日，皇上便收到了太后的抱怨："这个苏婉妮，本宫叫她，她都不来……"你的处境骤然危险。`,
+       `💡 词汇：<strong>regret</strong>（后悔）——有些"regret"是借口，借口永远比直接面对更危险。`)}
+  ]));
+
+  // PAGE 3 — 回合3
+  pageQueue.push(buildPage([
+    DIV('回合三 · 太后密谈'),
+    N(`慈宁宫内，香炉袅袅，气氛肃穆。太后屏退左右，只留下你们两人。你知道，真正的考验现在才开始。`),
+    D('太后','慈宁宫主人','#4a3020','left',
+      `本宫问你：皇上 ${w('promote','promote')} 你为婕妤，是因为你 ${w('manage','manage')} 了华妃那件事。但本宫 ${w('concern','concern')} 的是——你进宫，究竟是为了什么？`),
+  ],
+  '太后询问你进宫的真正目的，你如何作答？',
+  [
+    {label:`A. "臣妾只 ${w('desire','desire')} 安稳度日，绝无 ${w('struggle','struggle')} 权位之心"`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"回太后娘娘，臣妾出身微寒，没有 ${w('desire','desire')} 权位的资本，也无此野心。臣妾只望安分度日，不给皇上添麻烦。"`),
+       N(`太后沉默了很久，最终道："诚实。"她将一块玉佩放在你手中："拿着，日后若有难处，来见本宫。"你用真诚打动了太后，得到了宫中最有力的庇护。`),
+     ]);}},
+    {label:`B. 表示进宫是为了 ${w('support','support')||'支持'} 皇上大业，一心为国`,
+     action:()=>die(
+       `太后微微一笑，那笑里藏着她在宫中活了六十年的洞察："本宫见过太多说这种话的女子……"她看穿了你，从此对你有了戒心。`,
+       `💡 词汇：<strong>support</strong>（支持）——过于宏大的承诺，在洞察人心的人面前，反而是破绽。`)},
+    {label:`C. ${w('persuade','persuade')} 太后：臣妾进宫是奉命而来，别无选择`,
+     action:()=>die(
+       `"奉命而来，别无选择"——这句话让太后皱起了眉头。在太后眼中，一个没有主见的嫔妃，只不过是别人手中的棋子。`,
+       `💡 词汇：<strong>persuade</strong>（说服）——有时过度诉说无奈，反而暴露了软弱。`)}
+  ]));
+
+  // PAGE 4 — 回合4
+  pageQueue.push(buildPage([
+    DIV('回合四 · 皇上夜访'),
+    N(`那晚，皇上罕见地来到蕊香阁。这是你晋位以来，他第一次主动来访。你知道，这可能是你改变命运的最重要时刻。`),
+    D('皇上','天子','#1a1a4a','left',
+      `朕今日看典礼上你的样子……你没有 ${w('hesitate','hesitate')}，也没有 ${w('complain','complain')||'抱怨'}。朕想 ${w('reward','reward')} 你。你想要什么？`),
+  ],
+  '皇上主动问你想要什么赏赐，你怎么回答？',
+  [
+    {label:`A. 婉谢赏赐，${w('state','state')} 自己只愿皇上龙体安康，别无所求`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"皇上，臣妾不敢妄求。臣妾只愿皇上龙体安康，宫中安定。这便是臣妾最大的 ${w('reward','reward')} 了。"`),
+       N(`皇上望着你，眼中有什么东西悄悄松动了。"你……"他停顿了一下，最终什么都没说，却在离开前将自己腕上的一串玉珠留了下来。那串玉珠，价值连城，更代表着圣宠。`),
+     ]);}},
+    {label:`B. 表示 ${w('desire','desire')} 晋升，请皇上 ${w('promote','promote')} 自己的位分`,
+     action:()=>die(
+       `皇上的眼神立刻变得深邃。"朕问你想要什么，你 ${w('directly','directly')} 说晋位？"在真诚的时刻露出野心，是最致命的失误。圣宠就此冷却。`,
+       `💡 词汇：<strong>promote</strong>（晋升）——当皇上以真心相待时，功利的回答是最大的伤害。`)},
+    {label:`C. 请求皇上 ${w('protect','protect')||'保护'} 自己，诉说宫中所受的委屈`,
+     action:()=>die(
+       `你倾诉了许多委屈，皇上听得认真，却在离去时留下了一句令你心寒的话："后宫之事，自有规矩处置。"抱怨只会让皇上 ${w('regret','regret')} 此次拜访。`,
+       `💡 词汇：<strong>protect</strong>（保护）——寻求保护要有技巧，直接哭诉委屈让皇上疲倦，而非心疼。`)}
+  ]));
+
+  // PAGE 5 — 回合5
+  pageQueue.push(buildPage([
+    DIV('回合五 · 华妃的棋局'),
+    N(`三日后，华妃邀请了宫中所有嫔妃参加一场雅集——吟诗赏花。表面上是风雅之事，实则是她精心 ${w('arrange','arrange')} 的一场考验。你知道，这场雅集中，${w('talent','talent')} 不重要，真正 ${w('valuable','valuable')} 的是 ${w('manage','manage')} 局面的能力。`),
+    D('华妃','华贵妃','#8b4513','left',
+      `今日雅集，各位妹妹各展 ${w('talent','talent')}。苏婕妤，本宫听说你才学不错——就请你第一个来，作一首 ${w('directly','directly')} 描写宫中秋景的诗，如何？`),
+  ],
+  '华妃要你当众作诗，且必须直接描写宫中秋景，你怎么做？',
+  [
+    {label:`A. 从容起身，以一首言辞婉转的诗作应对，${w('avoid','avoid')} 任何敏感词汇`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"秋风不识宫门高，吹散金菊入池梢。翠袖拢香无人问，却待月明独自摇。"`),
+       N(`雅集中安静了片刻，随即有人轻轻鼓掌。诗中既有秋景，又有一丝淡淡的寂寥，令人回味——华妃本想 ${w('mislead','mislead')} 你犯错，却反而为你搭了一个展示 ${w('talent','talent')} 的台。`),
+     ]);}},
+    {label:`B. 以 ${w('directly','directly')} 犀利的诗句描写宫中的争斗与 ${w('struggle','struggle')}，显示自己的锋芒`,
+     action:()=>die(
+       `你的诗句锋芒毕露，隐含着对宫廷权谋的讽刺。华妃脸色一沉，全场噤若寒蝉。皇上得知后，只说了一句："文辞倒是不凡，只是……不懂分寸。"`,
+       `💡 词汇：<strong>directly</strong>（直接地）——才华展示需要分寸感，锋芒毕露往往比锋芒内敛代价更大。`)},
+    {label:`C. 称自己才学浅薄，${w('hesitate','hesitate')} 推辞，请华妃另请他人`,
+     action:()=>die(
+       `你的推辞让华妃嘴角浮起一丝冷笑："婕妤娘娘怎么如此 ${w('hesitate','hesitate')} 呢？连一首诗都不敢作，日后如何在宫中立足？"你坐实了"无才"的名声。`,
+       `💡 词汇：<strong>hesitate</strong>（犹豫）——在展示的场合，犹豫不决比失败更致命。`)}
+  ]));
+
+  // PAGE 6 — 回合6
+  pageQueue.push(buildPage([
+    DIV('回合六 · 秘密同盟'),
+    N(`雅集后，一个意想不到的人来到了蕊香阁——德妃。她是宫中一直保持中立的嫔妃，既不与华妃为伍，也不靠近皇后。她此次来，带来了一个令你震惊的 ${w('announce','announce')}。`),
+    D('德妃','宫中中立势力','#3a4a5a','left',
+      `苏婕妤，本宫直说吧。华妃 ${w('arrange','arrange')} 了一个局——她想在下个月的中秋宴上，让你在皇上面前出丑，彻底失去圣宠。本宫 ${w('warn','warn')} 你，是因为我们或许可以 ${w('support','support')||'互相支持'}。你愿意与本宫结盟吗？`),
+  ],
+  '德妃提出结盟，你是否接受？',
+  [
+    {label:`A. 表示感谢，但需要时间 ${w('consider','consider')}，约定三日后给予答复`,
+     action:()=>{correctCount++;advancePage([
+       D('苏婉（你）','你自己','#2a3a2a','right',
+         `"德妃娘娘的好意，臣妾铭记于心。只是此事关系重大，臣妾 ${w('hesitate','hesitate')} 于仓促决定。可否给臣妾三日时间 ${w('consider','consider')}？"`),
+       N(`德妃微微颔首："有头脑。"三日后，你经过仔细调查，确认德妃确无恶意，便以一种对双方都有利的方式达成了共识。你在宫中第一次有了真正意义上的 ${w('support','support')||'盟友'}。`),
+     ]);}},
+    {label:`B. 立刻欣然答应，表示 ${w('desire','desire')} 结盟，越快越好`,
+     action:()=>die(
+       `你太快答应了。德妃眼中闪过一丝轻蔑——一个如此轻易就能被 ${w('persuade','persuade')} 的人，在权谋中是最容易被利用的棋子。三日后，德妃的要求比你预期的多了许多。`,
+       `💡 词汇：<strong>desire</strong>（渴望）——过于迫切的渴望暴露了弱点，在谈判中是致命的。`)},
+    {label:`C. 断然 ${w('avoid','avoid')} ，表示不参与任何派系，保持中立`,
+     action:()=>die(
+       `你拒绝了德妃。三周后的中秋宴，你孤立无援，华妃的计划几乎完美地将你击垮，而你没有任何援手。纯粹的中立，在宫中等于孤立。`,
+       `💡 词汇：<strong>avoid</strong>（回避）——在宫中，完全的中立往往意味着在关键时刻没有支援。`)}
+  ]));
+
+  // PAGE 7 — 回合7
+  pageQueue.push(buildPage([
+    DIV('回合七 · 中秋宴·暗箭'),
+    N(`中秋宴夜。华灯璀璨，歌舞升平，然而你知道，危机正在 ${w('approach','approach')||'逼近'}。华妃的计划是：在宫中乐师演奏时，让人 ${w('announce','announce')} 你将独自演奏一曲，而事实上你根本没有准备。这是一个精心 ${w('arrange','arrange')} 的 ${w('trap','trap')||'陷阱'}。`),
+    D('宫中司仪','（受人指使）','#2a2a2a','left',
+      `皇上，婕妤苏氏自愿献艺，为皇上 ${w('produce','produce')} 一支独奏，以表 ${w('desire','desire')}……`),
+    D('苏婉（你）','你自己','#2a3a2a','right',
+      `（你猝不及防。所有人的目光都已转向了你。华妃正以一个得意的微笑注视着你，等待你出丑。）`),
+  ],
+  '你被突然推上表演，毫无准备，你如何应对？',
+  [
+    {label:`A. 镇定起身，${w('produce','produce')} 一首即兴的歌谣，将危机化为 ${w('talent','talent')} 展示`,
+     action:()=>{correctCount++;advancePage([
+       N(`你深吸一口气，缓缓站起，从容道："皇上，臣妾斗胆，以一首家乡的小调，为今夜助兴。"你的声音并不宏亮，但咬字清晰，韵律自然，有一种民间的清新之气。`),
+       N(`皇上竟然微微前倾，认真地听完了。"不错，"他说，"倒是许久没听到这样的曲调了。"华妃的脸色在那一刻彻底沉了下来。`),
+     ]);}},
+    {label:`B. ${w('directly','directly')} 声明这是误会，当众揭穿这是有人故意 ${w('mislead','mislead')} 司仪`,
+     action:()=>die(
+       `你当众指控有人蓄意陷害，宴席气氛顿时剑拔弩张。皇上沉着脸："中秋佳节，何必如此 ${w('struggle','struggle')} 生事？"你虽揭穿了阴谋，却破坏了宴席的气氛，两败俱伤。`,
+       `💡 词汇：<strong>directly</strong>（直接地）——当众揭穿阴谋，有时会让自己也陷入被动。`)},
+    {label:`C. 称病晕倒，${w('avoid','avoid')} 上台，以 ${w('regret','regret')} 身体不适为由退场`,
+     action:()=>die(
+       `你装晕倒下，宴席被迫中断。皇上十分不悦："苏婕妤……体质如此孱弱，令人 ${w('concern','concern')} 。"华妃趁机向皇上进言，说你娇气难以侍奉。`,
+       `💡 词汇：<strong>regret</strong>（遗憾）——逃避是一时的缓解，却留下了更大的把柄。`)}
+  ]));
+
+  // PAGE 8 — 回合8 终局
+  pageQueue.push(buildPage([
+    DIV('回合八 · 第二章终局'),
+    N(`中秋宴后，皇上将你单独留下。他罕见地摒退了所有宫人，整个偏殿只有你们两人。你知道，接下来的话，将决定你在这深宫中的最终走向。`),
+    D('皇上','天子','#1a1a4a','left',
+      `苏婉，朕 ${w('wonder','wonder')} 一件事……你今夜所做的一切，是刻意 ${w('arrange','arrange')} 好的，还是当下 ${w('directly','directly')} 应变的？`),
+  ],
+  '皇上问你今夜的应对是刻意还是本能，你如何回答？',
+  [
+    {label:`A. 坦诚道：一半是 ${w('arrange','arrange')} 的准备，一半是 ${w('strength','strength')} 撑过来的`,
+     action:()=>{correctCount++;endChapter2();}},
+    {label:`B. 表示一切都是 ${w('directly','directly')} 的临场发挥，自己什么都没有 ${w('arrange','arrange')}`,
+     action:()=>die(
+       `皇上微微一笑，那笑里有一丝看穿一切的意味："朕不 ${w('believe','believe')||'相信'} 。"他离开了，留下你在偏殿，独自 ${w('regret','regret')} 这一刻的不诚实。`,
+       `💡 词汇：<strong>directly</strong>（直接）——有时过于"直接"的否认，反而暴露了掩饰。`)},
+    {label:`C. ${w('persuade','persuade')} 皇上：这一切都是为了皇上着想，臣妾愿意为皇上做任何事`,
+     action:()=>die(
+       `皇上沉默了，站起身道："朕要的不是随时准备'做任何事'的人。"过于刻意的顺从，让皇上感到了距离。`,
+       `💡 词汇：<strong>persuade</strong>（说服）——说服皇上的最好方式，是真实，而非表忠心。`)}
+  ]));
+}
+
+function endChapter2() {
+  const pw = document.getElementById('page-wrap');
+  const end = document.createElement('div');
+  end.className = 'narr';
+  end.innerHTML = `
+    <div style="font-size:13px;color:var(--acc);margin-bottom:10px;letter-spacing:2px;">✦ 第二章结局</div>
+    皇上沉默了很久，最终道："诚实，是朕最欣赏的品质。"<br><br>
+    次日，一道旨意颁下：婕妤苏氏晋为 ${w('promote','promote')} 嫔位，赐"婉"字封号——婉嫔。华妃因中秋宴之事被彻查，罚俸一年，禁足三月。<br><br>
+    你 ${w('realise','realise')} 了：在这深宫之中，${w('strength','strength')} 不只是力量，更是在 ${w('struggle','struggle')} 中依然保有真实自我的勇气。<br><br>
+    <span style="color:var(--acc3)">第二章完结。第三章，将是更深的漩涡……</span>`;
+  pw.appendChild(end);
+  pw.scrollTop = pw.scrollHeight;
+
+  const rank2 = correctCount>=7?'步步为营·凤仪渐显':correctCount>=5?'稳中求胜·初露锋芒':'如履薄冰·仍需磨砺';
+
+  setTimeout(()=>{
+    document.getElementById('ch2-badge').className = 'cc-badge done';
+    document.getElementById('ch2-badge').textContent = '✓ 完结';
+    showStatPopup(
+      '暗流涌动',
+      '· 你在宫中的根基，正一点点稳固 ·',
+      {scheming:4, wisdom:3, talent:3, favor:5, power:3},
+      `宫廷评价：<strong>${rank2}</strong><br>本章习得词汇：<strong>${seenWords.size}</strong> 个<br>正确决策：<strong>${correctCount}</strong> / 8 回合`,
+      ()=>{
+        showChapSel();
+      }
+    );
+  }, 2000);
+}
 </script>
 </body>
 </html>
